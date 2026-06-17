@@ -392,6 +392,10 @@
   .video-wrapper iframe, .video-wrapper video {
     width: 100%; height: 100%; border: none; display: block; border-radius: var(--r-xl);
   }
+  .video-caption {
+    margin-top: var(--sp-lg); text-align: center;
+    font-size: 14px; font-weight: 500; color: var(--muted);
+  }
 
   /* === ПРОДУКТ — light === */
   .product { background: var(--surface-light); }
@@ -881,6 +885,7 @@
       <!-- Локальный MP4: <video src="video/build.mp4" controls></video> -->
       <iframe id="videoEl" width="720" height="405" src="https://rutube.ru/play/embed/1a852e35145542f4fdc2d5011290f522/" style="border: none;" allow="clipboard-write; autoplay" allowFullScreen></iframe>
     </div>
+    <p class="video-caption reveal">Видео монтажа Кисловодск 2.0</p>
   </div>
 </section>
 
