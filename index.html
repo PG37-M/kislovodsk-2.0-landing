@@ -438,14 +438,12 @@
   }
   .use-case-item {
     background: #ffffff; border-radius: var(--r-lg);
-    padding: var(--sp-lg) var(--sp-md) var(--sp-md);
+    padding: var(--sp-md) var(--sp-lg);
     border: 1px solid #E0E0DE;
-    display: flex; flex-direction: column; gap: 10px;
+    font-size: 13px; font-weight: 500; color: var(--body-dark);
     transition: border-color 0.2s, box-shadow 0.2s;
   }
   .use-case-item:hover { border-color: var(--coral); box-shadow: 0 2px 12px rgba(28,105,212,0.08); }
-  .use-case-icon { font-size: 22px; color: var(--muted-dark); }
-  .use-case-name { font-size: 13px; font-weight: 500; color: var(--body-dark); line-height: 1.4; }
 
   /* === ХУК + CTA — coral callout + cream === */
   .hook-callout {
@@ -966,18 +964,18 @@
     <div class="reveal">
       <div class="use-cases-label">Подходит для</div>
       <div class="use-cases-grid">
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="use-case-name">Склады и логистика</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg></div><div class="use-case-name">Производственные цеха</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="use-case-name">Торговые центры</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M3 9l2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"/><path d="M12 3v6"/></svg></div><div class="use-case-name">Рынки и ярмарки</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M2 12a10 10 0 0 1 20 0M2 12a10 10 0 0 0 20 0"/><path d="M12 2v20"/></svg></div><div class="use-case-name">Аквапарки и бассейны</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v8"/><path d="M7.5 10l4.5 2 4.5-2"/><path d="M9 19l3-4 3 4"/></svg></div><div class="use-case-name">Спортивные комплексы</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="use-case-name">Помещения под мастерские</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="use-case-name">Стояночные комплексы</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16L12 4l10 12H2z"/><path d="M2 16h20v4H2z"/></svg></div><div class="use-case-name">Ангары</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="use-case-name">Энергетические объекты</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="use-case-name">Малоэтажные дома</div></div>
-        <div class="use-case-item"><div class="use-case-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div class="use-case-name">Сельхозобъекты</div></div>
+        <div class="use-case-item">Склады и логистика</div>
+        <div class="use-case-item">Производственные цеха</div>
+        <div class="use-case-item">Торговые центры</div>
+        <div class="use-case-item">Рынки и ярмарки</div>
+        <div class="use-case-item">Аквапарки и бассейны</div>
+        <div class="use-case-item">Спортивные комплексы</div>
+        <div class="use-case-item">Помещения под мастерские</div>
+        <div class="use-case-item">Стояночные комплексы</div>
+        <div class="use-case-item">Ангары</div>
+        <div class="use-case-item">Энергетические объекты</div>
+        <div class="use-case-item">Малоэтажные дома</div>
+        <div class="use-case-item">Сельхозобъекты</div>
       </div>
     </div>
   </div>
