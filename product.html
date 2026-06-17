@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Типовое здание из металлоконструкций | ЗМК Кисловодск 2.0</title>
+<meta name="description" id="pageDesc" content="Типовое здание из металлоконструкций под ключ. Производство в Кисловодске. Монтаж за 4–12 недель. Гарантия 25 лет.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sky:#2E86C1;--sky-dark:#1A5276;--sky-deeper:#154360;
+  --sky-light:#AED6F1;--sky-pale:#EBF5FB;--sky-mist:#D6EAF8;
+  --mountain:#1B2631;--rock:#2E4053;--stone:#5D6D7E;--fog:#85929E;
+  --snow:#FFFFFF;--canvas:#F0F7FF;--gold:#F39C12;--green:#1E8449;
+  --text:#1B2631;--text-sec:#2E4053;--text-muted:#7F8C8D;
+  --border:#D4E6F1;--r:12px;--r-sm:8px;
+  --sh:0 1px 3px rgba(46,134,193,.1);
+  --sh-md:0 4px 16px rgba(46,134,193,.15);
+  --sh-lg:0 12px 32px rgba(46,134,193,.2);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--canvas);color:var(--text);line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ── HEADER ─────────────────────────── */
+.header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(46,134,193,.08)}
+.header-inner{display:flex;align-items:center;gap:16px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--sky),var(--sky-dark));border-radius:9px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:1.8}
+.logo-name{font-size:15px;font-weight:800;color:var(--sky-dark)}
+.logo-sub{font-size:10px;color:var(--stone);text-transform:uppercase;letter-spacing:.5px}
+.hdr-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.hdr-phone{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--sky-dark);padding:8px 12px;border-radius:var(--r-sm);transition:background .15s}
+.hdr-phone:hover{background:var(--sky-pale)}
+.btn-hdr{background:var(--sky);color:#fff;padding:9px 18px;border-radius:var(--r-sm);font-size:13px;font-weight:700;transition:background .15s}
+.btn-hdr:hover{background:var(--sky-dark)}
+
+/* ── BREADCRUMB ──────────────────────── */
+.breadcrumb{padding:16px 0;font-size:13px;color:var(--stone)}
+.breadcrumb a{color:var(--sky);transition:color .15s}
+.breadcrumb a:hover{color:var(--sky-dark)}
+.breadcrumb span{margin:0 6px;color:var(--fog)}
+
+/* ── LAYOUT ──────────────────────────── */
+.product-layout{display:grid;grid-template-columns:1fr 360px;gap:32px;padding-bottom:64px}
+
+/* ── GALLERY ─────────────────────────── */
+.gallery-wrap{position:relative}
+.gallery-main{
+  border-radius:var(--r);overflow:hidden;
+  background:var(--rock);position:relative;
+  aspect-ratio:4/3;cursor:zoom-in;
+}
+.gallery-main img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.gallery-main:hover img{transform:scale(1.02)}
+.gallery-badge{
+  position:absolute;top:16px;left:16px;z-index:2;
+  background:var(--gold);color:var(--mountain);
+  font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  padding:4px 12px;border-radius:6px;
+}
+.gallery-badge.hot{background:#E74C3C;color:#fff}
+.gallery-badge.new{background:#27AE60;color:#fff}
+.gallery-prev,.gallery-next{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.9);box-shadow:var(--sh-md);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;cursor:pointer;transition:all .15s;
+  border:none;font-family:inherit;
+}
+.gallery-prev{left:12px}
+.gallery-next{right:12px}
+.gallery-prev:hover,.gallery-next:hover{background:#fff;transform:translateY(-50%) scale(1.05)}
+.gallery-counter{
+  position:absolute;bottom:14px;right:14px;z-index:2;
+  background:rgba(0,0,0,.55);color:#fff;
+  font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px;
+}
+.gallery-thumbs{display:flex;gap:8px;margin-top:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.gallery-thumbs::-webkit-scrollbar{height:4px}
+.gallery-thumbs::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.thumb{
+  width:80px;height:60px;flex-shrink:0;border-radius:8px;overflow:hidden;
+  border:2px solid transparent;cursor:pointer;transition:all .15s;
+}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb.active{border-color:var(--sky);box-shadow:0 0 0 2px rgba(46,134,193,.3)}
+.thumb:hover{border-color:var(--sky-light)}
+
+/* labels under gallery */
+.gallery-labels{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.gallery-label{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;color:var(--stone);
+  background:var(--snow);border:1px solid var(--border);
+  padding:4px 10px;border-radius:var(--r-sm);
+}
+.gallery-label .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ── PRODUCT INFO (sidebar) ──────────── */
+.product-info{display:flex;flex-direction:column;gap:0}
+.info-sticky{position:sticky;top:80px}
+.info-cat{font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px}
+.info-title{font-size:26px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:16px}
+.info-rating{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.stars{color:#F1C40F;font-size:16px}
+.rating-val{font-size:14px;font-weight:700;color:var(--text)}
+.rating-cnt{font-size:13px;color:var(--stone)}
+.price-block{
+  background:var(--sky-pale);border:1.5px solid var(--sky-mist);
+  border-radius:var(--r);padding:18px 20px;margin-bottom:16px;
+}
+.price-label{font-size:11px;font-weight:600;color:var(--stone);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.price-big{font-size:30px;font-weight:800;color:var(--sky-dark)}
+.price-note{font-size:13px;color:var(--stone);margin-top:4px;line-height:1.4}
+.timing-row{
+  display:flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;color:var(--green);
+  background:#f0fff4;border:1px solid #c6f6d5;
+  border-radius:var(--r-sm);padding:10px 14px;margin-bottom:16px;
+}
+.timing-row svg{width:16px;height:16px;flex-shrink:0}
+.cta-buttons{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.btn-primary{
+  background:var(--sky);color:#fff;
+  padding:14px 24px;border-radius:var(--r-sm);
+  font-size:15px;font-weight:700;text-align:center;
+  transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-primary:hover{background:var(--sky-dark);transform:translateY(-1px);box-shadow:var(--sh-md)}
+.btn-secondary{
+  border:2px solid var(--sky);color:var(--sky);
+  padding:13px 24px;border-radius:var(--r-sm);
+  font-size:14px;font-weight:700;text-align:center;
+  transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-secondary:hover{background:var(--sky-pale)}
+.btn-wa{
+  background:#25D366;color:#fff;
+  padding:13px 24px;border-radius:var(--r-sm);
+  font-size:14px;font-weight:700;text-align:center;
+  transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-wa:hover{background:#1fa855}
+.trust-mini{display:flex;flex-direction:column;gap:8px;padding:16px;background:var(--snow);border:1px solid var(--border);border-radius:var(--r)}
+.trust-mini-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--stone)}
+.trust-mini-item strong{color:var(--text)}
+.trust-mini-item .ico{font-size:18px;flex-shrink:0}
+
+/* ── TABS (content below) ─────────────── */
+.tabs-section{margin-top:32px}
+.tabs-nav{display:flex;border-bottom:2px solid var(--border);margin-bottom:28px}
+.tab-btn{
+  padding:12px 20px;font-size:14px;font-weight:600;
+  color:var(--stone);border-bottom:3px solid transparent;
+  cursor:pointer;transition:all .15s;margin-bottom:-2px;
+}
+.tab-btn:hover{color:var(--sky)}
+.tab-btn.active{color:var(--sky-dark);border-bottom-color:var(--sky);font-weight:700}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+
+/* specs table */
+.specs-table{width:100%;border-collapse:collapse}
+.specs-table tr:nth-child(even) td{background:var(--sky-pale)}
+.specs-table td{padding:12px 16px;font-size:14px;border-bottom:1px solid var(--border)}
+.specs-table td:first-child{font-weight:600;color:var(--text-sec);width:40%;background:var(--snow)}
+.specs-table tr:nth-child(even) td:first-child{background:var(--sky-pale)}
+
+/* features list */
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.feature-item{
+  display:flex;align-items:flex-start;gap:10px;
+  background:var(--snow);border:1px solid var(--border);
+  border-radius:var(--r-sm);padding:14px;
+}
+.feature-ico{font-size:22px;flex-shrink:0}
+.feature-text h4{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.feature-text p{font-size:12px;color:var(--stone);line-height:1.45}
+
+/* process timeline */
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:20px;position:relative}
+.tl-item:not(:last-child)::before{
+  content:'';position:absolute;left:19px;top:44px;bottom:-20px;
+  width:2px;background:var(--sky-mist);
+}
+.tl-dot{
+  width:40px;height:40px;border-radius:50%;background:var(--sky);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;flex-shrink:0;
+  box-shadow:0 0 0 4px var(--sky-pale);
+}
+.tl-content{padding-bottom:32px}
+.tl-content h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.tl-content p{font-size:13px;color:var(--stone);line-height:1.55}
+.tl-tag{
+  display:inline-block;margin-top:8px;
+  background:var(--sky-pale);color:var(--sky);
+  font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;
+}
+
+/* ── SIMILAR SECTION ─────────────────── */
+.similar-section{padding:48px 0}
+.section-title{font-size:20px;font-weight:800;color:var(--text);margin-bottom:20px}
+.similar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.sim-card{
+  background:var(--snow);border:1.5px solid var(--border);
+  border-radius:var(--r);overflow:hidden;cursor:pointer;
+  transition:all .2s;
+}
+.sim-card:hover{border-color:var(--sky);box-shadow:var(--sh-lg);transform:translateY(-2px)}
+.sim-img{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px}
+.sim-body{padding:12px}
+.sim-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.sim-price{font-size:13px;font-weight:700;color:var(--sky-dark)}
+
+/* ── LIGHTBOX ────────────────────────── */
+.lb-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:all .2s;
+}
+.lb-overlay.open{opacity:1;visibility:visible}
+.lb-img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px}
+.lb-close{position:absolute;top:20px;right:20px;color:#fff;font-size:32px;cursor:pointer;line-height:1;opacity:.8;transition:opacity .15s}
+.lb-close:hover{opacity:1}
+.lb-prev,.lb-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  color:#fff;font-size:40px;cursor:pointer;padding:20px;
+  opacity:.7;transition:opacity .15s;
+}
+.lb-prev{left:0} .lb-next{right:0}
+.lb-prev:hover,.lb-next:hover{opacity:1}
+.lb-caption{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:13px}
+
+/* ── FOOTER ──────────────────────────── */
+.footer{background:var(--mountain);color:rgba(255,255,255,.6);padding:36px 0 20px}
+.footer-simple{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:20px}
+.footer-simple .brand{font-size:16px;font-weight:700;color:#fff}
+.footer-simple .contacts{display:flex;gap:20px;font-size:13px}
+.footer-simple .contacts a{color:rgba(255,255,255,.6);transition:color .15s}
+.footer-simple .contacts a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:16px;font-size:12px;text-align:center}
+
+/* mob bar */
+.mob-bar{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:#fff;border-top:1px solid var(--border);
+  padding:8px 12px;gap:8px;box-shadow:0 -4px 16px rgba(0,0,0,.1);
+}
+.mob-btn{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:11px 8px;border-radius:var(--r-sm);font-size:13px;font-weight:700;transition:all .15s;
+}
+.mb-call{background:var(--sky);color:#fff}
+.mb-wa{background:#25D366;color:#fff}
+.mb-back{background:var(--sky-pale);color:var(--sky-dark);border:1.5px solid var(--sky-mist)}
+
+/* responsive */
+@media(max-width:900px){
+  .product-layout{grid-template-columns:1fr}
+  .info-sticky{position:static}
+  .features-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .info-title{font-size:22px}
+  .price-big{font-size:24px}
+  .gallery-main{aspect-ratio:16/10}
+  .mob-bar{display:flex}
+  body{padding-bottom:72px}
+}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+  (function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+  })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109779710','ym');
+  ym(109779710,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109779710" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="marketplace.html" class="logo">
+      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2 2 7v10l10 5 10-5V7L12 2zm-1 14.5-5-2.5v-5l5 2.5v5zm1-6.8L7.5 7.2 12 5l4.5 2.2L12 9.7zm6 4.3-5 2.5v-5l5-2.5v5z"/></svg></div>
+      <div>
+        <div class="logo-name">ЗМК Кисловодск 2.0</div>
+        <div class="logo-sub">Металлоконструкции</div>
+      </div>
+    </a>
+    <div class="hdr-right">
+      <a href="tel:+79203404615" class="hdr-phone">📞 8 920 340-46-15</a>
+      <a href="tel:+79203404615" class="btn-hdr">Получить КП</a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="container">
+  <nav class="breadcrumb" aria-label="Навигация">
+    <a href="marketplace.html">Каталог</a>
+    <span>›</span>
+    <span id="bcCat">Категория</span>
+    <span>›</span>
+    <span id="bcTitle">Название</span>
+  </nav>
+</div>
+
+<!-- PRODUCT LAYOUT -->
+<div class="container">
+<div class="product-layout">
+
+  <!-- LEFT: GALLERY + TABS -->
+  <div>
+    <!-- GALLERY -->
+    <div class="gallery-wrap">
+      <div class="gallery-main" id="galleryMain" onclick="openLightbox(currentPhoto)">
+        <img id="mainPhoto" src="images/photo5.JPG" alt="Здание из металлоконструкций">
+        <div class="gallery-badge" id="galleryBadge" style="display:none"></div>
+        <button class="gallery-prev" onclick="event.stopPropagation();changePhoto(-1)" aria-label="Предыдущее фото">‹</button>
+        <button class="gallery-next" onclick="event.stopPropagation();changePhoto(1)" aria-label="Следующее фото">›</button>
+        <div class="gallery-counter" id="galleryCounter">1 / 7</div>
+      </div>
+      <div class="gallery-thumbs" id="galleryThumbs"></div>
+      <div class="gallery-labels">
+        <div class="gallery-label"><div class="dot" style="background:#27AE60"></div> Реальный объект</div>
+        <div class="gallery-label"><div class="dot" style="background:#2E86C1"></div> Собственное производство</div>
+        <div class="gallery-label"><div class="dot" style="background:#F39C12"></div> Под ключ</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-section">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab('specs')">Характеристики</button>
+        <button class="tab-btn" onclick="switchTab('features')">Что входит</button>
+        <button class="tab-btn" onclick="switchTab('process')">Как строим</button>
+      </div>
+
+      <!-- SPECS TAB -->
+      <div class="tab-pane active" id="tab-specs">
+        <table class="specs-table" id="specsTable">
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- FEATURES TAB -->
+      <div class="tab-pane" id="tab-features">
+        <div class="features-grid" id="featuresGrid"></div>
+      </div>
+
+      <!-- PROCESS TAB -->
+      <div class="tab-pane" id="tab-process">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot">1</div>
+            <div class="tl-content">
+              <h4>Заявка и консультация</h4>
+              <p>Звоните или пишите — менеджер перезванивает за 15 минут. Уточняем размеры, нагрузки, срок, бюджет. Если нужно — выезжаем на участок бесплатно.</p>
+              <span class="tl-tag">⏱ 15 минут</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">2</div>
+            <div class="tl-content">
+              <h4>Коммерческое предложение</h4>
+              <p>Готовим КП с точной ценой, планом здания, спецификацией металлоконструкций и сроком. Типовые решения — за 2–4 часа, нестандартные — до 24 часов.</p>
+              <span class="tl-tag">⏱ 2–24 часа</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">3</div>
+            <div class="tl-content">
+              <h4>Договор и аванс 30%</h4>
+              <p>Подписываем договор с фиксированными ценой и сроком. После аванса запускаем производство. Вы получаете личного менеджера и доступ к статусу заказа.</p>
+              <span class="tl-tag">📋 Фиксированная цена</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">4</div>
+            <div class="tl-content">
+              <h4>Производство в Кисловодске</h4>
+              <p>Завод изготавливает металлоконструкции. Все элементы нумеруются и маркируются — монтаж не требует сварки на площадке. Фото из цеха — по запросу.</p>
+              <span class="tl-tag">🏭 Собственный завод 15 000 м²</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">5</div>
+            <div class="tl-content">
+              <h4>Доставка и монтаж</h4>
+              <p>Доставляем комплект на объект. Бригада из 4–6 человек монтирует каркас, кровлю, стеновые панели. Один пролёт 18×36 м — 7 рабочих дней.</p>
+              <span class="tl-tag">⚡ 7 дней — один пролёт</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">6</div>
+            <div class="tl-content">
+              <h4>Сдача и гарантия</h4>
+              <p>Подписываем акты, выдаём исполнительную документацию и гарантийное свидетельство. Служба технической поддержки — 25 лет.</p>
+              <span class="tl-tag">🛡️ Гарантия 25 лет</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: PRODUCT INFO -->
+  <div class="product-info">
+    <div class="info-sticky">
+      <div class="info-cat" id="infoCat">Категория</div>
+      <h1 class="info-title" id="infoTitle">Название здания</h1>
+      <div class="info-rating">
+        <span class="stars">★★★★★</span>
+        <span class="rating-val">4.9</span>
+        <span class="rating-cnt">(214 отзывов)</span>
+      </div>
+
+      <div class="price-block">
+        <div class="price-label">Стоимость</div>
+        <div class="price-big" id="infoPrice">от 7 800 ₽/м²</div>
+        <div class="price-note">Ориентировочная цена. Точный расчёт — бесплатно за 2 часа.</div>
+      </div>
+
+      <div class="timing-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Срок монтажа: <strong id="infoTiming">4–8 недель</strong>
+      </div>
+
+      <div class="cta-buttons">
+        <a href="tel:+79203404615" class="btn-primary">📞 Получить КП за 2 часа</a>
+        <a id="waBtn" href="#" target="_blank" rel="noopener" class="btn-wa">💬 Написать в WhatsApp</a>
+        <a href="marketplace.html" class="btn-secondary">← Вернуться в каталог</a>
+      </div>
+
+      <div class="trust-mini">
+        <div class="trust-mini-item"><span class="ico">🏭</span><div>Собственный завод в <strong>Кисловодске</strong></div></div>
+        <div class="trust-mini-item"><span class="ico">💰</span><div>Работаем <strong>без посредников</strong> — дешевле на 15–25%</div></div>
+        <div class="trust-mini-item"><span class="ico">📐</span><div>Типовая документация <strong>в подарок</strong></div></div>
+        <div class="trust-mini-item"><span class="ico">🛡️</span><div>Гарантия на каркас <strong>25 лет</strong></div></div>
+        <div class="trust-mini-item"><span class="ico">🌍</span><div>Монтаж <strong>по всей России</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /product-layout -->
+
+<!-- SIMILAR -->
+<section class="similar-section" aria-label="Похожие решения">
+  <h2 class="section-title">Похожие типовые решения</h2>
+  <div class="similar-grid" id="similarGrid"></div>
+</section>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-simple">
+      <div class="brand">ЗМК Кисловодск 2.0</div>
+      <div class="contacts">
+        <a href="tel:+79203404615">📞 8 920 340-46-15</a>
+        <a href="mailto:info@zmk-ksl.ru">✉️ info@zmk-ksl.ru</a>
+        <span>📍 Кисловодск</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2002 – 2026 MSG Metal Service Group. Все права защищены.</p>
+      <p style="margin-top:6px"><a href="privacy.html" style="color:rgba(255,255,255,.55);text-decoration:underline">Политика обработки персональных данных</a></p>
+      <p style="margin-top:8px;color:rgba(255,255,255,.35);font-size:11px">ООО «МСГ» &nbsp;·&nbsp; ОГРН: 1173702013649 &nbsp;·&nbsp; ИНН: 3702180159 &nbsp;·&nbsp; КПП: 370201001</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE BAR -->
+<div class="mob-bar">
+  <a href="tel:+79203404615" class="mob-btn mb-call">📞 Позвонить</a>
+  <a id="mobWa" href="#" class="mob-btn mb-wa">💬 WhatsApp</a>
+  <a href="marketplace.html" class="mob-btn mb-back">← Каталог</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lbOverlay" onclick="closeLightbox(event)">
+  <span class="lb-close" onclick="closeLb()">✕</span>
+  <span class="lb-prev" onclick="lbMove(-1)">‹</span>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <span class="lb-next" onclick="lbMove(1)">›</span>
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+//  ALL CATALOG DATA (same as marketplace)
+// ═══════════════════════════════════════
+const cats = [
+  {id:'industry',label:'Промышленность',icon:'🏭',bg:'#1A5276',
+   items:[
+    {t:'Производственный цех',e:'🏭',specs:['от 300 м²','пролёт 12–36 м','высота 6–12 м'],price:'от 7 800',tm:'4–8 нед',badge:'hot',
+     feat:['Двускатная или арочная кровля','Подъёмные ворота 5×5 м','Кран-балки до 20 т','Антресольный этаж — опция','Утепление 150 мм','Любой цвет по RAL'],
+     specs2:[['Конструктивная схема','Каркас ПРС (рамный)'],['Пролёт','12–36 м'],['Длина','любая (шаг 6 м)'],['Высота до низа фермы','6–12 м'],['Площадь','от 300 м²'],['Стены','Сэндвич-панели 100–150 мм'],['Кровля','Сэндвич-панели 150–200 мм или профнастил'],['Ворота','Секционные или подъёмно-сдвижные'],['Нагрузка на кровлю','по расчёту, снеговой р-н 1–7'],['Сейсмика','до 8 баллов'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет на каркас']]},
+    {t:'Промышленное здание',e:'🔧',specs:['от 500 м²','пролёт 18–60 м','высота 7–15 м'],price:'от 8 200',tm:'6–10 нед',badge:'',
+     feat:['Многопролётная схема','Тяжёлые мостовые краны','Сейсмика до 8 баллов','Рабочая документация в комплекте'],
+     specs2:[['Конструктивная схема','Многопролётный каркас'],['Пролёт','18–60 м'],['Высота','7–15 м'],['Площадь','от 500 м²'],['Стены','Сэндвич-панели'],['Краны','Мостовые до 50 т'],['Сейсмика','до 8 баллов'],['Срок монтажа','6–10 недель'],['Гарантия','25 лет']]},
+    {t:'Завод',e:'⚙️',specs:['от 2 000 м²','индив. комплекс','высота до 18 м'],price:'от 9 500',tm:'10–20 нед',badge:'',
+     feat:['Комплексное проектирование','Инженерные сети','Собственный КТП','Охрана периметра'],
+     specs2:[['Площадь','от 2 000 м²'],['Высота','до 18 м'],['Комплекс','Производство + склад + офис'],['Инженерные сети','Электрика, вентиляция, водоснабжение'],['КТП','Включено'],['Срок монтажа','10–20 недель'],['Гарантия','25 лет']]},
+    {t:'Мастерская',e:'🛠️',specs:['от 72 м²','пролёт 9–18 м','высота 4–6 м'],price:'от 5 500',tm:'2–4 нед',badge:'new',
+     feat:['Быстрый монтаж','Рольставни','Освещение LED','Утепление 150 мм'],
+     specs2:[['Площадь','от 72 м²'],['Пролёт','9–18 м'],['Высота','4–6 м'],['Стены','Сэндвич-панели 100 мм'],['Ворота','Рольставни'],['Освещение','LED в комплекте'],['Срок монтажа','2–4 недели'],['Гарантия','25 лет']]},
+    {t:'Котельная',e:'🔥',specs:['от 50 м²','по проекту','высота 4–8 м'],price:'от 12 000',tm:'4–8 нед',badge:'',
+     feat:['Специальные нормы пожарной безопасности','Дымоходы в комплекте','Нержавеющий фасад','Принудительная вентиляция'],
+     specs2:[['Площадь','от 50 м²'],['Нормирование','СП 89, НПБ 41-01'],['Огнестойкость','EI 60'],['Дымоходы','В комплекте'],['Вентиляция','Принудительная, взрывобезопасная'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет']]},
+    {t:'Насосная станция',e:'💧',specs:['от 36 м²','по проекту','высота 3–6 м'],price:'от 11 500',tm:'3–6 нед',badge:'',
+     feat:['Герметичный пол','Аварийный слив','Антивандальное исполнение','Молниезащита'],
+     specs2:[['Площадь','от 36 м²'],['Пол','Герметичный с уклоном'],['Защита','Антивандальное исполнение'],['Молниезащита','Включена'],['Срок монтажа','3–6 недель'],['Гарантия','25 лет']]},
+    {t:'Компрессорная станция',e:'💨',specs:['от 80 м²','по проекту','высота 4–7 м'],price:'от 11 000',tm:'3–6 нед',badge:'',
+     feat:['Вибродемпфирующий фундамент','Шумоизоляция','Взрывобезопасная вентиляция','Молниезащита'],
+     specs2:[['Площадь','от 80 м²'],['Фундамент','Вибродемпфирующий'],['Шумоизоляция','Акустические панели'],['Вентиляция','Взрывобезопасная'],['Молниезащита','Включена'],['Срок монтажа','3–6 недель'],['Гарантия','25 лет']]},
+   ]},
+  {id:'warehouse',label:'Склады и логистика',icon:'📦',bg:'#7D6608',
+   items:[
+    {t:'Склад',e:'📦',specs:['от 200 м²','пролёт 12–36 м','высота 6–12 м'],price:'от 5 800',tm:'3–6 нед',badge:'hot',
+     feat:['Полы с нагрузкой 5 т/м²','Доки для погрузки','Пожарная автоматика','Утепление или холодное исполнение'],
+     specs2:[['Пролёт','12–36 м'],['Площадь','от 200 м²'],['Высота','6–12 м'],['Нагрузка на пол','5 т/м²'],['Ворота погрузочные','Секционные 4×4 м'],['Пожарная защита','Автоматика (опция)'],['Исполнение','Тёплое или холодное'],['Срок монтажа','3–6 недель'],['Гарантия','25 лет']]},
+    {t:'Логистический центр',e:'🚛',specs:['от 1 500 м²','пролёт 24–36 м','высота 10–14 м'],price:'от 7 200',tm:'8–14 нед',badge:'',
+     feat:['Многотемпературные зоны','Автоматические ворота','Конвейерные системы','Офисный блок'],
+     specs2:[['Площадь','от 1 500 м²'],['Пролёт','24–36 м'],['Высота','10–14 м'],['Зоны','Многотемпературные'],['Ворота','Автоматические докшелтеры'],['Офис','Антресольный этаж'],['Срок монтажа','8–14 недель'],['Гарантия','25 лет']]},
+    {t:'Распределительный центр',e:'🔄',specs:['от 3 000 м²','индив.','высота 10–16 м'],price:'от 7 500',tm:'10–18 нед',badge:'',
+     feat:['Кросс-докинг','Мезонин для сортировки','СКУД','Автоматизированный учёт'],
+     specs2:[['Площадь','от 3 000 м²'],['Высота','10–16 м'],['Технология','Кросс-докинг'],['Мезонин','Включён'],['Безопасность','СКУД'],['Срок монтажа','10–18 недель'],['Гарантия','25 лет']]},
+    {t:'Таможенный склад',e:'🛃',specs:['от 500 м²','пролёт 18–36 м','высота 6–10 м'],price:'от 8 500',tm:'6–10 нед',badge:'',
+     feat:['Камеры видеонаблюдения','Контроль периметра','Специальная сигнализация','Отдельный въезд'],
+     specs2:[['Площадь','от 500 м²'],['Безопасность','Видеонаблюдение + сигнализация'],['Периметр','Контролируемый'],['Въезд','Отдельный шлюз'],['Срок монтажа','6–10 недель'],['Гарантия','25 лет']]},
+    {t:'Оптовая база',e:'🏪',specs:['от 400 м²','пролёт 18–30 м','высота 6–10 м'],price:'от 6 500',tm:'4–8 нед',badge:'',
+     feat:['Офисный блок','Место для экспозиции','Навес для погрузки','Парковка 30+ авто'],
+     specs2:[['Площадь','от 400 м²'],['Пролёт','18–30 м'],['Офисный блок','Встроенный'],['Навес','Для погрузки'],['Парковка','30+ авто'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет']]},
+   ]},
+  {id:'hangar',label:'Ангары',icon:'✈️',bg:'#1E8449',
+   items:[
+    {t:'Авиационный ангар',e:'✈️',specs:['от 800 м²','пролёт до 80 м','высота до 20 м'],price:'от 14 000',tm:'8–14 нед',badge:'',
+     feat:['Ворота 20×10 м и более','Мостовые краны до 30 т','Антикоррозийная обработка','Молниезащита'],
+     specs2:[['Пролёт','до 80 м'],['Высота','до 20 м'],['Ворота','20×10 м и более'],['Краны','Мостовые до 30 т'],['Покрытие','Антикоррозийное'],['Молниезащита','Включена'],['Срок монтажа','8–14 недель'],['Гарантия','25 лет']]},
+    {t:'Ангар для техники',e:'🚜',specs:['от 300 м²','пролёт 18–36 м','высота 6–10 м'],price:'от 6 200',tm:'4–7 нед',badge:'hot',
+     feat:['Ворота 4×4 м','Смотровые ямы','Маслостойкий пол','Принудительная вентиляция'],
+     specs2:[['Площадь','от 300 м²'],['Пролёт','18–36 м'],['Высота','6–10 м'],['Ворота','4×4 м'],['Пол','Маслостойкий'],['Ямы','Смотровые по проекту'],['Вентиляция','Принудительная'],['Срок монтажа','4–7 недель'],['Гарантия','25 лет']]},
+    {t:'Ангар для хранения',e:'🏗️',specs:['от 150 м²','пролёт 12–36 м','высота 4–8 м'],price:'от 4 900',tm:'2–4 нед',badge:'new',
+     feat:['Сэндвич-панели стены и кровля','Широкие ворота','Освещение LED','Система вентиляции'],
+     specs2:[['Площадь','от 150 м²'],['Пролёт','12–36 м'],['Высота','4–8 м'],['Стены','Сэндвич-панели'],['Ворота','Широкие распашные'],['Освещение','LED'],['Срок монтажа','2–4 недели'],['Гарантия','25 лет']]},
+   ]},
+  {id:'trade',label:'Торговля и услуги',icon:'🛍️',bg:'#6C3483',
+   items:[
+    {t:'Торговый павильон',e:'🛒',specs:['от 50 м²','пролёт 9–15 м','высота 4–5 м'],price:'от 8 000',tm:'2–4 нед',badge:'new',
+     feat:['Витражное остекление','Декоративный фасад','Тёплое исполнение','Кассовая зона'],
+     specs2:[['Площадь','от 50 м²'],['Пролёт','9–15 м'],['Высота','4–5 м'],['Фасад','Витражное остекление'],['Исполнение','Тёплое'],['Срок монтажа','2–4 недели'],['Гарантия','25 лет']]},
+    {t:'Магазин',e:'🏬',specs:['от 100 м²','пролёт 12–24 м','высота 4–6 м'],price:'от 9 500',tm:'4–8 нед',badge:'',
+     feat:['Входной тамбур','Торговый зал без колонн','Подсобные помещения','Вывеска'],
+     specs2:[['Площадь','от 100 м²'],['Пролёт','12–24 м (без колонн в зале)'],['Тамбур','Включён'],['Подсобные','Включены'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет']]},
+    {t:'Торговый центр',e:'🏢',specs:['от 2 000 м²','пролёт 18–30 м','высота 5–8 м'],price:'от 12 000',tm:'10–20 нед',badge:'',
+     feat:['Многоуровневый','Эскалаторы','Подземный паркинг','Отделка А-класс'],
+     specs2:[['Площадь','от 2 000 м²'],['Этажность','2–4 этажа'],['Пролёт','18–30 м'],['Паркинг','Подземный'],['Отделка','А-класс'],['Срок монтажа','10–20 недель'],['Гарантия','25 лет']]},
+    {t:'Рынок',e:'🥦',specs:['от 500 м²','пролёт 12–18 м','высота 5–7 м'],price:'от 7 000',tm:'6–10 нед',badge:'',
+     feat:['Навесы над торговыми рядами','Складская зона','Холодильные камеры','Санузлы'],
+     specs2:[['Площадь','от 500 м²'],['Навесы','Над рядами'],['Холодильные зоны','Включены'],['Санузлы','По нормам'],['Срок монтажа','6–10 недель'],['Гарантия','25 лет']]},
+    {t:'Выставочный павильон',e:'🎪',specs:['от 200 м²','пролёт 18–36 м','высота 5–10 м'],price:'от 11 000',tm:'4–8 нед',badge:'',
+     feat:['Световые фонари','Панорамное остекление','Климат-контроль','Кровля-мембрана'],
+     specs2:[['Площадь','от 200 м²'],['Пролёт','18–36 м'],['Кровля','Мембранная'],['Остекление','Панорамное'],['Климат','Контроль'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет']]},
+    {t:'Гостиница',e:'🏨',specs:['от 500 м²','2–5 этажей','по проекту'],price:'от 18 000',tm:'12–24 нед',badge:'',
+     feat:['ЛСТК + сэндвич-панели','Звукоизоляция','Лифтовые шахты','Кровля с парапетом'],
+     specs2:[['Площадь','от 500 м²'],['Этажность','2–5 этажей'],['Каркас','ЛСТК'],['Звукоизоляция','Межэтажная'],['Лифт','Шахта предусмотрена'],['Срок монтажа','12–24 недели'],['Гарантия','25 лет']]},
+   ]},
+  {id:'auto',label:'Автомобильная сфера',icon:'🚗',bg:'#922B21',
+   items:[
+    {t:'Автосервис',e:'🔩',specs:['от 200 м²','пролёт 12–18 м','высота 5–7 м'],price:'от 8 500',tm:'4–7 нед',badge:'hot',
+     feat:['Смотровые ямы','Маслоуловители','Ворота 4×4 м','Компрессорная'],
+     specs2:[['Площадь','от 200 м²'],['Пролёт','12–18 м'],['Высота','5–7 м'],['Ямы','Смотровые, 2–4 шт'],['Маслоуловители','В полу'],['Ворота','4×4 м'],['Компрессорная','Включена'],['Срок монтажа','4–7 недель'],['Гарантия','25 лет']]},
+    {t:'Автомойка',e:'🚿',specs:['от 120 м²','пролёт 9–12 м','высота 4–5 м'],price:'от 10 500',tm:'3–6 нед',badge:'',
+     feat:['Водоотталкивающий пол','Маслосепаратор','Пенные системы','Тёплый пол'],
+     specs2:[['Площадь','от 120 м²'],['Пол','Водоотталкивающий с уклоном'],['Маслосепаратор','Включён'],['Тёплый пол','Опция'],['Исполнение','Тёплое'],['Срок монтажа','3–6 недель'],['Гарантия','25 лет']]},
+    {t:'Автосалон',e:'🚘',specs:['от 400 м²','пролёт 18–24 м','высота 5–7 м'],price:'от 13 000',tm:'6–10 нед',badge:'',
+     feat:['Витражный фасад','Шоу-рум без колонн','Офисная зона','ТО-бокс'],
+     specs2:[['Площадь','от 400 м²'],['Пролёт','18–24 м (без колонн)'],['Фасад','Витражный'],['ТО-бокс','Включён'],['Офис','Встроенный'],['Срок монтажа','6–10 недель'],['Гарантия','25 лет']]},
+    {t:'Гараж',e:'🅿️',specs:['от 30 м²','на 1–50 авто','высота 3–5 м'],price:'от 4 500',tm:'1–3 нед',badge:'new',
+     feat:['Секционные ворота','Смотровая яма — опция','Утепление','Сигнализация'],
+     specs2:[['Вместимость','1–50 авто'],['Ворота','Секционные'],['Яма','Смотровая, опция'],['Утепление','100–150 мм'],['Срок монтажа','1–3 недели'],['Гарантия','25 лет']]},
+    {t:'Автостоянка / паркинг',e:'🏛️',specs:['от 500 м²','многоуровневый','по проекту'],price:'от 9 000',tm:'8–16 нед',badge:'',
+     feat:['Рампы','Заграждения','Навес от осадков','Видеонаблюдение'],
+     specs2:[['Площадь','от 500 м²'],['Этажность','1–5 этажей'],['Рампы','Включены'],['Видеонаблюдение','Включено'],['Срок монтажа','8–16 недель'],['Гарантия','25 лет']]},
+    {t:'АЗС с навесами',e:'⛽',specs:['навес 200–600 м²','пролёт до 20 м','высота 5–7 м'],price:'от 6 500',tm:'3–5 нед',badge:'',
+     feat:['Антикоррозийное покрытие','Молниезащита','Брандспойты','Встроенные баки'],
+     specs2:[['Площадь навеса','200–600 м²'],['Пролёт','до 20 м'],['Покрытие','Антикоррозийное'],['Молниезащита','Включена'],['Срок монтажа','3–5 недель'],['Гарантия','25 лет']]},
+   ]},
+  {id:'agro',label:'Сельское хозяйство',icon:'🌾',bg:'#1E8449',
+   items:[
+    {t:'Коровник',e:'🐄',specs:['от 600 м²','пролёт 12–21 м','высота 4–6 м'],price:'от 5 200',tm:'4–8 нед',badge:'hot',feat:['Вентиляция коньковая','Навозные каналы','Поилки','Тёплое исполнение'],specs2:[['Площадь','от 600 м²'],['Пролёт','12–21 м'],['Вентиляция','Коньковая, принудительная'],['Навозные каналы','Включены'],['Исполнение','Тёплое'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет']]},
+    {t:'Телятник',e:'🐮',specs:['от 200 м²','пролёт 9–12 м','высота 3–5 м'],price:'от 5 000',tm:'3–5 нед',badge:'',feat:['Стойловое оборудование','Молокопровод','Вентиляция','Утеплённые стены'],specs2:[['Площадь','от 200 м²'],['Стены','Утеплённые 150 мм'],['Вентиляция','Принудительная'],['Срок монтажа','3–5 недель'],['Гарантия','25 лет']]},
+    {t:'Свинарник',e:'🐷',specs:['от 300 м²','пролёт 9–18 м','высота 3–5 м'],price:'от 5 500',tm:'3–6 нед',badge:'',feat:['Станки','Навозоуборочный транспортёр','Микроклимат','Дезинфекционный барьер'],specs2:[['Площадь','от 300 м²'],['Микроклимат','Автоматический'],['Дезинфекционный барьер','Включён'],['Срок монтажа','3–6 недель'],['Гарантия','25 лет']]},
+    {t:'Конюшня',e:'🐎',specs:['от 200 м²','пролёт 9–12 м','высота 4–5 м'],price:'от 8 500',tm:'3–5 нед',badge:'',feat:['Денники','Манеж','Уздечная комната','Вентиляция'],specs2:[['Площадь','от 200 м²'],['Денники','По проекту'],['Манеж','Грунтовый'],['Вентиляция','Принудительная'],['Срок монтажа','3–5 недель'],['Гарантия','25 лет']]},
+    {t:'Птицефабрика',e:'🐓',specs:['от 1 000 м²','пролёт 12–18 м','высота 3–5 м'],price:'от 6 000',tm:'6–10 нед',badge:'',feat:['Климатические системы','Клеточное оборудование','Яйцесборники','Биозащита'],specs2:[['Площадь','от 1 000 м²'],['Климат','Автоматический'],['Биозащита','Включена'],['Срок монтажа','6–10 недель'],['Гарантия','25 лет']]},
+    {t:'Зернохранилище',e:'🌾',specs:['от 500 м²','пролёт 18–36 м','высота 6–10 м'],price:'от 5 500',tm:'4–8 нед',badge:'hot',feat:['Вентиляция зерновой насыпи','Конвейеры','Термометрия','Герметизация'],specs2:[['Площадь','от 500 м²'],['Вентиляция насыпи','Включена'],['Термометрия','Включена'],['Герметизация','Полная'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет']]},
+    {t:'Овощехранилище',e:'🥕',specs:['от 300 м²','пролёт 12–24 м','высота 4–7 м'],price:'от 7 500',tm:'4–8 нед',badge:'',feat:['Холодильные системы','Холодоизоляция 200 мм','Поддонные стеллажи','Загрузочные рампы'],specs2:[['Площадь','от 300 м²'],['Холодоизоляция','200 мм'],['Температура','+1…+10°C'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет']]},
+    {t:'Фруктохранилище',e:'🍎',specs:['от 200 м²','пролёт 12–18 м','высота 4–6 м'],price:'от 8 000',tm:'4–7 нед',badge:'',feat:['Модифицированная атмосфера','Регуляторы влажности','Рефрижераторные двери','УФ-обеззараживание'],specs2:[['Площадь','от 200 м²'],['Атмосфера','Модифицированная'],['Срок монтажа','4–7 недель'],['Гарантия','25 лет']]},
+    {t:'Силос',e:'🌀',specs:['диам. 3–12 м','высота до 30 м','сталь'],price:'от 3 500',tm:'2–4 нед',badge:'new',feat:['Нержавеющая сталь','Датчики уровня','Шнековый выгрузчик','Молниезащита'],specs2:[['Диаметр','3–12 м'],['Высота','до 30 м'],['Материал','Нержавеющая или оцинкованная сталь'],['Датчики','Уровня и температуры'],['Срок монтажа','2–4 недели'],['Гарантия','25 лет']]},
+    {t:'Норийная башня',e:'🗼',specs:['высота 10–40 м','до 200 т/ч','сталь'],price:'от 12 000',tm:'3–6 нед',badge:'',feat:['Норийный транспортёр','Аспирация','Лестница с ограждением','Автоматика'],specs2:[['Высота','10–40 м'],['Производительность','до 200 т/ч'],['Аспирация','Включена'],['Срок монтажа','3–6 недель'],['Гарантия','25 лет']]},
+    {t:'Теплица',e:'🌿',specs:['от 500 м²','пролёт 6–12 м','высота 3–6 м'],price:'от 4 500',tm:'2–5 нед',badge:'new',feat:['Поликарбонат или стекло','Климат-система','Капельный полив','Зенитные фонари'],specs2:[['Площадь','от 500 м²'],['Покрытие','Поликарбонат 16 мм или стекло'],['Полив','Капельный'],['Климат','Авто'],['Срок монтажа','2–5 недель'],['Гарантия','25 лет']]},
+    {t:'Ферма под ключ',e:'🏡',specs:['по проекту','полный комплекс','все типы'],price:'от 6 000',tm:'6–16 нед',badge:'',feat:['Проектирование','Производство МК','Монтаж','Комплектация оборудованием'],specs2:[['Состав','Животноводство + хранение + инфраструктура'],['Проектирование','Включено'],['Оборудование','По проекту'],['Срок монтажа','6–16 недель'],['Гарантия','25 лет']]},
+   ]},
+  {id:'sport',label:'Спорт и досуг',icon:'⚽',bg:'#154360',
+   items:[
+    {t:'Спортивный зал / манеж',e:'🏋️',specs:['от 400 м²','пролёт 18–36 м','высота 6–10 м'],price:'от 9 500',tm:'6–10 нед',badge:'hot',feat:['Травмобезопасный пол','Акустические панели','Трибуны','Зеркала'],specs2:[['Площадь','от 400 м²'],['Пол','Травмобезопасный'],['Акустика','Звукопоглощающие панели'],['Трибуны','По проекту'],['Освещение','500 Лк'],['Срок монтажа','6–10 недель'],['Гарантия','25 лет']]},
+    {t:'Крытый стадион',e:'🏟️',specs:['от 5 000 м²','пролёт до 80 м','высота до 20 м'],price:'от 12 000',tm:'14–24 нед',badge:'',feat:['Мембранная кровля','Трибуны до 5 000 мест','Освещение 750 Лк','Раздевалки'],specs2:[['Площадь','от 5 000 м²'],['Пролёт','до 80 м'],['Трибуны','до 5 000 мест'],['Освещение','750 Лк'],['Срок монтажа','14–24 недели'],['Гарантия','25 лет']]},
+    {t:'Бассейн',e:'🏊',specs:['от 600 м²','пролёт 18–30 м','высота 6–8 м'],price:'от 18 000',tm:'10–18 нед',badge:'',feat:['Нержавеющие чаши','Влагозащита конструкций','Климат-контроль','Трибуны'],specs2:[['Площадь','от 600 м²'],['Чаши','Нержавеющая сталь'],['Влагозащита','Специальное покрытие'],['Климат','Осушители воздуха'],['Срок монтажа','10–18 недель'],['Гарантия','25 лет']]},
+    {t:'Ледовая арена',e:'⛸️',specs:['от 1 800 м²','пролёт 30–60 м','высота 8–12 м'],price:'от 16 000',tm:'12–20 нед',badge:'',feat:['Хладагентные системы','Бортик','Разминочная зона','Зрительские трибуны'],specs2:[['Площадь','от 1 800 м²'],['Хладоноситель','Хладагент R-507'],['Бортик','В комплекте'],['Трибуны','По проекту'],['Срок монтажа','12–20 недель'],['Гарантия','25 лет']]},
+    {t:'Аквапарк',e:'🌊',specs:['от 3 000 м²','по проекту','высота до 15 м'],price:'от 22 000',tm:'16–30 нед',badge:'',feat:['Аттракционы','Волновой бассейн','Ленивая река','Раздевалки'],specs2:[['Площадь','от 3 000 м²'],['Высота','до 15 м'],['Аттракционы','По проекту'],['Срок монтажа','16–30 недель'],['Гарантия','25 лет']]},
+    {t:'Конноспортивный комплекс',e:'🐴',specs:['от 1 200 м²','крытый манеж','высота 6–8 м'],price:'от 10 000',tm:'8–14 нед',badge:'',feat:['Грунтовый манеж','Конюшня','Судейская','Трибуны 200 мест'],specs2:[['Площадь','от 1 200 м²'],['Манеж','Грунтовый, крытый'],['Конюшня','Встроенная'],['Трибуны','200 мест'],['Срок монтажа','8–14 недель'],['Гарантия','25 лет']]},
+   ]},
+  {id:'social',label:'Общественные',icon:'🏫',bg:'#4A235A',
+   items:[
+    {t:'ФАП',e:'🏥',specs:['50–150 м²','по нормам Минздрава','высота 3–4 м'],price:'от 18 000',tm:'4–8 нед',badge:'hot',feat:['Медицинская отделка','Пандусы и доступность МГН','Рентгенозащита — опция','Ввод МПС'],specs2:[['Площадь','50–150 м²'],['Нормирование','СП 158, СанПиН'],['МГН','Пандусы, туалет'],['Рентгенозащита','По проекту'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет']]},
+    {t:'Школа / детский сад',e:'🏫',specs:['от 500 м²','2–3 этажа','по нормам'],price:'от 22 000',tm:'12–20 нед',badge:'',feat:['Сейсмостойкость','Пожарная безопасность','Игровые площадки','Спортзал'],specs2:[['Площадь','от 500 м²'],['Этажность','2–3 этажа'],['Сейсмостойкость','до 8 баллов'],['Пожарная безопасность','EI 60/90'],['Срок монтажа','12–20 недель'],['Гарантия','25 лет']]},
+    {t:'Административное здание',e:'🏢',specs:['от 300 м²','1–5 этажей','по проекту'],price:'от 16 000',tm:'8–16 нед',badge:'',feat:['Представительный фасад','Open-space','Переговорные комнаты','Серверная'],specs2:[['Площадь','от 300 м²'],['Этажность','1–5 этажей'],['Фасад','Навесной вентилируемый'],['Срок монтажа','8–16 недель'],['Гарантия','25 лет']]},
+   ]},
+  {id:'housing',label:'Жилое',icon:'🏠',bg:'#7E5109',
+   items:[
+    {t:'Дом из ЛСТК',e:'🏠',specs:['от 80 м²','1–3 этажа','по проекту'],price:'от 14 000',tm:'4–10 нед',badge:'hot',feat:['Лёгкий стальной каркас','Утепление 200 мм','Тихий монтаж','Долговечность 100+ лет'],specs2:[['Площадь','от 80 м²'],['Каркас','ЛСТК (лёгкий стальной)'],['Утепление','200 мм'],['Долговечность','100+ лет'],['Срок монтажа','4–10 недель'],['Гарантия','25 лет']]},
+    {t:'Коттедж на металлокаркасе',e:'🏡',specs:['от 120 м²','1–3 этажа','по проекту'],price:'от 15 500',tm:'6–12 нед',badge:'',feat:['Любая архитектура','Минимальная усадка','Монтаж круглогодично','Экологично'],specs2:[['Площадь','от 120 м²'],['Усадка','Минимальная'],['Монтаж','Круглогодичный'],['Срок монтажа','6–12 недель'],['Гарантия','25 лет']]},
+    {t:'Дачная постройка',e:'🌻',specs:['от 20 м²','1 этаж','стандарт'],price:'от 8 500',tm:'1–3 нед',badge:'new',feat:['Быстрый монтаж','Утеплённые стены','Веранда в комплекте','Под ключ'],specs2:[['Площадь','от 20 м²'],['Веранда','В комплекте'],['Срок монтажа','1–3 недели'],['Гарантия','25 лет']]},
+   ]},
+  {id:'energy',label:'Энергетика',icon:'⚡',bg:'#7B241C',
+   items:[
+    {t:'Подстанция',e:'⚡',specs:['по проекту','спецнормы','высота 4–8 м'],price:'от 15 000',tm:'4–10 нед',badge:'',feat:['Взрывобезопасное исполнение','Маслосборники','Заземление','Охранная зона'],specs2:[['Нормирование','ПУЭ, НТД'],['Исполнение','Взрывобезопасное'],['Маслосборники','Включены'],['Срок монтажа','4–10 недель'],['Гарантия','25 лет']]},
+    {t:'Объект нефтегазовой отрасли',e:'🛢️',specs:['по проекту','полевое исп.','от 100 м²'],price:'от 18 000',tm:'4–12 нед',badge:'',feat:['Взрывозащита','Нержавеющая сталь','Молниезащита','Антистатический пол'],specs2:[['Исполнение','Взрывозащищённое'],['Материал','Нержавеющая сталь'],['Молниезащита','Включена'],['Срок монтажа','4–12 недель'],['Гарантия','25 лет']]},
+    {t:'Шахтная постройка',e:'⛏️',specs:['по проекту','спецнормы','сталь'],price:'от 14 000',tm:'4–10 нед',badge:'',feat:['Огнестойкость','Антикоррозийная обработка','Тяжёлые нагрузки','Армированные полы'],specs2:[['Огнестойкость','EI 60'],['Нагрузки','Тяжёлые, по расчёту'],['Срок монтажа','4–10 недель'],['Гарантия','25 лет']]},
+   ]},
+  {id:'defense',label:'Оборона / Госсектор',icon:'🛡️',bg:'#1C2833',
+   items:[
+    {t:'Военный склад',e:'🏚️',specs:['от 300 м²','спецнормы','высота 5–8 м'],price:'по запросу',tm:'6–12 нед',badge:'',feat:['Огнестойкость EI60','Скрытая электрика','Антивандальное','Охрана доступа'],specs2:[['Площадь','от 300 м²'],['Огнестойкость','EI 60'],['Электрика','Скрытая'],['Срок монтажа','6–12 недель'],['Гарантия','25 лет']]},
+    {t:'Ангар для техники МО',e:'🚁',specs:['от 500 м²','пролёт до 40 м','высота до 12 м'],price:'по запросу',tm:'6–12 нед',badge:'',feat:['Ворота для тяжёлой техники','Смотровые ямы','Кран-балки','Освещение 300 Лк'],specs2:[['Площадь','от 500 м²'],['Пролёт','до 40 м'],['Ворота','Для тяжёлой техники'],['Освещение','300 Лк'],['Срок монтажа','6–12 недель'],['Гарантия','25 лет']]},
+    {t:'Объект МЧС',e:'🚒',specs:['по проекту','по нормам','высота 5–8 м'],price:'по запросу',tm:'4–8 нед',badge:'',feat:['Скоростные ворота','Пожарная автоматика','Дежурное помещение','Гараж для техники'],specs2:[['Нормирование','НПБ МЧС'],['Ворота','Скоростные'],['Пожарная автоматика','Включена'],['Срок монтажа','4–8 недель'],['Гарантия','25 лет']]},
+   ]},
+  {id:'modular',label:'Модульные / Временные',icon:'📐',bg:'#4A235A',
+   items:[
+    {t:'Вахтовый посёлок',e:'🏕️',specs:['от 200 м²','модульный','под ключ'],price:'от 12 000',tm:'3–6 нед',badge:'new',feat:['Жилые блок-контейнеры','Столовая','Медпункт','Баня и душевые'],specs2:[['Тип','Модульный'],['Состав','Жильё + столовая + медпункт + баня'],['Площадь','от 200 м²'],['Срок монтажа','3–6 недель'],['Гарантия','25 лет']]},
+    {t:'Бытовка (блок-контейнер)',e:'🚧',specs:['6×2.4 м','стандарт','утеплённая'],price:'от 85 000 ₽',tm:'1–2 нед',badge:'hot',feat:['Металлический каркас','Сэндвич-панели 75 мм','Окно и дверь','Электрощит'],specs2:[['Размер','6×2.4×2.5 м'],['Утеплитель','75 мм'],['Окна','1 шт'],['Дверь','1 шт'],['Электрощит','Включён'],['Срок','1–2 недели'],['Гарантия','25 лет']]},
+    {t:'Временное сооружение',e:'⛺',specs:['от 50 м²','разборная','любой срок'],price:'от 3 800',tm:'1–2 нед',badge:'',feat:['Разборка и повторный монтаж','Аренда возможна','Лёгкий каркас','Брезент или профнастил'],specs2:[['Площадь','от 50 м²'],['Повторный монтаж','Да'],['Аренда','Возможна'],['Срок монтажа','1–2 недели'],['Гарантия','5 лет']]},
+   ]},
+];
+
+// photos
+const photos = [
+  {src:'images/photo5.JPG', label:'Фасад готового здания'},
+  {src:'images/photo6.JPG', label:'Боковой фасад здания'},
+  {src:'images/photo4.JPG', label:'Интерьер — каркас и остекление'},
+  {src:'images/photo7.JPG', label:'Металлокаркас без обшивки'},
+  {src:'images/photo2.JPG', label:'Процесс монтажа'},
+  {src:'images/photo1.JPG', label:'Узлы ферм — крупный план'},
+  {src:'images/photo3.JPG', label:'Стропильные фермы в процессе подъёма'},
+];
+
+let currentPhoto = 0;
+let lbPhoto = 0;
+
+// ═══════════════════════════════════
+//  INIT
+// ═══════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(location.search);
+  const catId = params.get('cat') || 'industry';
+  const idx   = parseInt(params.get('idx') || '0', 10);
+
+  const cat = cats.find(c => c.id === catId) || cats[0];
+  const item = cat.items[idx] || cat.items[0];
+
+  loadProduct(item, cat);
+  buildThumbs();
+  buildSimilar(item, cat, catId, idx);
+  document.addEventListener('keydown', handleKey);
+});
+
+function loadProduct(item, cat) {
+  // meta
+  document.getElementById('pageTitle').textContent = `${item.t} из металлоконструкций под ключ | ЗМК Кисловодск 2.0`;
+  document.getElementById('pageDesc').content = `${item.t} из металлоконструкций. Монтаж ${item.tm}. Цена ${item.price} ₽/м². Производство в Кисловодске. Гарантия 25 лет.`;
+
+  // breadcrumb
+  document.getElementById('bcCat').textContent = cat.label;
+  document.getElementById('bcTitle').textContent = item.t;
+
+  // badge
+  if (item.badge) {
+    const b = document.getElementById('galleryBadge');
+    b.style.display = 'block';
+    b.textContent = item.badge === 'hot' ? '🔥 Хит продаж' : 'Новинка';
+    b.className = 'gallery-badge ' + item.badge;
+  }
+
+  // info
+  document.getElementById('infoCat').textContent = cat.icon + ' ' + cat.label;
+  document.getElementById('infoTitle').textContent = item.t;
+  document.getElementById('infoPrice').textContent = item.price + (item.price.startsWith('по') ? '' : ' ₽/м²');
+  document.getElementById('infoTiming').textContent = item.tm;
+
+  // WA link
+  const msg = `Здравствуйте! Хочу получить КП на: ${item.t}. Цена ${item.price}`;
+  const waUrl = `https://wa.me/79203404615?text=${encodeURIComponent(msg)}`;
+  document.getElementById('waBtn').href = waUrl;
+  document.getElementById('mobWa').href = waUrl;
+
+  // specs table
+  const tbody = document.querySelector('#specsTable tbody');
+  (item.specs2 || item.specs.map((s,i)=>[[['Параметр '+(i+1)],s]])).forEach(([k,v]) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${k}</td><td>${v}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  // features grid
+  const featIcos = ['⚡','🔧','🛡️','📐','🌡️','🔑','📋','🏭','✅','🎯','💧','🔩'];
+  const fg = document.getElementById('featuresGrid');
+  item.feat.forEach((f, i) => {
+    const div = document.createElement('div');
+    div.className = 'feature-item';
+    div.innerHTML = `<div class="feature-ico">${featIcos[i % featIcos.length]}</div><div class="feature-text"><h4>${f}</h4><p>Включено в типовое решение</p></div>`;
+    fg.appendChild(div);
+  });
+}
+
+// ═══════════════════════════════════
+//  GALLERY
+// ═══════════════════════════════════
+function buildThumbs() {
+  const wrap = document.getElementById('galleryThumbs');
+  photos.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'thumb' + (i === 0 ? ' active' : '');
+    d.innerHTML = `<img src="${p.src}" alt="${p.label}" loading="lazy">`;
+    d.onclick = () => setPhoto(i);
+    wrap.appendChild(d);
+  });
+}
+
+function setPhoto(i) {
+  currentPhoto = i;
+  document.getElementById('mainPhoto').src = photos[i].src;
+  document.getElementById('mainPhoto').alt = photos[i].label;
+  document.getElementById('galleryCounter').textContent = `${i+1} / ${photos.length}`;
+  document.querySelectorAll('.thumb').forEach((t,j) => t.classList.toggle('active', j === i));
+}
+
+function changePhoto(dir) {
+  setPhoto((currentPhoto + dir + photos.length) % photos.length);
+}
+
+// ═══════════════════════════════════
+//  LIGHTBOX
+// ═══════════════════════════════════
+function openLightbox(i) {
+  lbPhoto = i;
+  document.getElementById('lbImg').src = photos[i].src;
+  document.getElementById('lbCaption').textContent = `${photos[i].label} · ${i+1} / ${photos.length}`;
+  document.getElementById('lbOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLb() {
+  document.getElementById('lbOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightbox(e) { if (e.target.id === 'lbOverlay') closeLb(); }
+
+function lbMove(dir) {
+  lbPhoto = (lbPhoto + dir + photos.length) % photos.length;
+  document.getElementById('lbImg').src = photos[lbPhoto].src;
+  document.getElementById('lbCaption').textContent = `${photos[lbPhoto].label} · ${lbPhoto+1} / ${photos.length}`;
+  setPhoto(lbPhoto);
+}
+
+function handleKey(e) {
+  if (e.key === 'ArrowRight') changePhoto(1);
+  if (e.key === 'ArrowLeft') changePhoto(-1);
+  if (e.key === 'Escape') closeLb();
+}
+
+// ═══════════════════════════════════
+//  TABS
+// ═══════════════════════════════════
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    const ids = ['specs','features','process'];
+    b.classList.toggle('active', ids[i] === id);
+  });
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+// ═══════════════════════════════════
+//  SIMILAR
+// ═══════════════════════════════════
+function buildSimilar(currentItem, currentCat, catId, idx) {
+  const grid = document.getElementById('similarGrid');
+  const allItems = [];
+
+  // same category first
+  currentCat.items.forEach((item, i) => {
+    if (i !== idx) allItems.push({item, cat: currentCat, catId, i});
+  });
+  // other categories
+  cats.forEach(cat => {
+    if (cat.id !== catId) {
+      cat.items.slice(0, 2).forEach((item, i) => {
+        allItems.push({item, cat, catId: cat.id, i});
+      });
+    }
+  });
+
+  allItems.slice(0, 6).forEach(({item, cat, catId, i}) => {
+    const card = document.createElement('a');
+    card.className = 'sim-card';
+    card.href = `product.html?cat=${catId}&idx=${i}`;
+    card.innerHTML = `
+      <div class="sim-img" style="background:linear-gradient(145deg,${cat.bg}44,${cat.bg}88)">${item.e}</div>
+      <div class="sim-body">
+        <div class="sim-name">${item.t}</div>
+        <div class="sim-price">${item.price} ${item.price.startsWith('по')?'':'₽/м²'}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+</script>
+<script src="lead-form.js"></script>
+<!-- Roistat Counter Start -->
+<script>
+(function(w,d,s,h,id){
+  w.roistatProjectId=id;w.roistatHost=h;w.roistatPage=d.location.href;w.roistatReferrer=d.referrer;
+  var p=d.location.protocol=="https:"?"https://":"http://";
+  var u=/^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie)?"/dist/module.js":"/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
+  var js=d.createElement(s);js.charset="UTF-8";js.async=1;js.src=p+h+u;var js2=d.getElementsByTagName(s)[0];js2.parentNode.insertBefore(js,js2);
+})(window,document,'script','cloud.roistat.com','a5ea80464aefe822fe3956b8a44c705b');
+</script>
+<!-- Roistat Counter End -->
+</body>
+</html>

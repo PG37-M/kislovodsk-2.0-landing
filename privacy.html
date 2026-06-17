@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Политика обработки персональных данных | ЗМК Кисловодск 2.0</title>
+<meta name="description" content="Политика обработки персональных данных ЗМК Кисловодск 2.0 в соответствии с Федеральным законом № 152-ФЗ.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sky:#2E86C1;--sky-dark:#1A5276;--sky-pale:#EBF5FB;--sky-mist:#D6EAF8;
+  --mountain:#1B2631;--stone:#5D6D7E;--fog:#85929E;
+  --snow:#fff;--canvas:#F0F7FF;--border:#D4E6F1;
+  --text:#1B2631;--text-sec:#2E4053;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--canvas);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--sky);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.container{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* HEADER */
+.header{background:#fff;border-bottom:1px solid var(--border);padding:0 20px}
+.header-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--sky),var(--sky-dark));border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:1.8}
+.logo-name{font-size:14px;font-weight:700;color:var(--sky-dark)}
+.back-link{font-size:13px;color:var(--sky);display:flex;align-items:center;gap:5px}
+
+/* HERO */
+.page-hero{background:linear-gradient(135deg,var(--sky-dark),var(--sky));padding:40px 20px 36px;color:#fff}
+.page-hero-inner{max-width:860px;margin:0 auto}
+.page-hero .tag{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:10px}
+.page-hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;line-height:1.2;margin-bottom:10px}
+.page-hero .meta{font-size:13px;color:rgba(255,255,255,.7)}
+
+/* CONTENT */
+.content{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(46,134,193,.08);margin:32px auto 48px;padding:40px 48px;max-width:860px}
+@media(max-width:600px){.content{padding:24px 20px;margin:16px auto 32px;border-radius:12px}}
+
+/* download box */
+.doc-download{
+  display:flex;align-items:center;gap:16px;
+  background:var(--sky-pale);border:1.5px solid var(--sky-mist);
+  border-radius:12px;padding:18px 22px;margin-bottom:36px;
+}
+.doc-ico{font-size:32px;flex-shrink:0}
+.doc-info h3{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px}
+.doc-info p{font-size:13px;color:var(--stone)}
+.doc-btn{
+  margin-left:auto;flex-shrink:0;
+  background:var(--sky);color:#fff;
+  padding:9px 20px;border-radius:8px;
+  font-size:13px;font-weight:700;transition:background .15s;
+  white-space:nowrap;
+}
+.doc-btn:hover{background:var(--sky-dark);text-decoration:none}
+.doc-btn.unavailable{background:var(--stone);opacity:.65;cursor:default;pointer-events:none}
+
+/* typography */
+.content h2{font-size:18px;font-weight:700;color:var(--sky-dark);margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--sky-mist)}
+.content h2:first-child{margin-top:0}
+.content h3{font-size:15px;font-weight:600;color:var(--text);margin:20px 0 8px}
+.content p{color:var(--text-sec);margin-bottom:12px}
+.content ul,.content ol{padding-left:22px;margin-bottom:14px;color:var(--text-sec)}
+.content li{margin-bottom:6px}
+.content table{width:100%;border-collapse:collapse;margin:16px 0 20px;font-size:14px}
+.content table th{background:var(--sky-pale);color:var(--sky-dark);font-weight:700;padding:10px 14px;text-align:left;border:1px solid var(--border)}
+.content table td{padding:10px 14px;border:1px solid var(--border);color:var(--text-sec);vertical-align:top}
+.content table tr:nth-child(even) td{background:#fafcff}
+.content .note{background:var(--sky-pale);border-left:3px solid var(--sky);border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;color:var(--stone);margin:16px 0}
+.content strong{color:var(--text);font-weight:600}
+.num-section{counter-reset:section}
+.num-section>h2::before{counter-increment:section;content:counter(section) '. '}
+
+/* FOOTER */
+.footer{background:var(--mountain);color:rgba(255,255,255,.55);padding:28px 20px;text-align:center;font-size:13px}
+.footer a{color:rgba(255,255,255,.55);transition:color .15s}
+.footer a:hover{color:#fff;text-decoration:none}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:10px}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+  (function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+  })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109779710','ym');
+  ym(109779710,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109779710" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2 2 7v10l10 5 10-5V7L12 2zm-1 14.5-5-2.5v-5l5 2.5v5zm1-6.8L7.5 7.2 12 5l4.5 2.2L12 9.7zm6 4.3-5 2.5v-5l5-2.5v5z"/></svg></div>
+      <span class="logo-name">ЗМК Кисловодск 2.0</span>
+    </a>
+    <a href="index.html" class="back-link">← Вернуться на сайт</a>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="tag">Юридические документы</div>
+    <h1>Политика обработки<br>персональных данных</h1>
+    <div class="meta">
+      Дата публикации: 11 июня 2026 г. &nbsp;·&nbsp;
+      Редакция 1.0 &nbsp;·&nbsp;
+      ООО «МСГ»
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<div class="content num-section">
+
+  <!-- СКАЧАТЬ ДОКУМЕНТ -->
+  <div class="doc-download" id="docDownloadBox">
+    <div class="doc-ico">📄</div>
+    <div class="doc-info">
+      <h3>Политика конфиденциальности (PDF)</h3>
+      <p id="docStatus">Документ будет доступен после загрузки в папку <code>docs/</code></p>
+    </div>
+    <a href="docs/privacy-policy.pdf" class="doc-btn unavailable" id="docDownloadBtn" download>Скачать</a>
+  </div>
+
+  <div class="note">
+    Настоящая Политика разработана в соответствии с требованиями
+    <strong>Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных»</strong>
+    и определяет порядок обработки персональных данных пользователей сайта.
+  </div>
+
+  <h2>Общие положения</h2>
+  <p>Оператором персональных данных является <strong>ООО «МСГ»</strong> (Россия, 153011, г. Иваново, ул. Красных Зорь, д. 73, офис 4; ОГРН: 1173702013649; ИНН: 3702180159; КПП: 370201001) (далее — Оператор, Компания), осуществляющий деятельность по производству и монтажу быстровозводимых зданий из металлоконструкций.</p>
+  <p>Сайт расположен по адресу: <strong>мсг.рф</strong> (далее — Сайт).</p>
+  <p>Используя Сайт и оставляя заявки, вы соглашаетесь с условиями настоящей Политики. Если вы не согласны с Политикой — пожалуйста, не используйте Сайт.</p>
+
+  <h2>Какие данные мы собираем</h2>
+  <table>
+    <thead><tr><th>Категория данных</th><th>Конкретные данные</th><th>Способ получения</th></tr></thead>
+    <tbody>
+      <tr><td>Идентификационные</td><td>Имя, фамилия (по желанию)</td><td>Форма заявки на сайте</td></tr>
+      <tr><td>Контактные</td><td>Номер телефона</td><td>Форма заявки на сайте</td></tr>
+      <tr><td>Коммуникационные</td><td>Текст сообщения / комментарий</td><td>Форма заявки на сайте</td></tr>
+      <tr><td>Технические</td><td>IP-адрес, тип браузера, страница перехода</td><td>Автоматически при посещении</td></tr>
+    </tbody>
+  </table>
+  <p>Мы <strong>не собираем</strong> специальные категории данных: расовое и этническое происхождение, политические взгляды, состояние здоровья, биометрические данные.</p>
+
+  <h2>Цели обработки данных</h2>
+  <ul>
+    <li>Обработка входящих заявок и коммерческих запросов</li>
+    <li>Обратная связь с потенциальными клиентами (звонки, WhatsApp, email)</li>
+    <li>Подготовка коммерческих предложений и расчётов</li>
+    <li>Исполнение договорных обязательств</li>
+    <li>Улучшение работы сайта и пользовательского опыта</li>
+    <li>Соблюдение требований законодательства РФ</li>
+  </ul>
+
+  <h2>Правовые основания обработки</h2>
+  <p>Обработка персональных данных осуществляется на следующих правовых основаниях:</p>
+  <ul>
+    <li><strong>Согласие субъекта</strong> — при заполнении формы заявки на сайте (ст. 9 ФЗ-152)</li>
+    <li><strong>Исполнение договора</strong> — в рамках договорных отношений с клиентом (п. 5 ч. 1 ст. 6 ФЗ-152)</li>
+    <li><strong>Законные интересы оператора</strong> — для защиты от мошенничества и обеспечения безопасности</li>
+  </ul>
+
+  <h2>Как мы используем и передаём данные</h2>
+  <p>Персональные данные <strong>не продаются и не передаются третьим лицам</strong> в коммерческих целях.</p>
+  <p>Данные могут быть переданы следующим категориям получателей:</p>
+  <ul>
+    <li><strong>Мессенджеры (Telegram, WhatsApp)</strong> — для оперативного уведомления менеджеров о новых заявках</li>
+    <li><strong>Государственные органы</strong> — по законному требованию (суд, прокуратура, ФНС)</li>
+  </ul>
+  <p>Мы используем сервис <strong>Telegram Bot API</strong> для получения уведомлений о заявках. Данные передаются по защищённому протоколу HTTPS.</p>
+
+  <h2>Сроки хранения данных</h2>
+  <table>
+    <thead><tr><th>Тип данных</th><th>Срок хранения</th></tr></thead>
+    <tbody>
+      <tr><td>Данные из форм заявок (не завершившихся договором)</td><td>1 год с момента получения</td></tr>
+      <tr><td>Данные по исполненным договорам</td><td>5 лет (требования бухгалтерского учёта)</td></tr>
+      <tr><td>Технические логи посещений</td><td>6 месяцев</td></tr>
+    </tbody>
+  </table>
+  <p>По истечении указанных сроков данные уничтожаются, если иное не предусмотрено законодательством.</p>
+
+  <h2>Права субъекта персональных данных</h2>
+  <p>В соответствии со ст. 14–17 ФЗ-152 вы имеете право:</p>
+  <ul>
+    <li>📋 Получить информацию об обрабатываемых данных и их составе</li>
+    <li>✏️ Уточнить, изменить или исправить неточные данные</li>
+    <li>🗑️ Потребовать удаления данных («право на забвение»)</li>
+    <li>🚫 Отозвать согласие на обработку в любой момент</li>
+    <li>⚖️ Обжаловать действия Оператора в Роскомнадзоре</li>
+  </ul>
+  <p>Для реализации прав направьте запрос на электронную почту: <a href="mailto:info@msg37.ru">info@msg37.ru</a> или через сайт <a href="https://мсг.рф">мсг.рф</a>. Срок ответа — <strong>30 дней</strong>.</p>
+
+  <h2>Cookies и технические данные</h2>
+  <p>Сайт использует <strong>localStorage</strong> браузера для временного хранения данных форм (резервная копия на случай сбоя соединения). Данные хранятся локально на вашем устройстве и могут быть удалены в настройках браузера.</p>
+  <p>Сторонние системы аналитики (Яндекс.Метрика, Google Analytics) могут устанавливать cookies для сбора обезличенной статистики посещений.</p>
+
+  <h2>Безопасность данных</h2>
+  <p>Для защиты персональных данных Оператор применяет:</p>
+  <ul>
+    <li>Передачу данных по протоколу <strong>HTTPS / TLS 1.3</strong></li>
+    <li>Ограниченный доступ к данным только для сотрудников, которым это необходимо</li>
+    <li>Регулярный аудит систем хранения и передачи данных</li>
+  </ul>
+
+  <h2>Изменения в Политике</h2>
+  <p>Оператор оставляет за собой право вносить изменения в настоящую Политику. Актуальная версия всегда размещена на этой странице. При существенных изменениях дата редакции в шапке документа будет обновлена.</p>
+  <p>Продолжение использования Сайта после обновления Политики означает согласие с новыми условиями.</p>
+
+  <h2>Контактные данные оператора</h2>
+  <table>
+    <tbody>
+      <tr><td><strong>Наименование</strong></td><td>ООО «МСГ» (Металл Сервис Групп)</td></tr>
+      <tr><td><strong>Адрес</strong></td><td>153011, г. Иваново, ул. Красных Зорь, д. 73, офис 4</td></tr>
+      <tr><td><strong>ОГРН / ИНН / КПП</strong></td><td>1173702013649 / 3702180159 / 370201001</td></tr>
+      <tr><td><strong>Email</strong></td><td><a href="mailto:info@msg37.ru">info@msg37.ru</a></td></tr>
+      <tr><td><strong>Сайт</strong></td><td><a href="https://мсг.рф">мсг.рф</a></td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    По вопросам обработки персональных данных вы также можете обратиться в
+    <strong>Роскомнадзор</strong>: <a href="https://rkn.gov.ru" target="_blank" rel="noopener">rkn.gov.ru</a>,
+    тел. 8 (495) 987-68-00.
+  </div>
+
+</div><!-- /content -->
+</div><!-- /container -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="index.html">Кисловодск 2.0</a>
+    <a href="mailto:info@msg37.ru">info@msg37.ru</a>
+    <a href="https://мсг.рф">мсг.рф</a>
+  </div>
+  <p>© 2002 – 2026 MSG Metal Service Group. Все права защищены.</p>
+  <p style="margin-top:6px"><a href="privacy.html">Политика обработки персональных данных</a></p>
+  <p style="margin-top:8px;opacity:.5;font-size:11px">ООО «МСГ» &nbsp;·&nbsp; ОГРН: 1173702013649 &nbsp;·&nbsp; ИНН: 3702180159 &nbsp;·&nbsp; КПП: 370201001</p>
+</footer>
+
+<script>
+// Проверяем есть ли PDF и активируем кнопку скачивания
+fetch('docs/privacy-policy.pdf', {method:'HEAD'})
+  .then(r => {
+    if(r.ok){
+      document.getElementById('docDownloadBtn').classList.remove('unavailable');
+      document.getElementById('docStatus').textContent = 'Официальный документ в формате PDF';
+    }
+  })
+  .catch(() => {});
+</script>
+<!-- Roistat Counter Start -->
+<script>
+(function(w,d,s,h,id){
+  w.roistatProjectId=id;w.roistatHost=h;w.roistatPage=d.location.href;w.roistatReferrer=d.referrer;
+  var p=d.location.protocol=="https:"?"https://":"http://";
+  var u=/^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie)?"/dist/module.js":"/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
+  var js=d.createElement(s);js.charset="UTF-8";js.async=1;js.src=p+h+u;var js2=d.getElementsByTagName(s)[0];js2.parentNode.insertBefore(js,js2);
+})(window,document,'script','cloud.roistat.com','a5ea80464aefe822fe3956b8a44c705b');
+</script>
+<!-- Roistat Counter End -->
+</body>
+</html>

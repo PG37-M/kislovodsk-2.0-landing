@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кисловодск 2.0 — Быстровозводимые здания МСГ</title>
+<meta name="description" content="Каркасные здания большого пролёта от 5 000 руб/кв.м. 6 колонн, 4 рабочих, 7 дней. Советская инженерная школа + современные технологии. МСГ, Иваново.">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+  (function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+  })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109779710','ym');
+  ym(109779710,'init',{
+    ssr:true, webvisor:true, clickmap:true,
+    ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true
+  });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109779710" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Brand — blue CTA */
+    --coral:         #1c69d4;
+    --coral-dark:    #0a4fa8;
+    --coral-muted:   #0d2a50;
+
+    /* Accent colors */
+    --orange:        #E87420;
+    --blue:          #1c69d4;
+
+    /* Canvas & surfaces */
+    --canvas:        #050505;
+    --surface-soft:  #0d0d0d;
+    --surface-card:  #141414;
+    --surface-cream: #1a1a1a;
+    --surface-gray:  #111111;
+    --surface-gray-mid: #1e1e1e;
+    --surface-light: #F2F2F0;
+    --surface-light-card: #E8E8E6;
+
+    /* Text (dark) — for use on light sections */
+    --ink-dark:      #111111;
+    --body-dark:     #3d3d3a;
+    --muted-dark:    #6c6a64;
+    --surface-dark:  #000000;
+    --surface-dark-e:#141414;
+    --surface-dark-s:#0d0d0d;
+
+    /* Hairlines */
+    --hairline:      #2a2a2a;
+    --hairline-soft: #222222;
+
+    /* Text */
+    --ink:           #ffffff;
+    --body-str:      #e6e6e6;
+    --body:          #bbbbbb;
+    --muted:         #7e7e7e;
+    --muted-soft:    #5a5a5a;
+    --on-dark:       #ffffff;
+    --on-dark-soft:  #a0a0a0;
+    --on-coral:      #ffffff;
+
+    /* Spacing */
+    --sp-xs:   8px;
+    --sp-sm:   12px;
+    --sp-md:   16px;
+    --sp-lg:   24px;
+    --sp-xl:   32px;
+    --sp-xxl:  48px;
+    --sp-sec:  96px;
+
+    /* Radius */
+    --r-sm:  6px;
+    --r-md:  8px;
+    --r-lg:  12px;
+    --r-xl:  16px;
+    --r-pill:9999px;
+
+    /* Fonts */
+    --serif: 'Cormorant Garamond', 'Tiempos Headline', Georgia, serif;
+    --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--canvas);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  /* === TYPOGRAPHY === */
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--ink);
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--ink);
+  }
+  h3 {
+    font-family: var(--sans);
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  p { font-weight: 400; }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* === LAYOUT === */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-lg); }
+  .section   { padding: var(--sp-sec) 0; }
+  .section--cream { background: var(--canvas); }
+  .section--card  { background: var(--surface-soft); }
+  .section--gray  { background: var(--surface-gray); }
+  .section--dark  { background: var(--surface-dark); }
+  .section--light { background: var(--surface-light); }
+
+  /* === NAV === */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(5,5,5,0.93);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--hairline);
+    height: 64px; display: flex; align-items: center;
+    transition: background 0.3s;
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-lg);
+    width: 100%;
+  }
+  .nav-logo {
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-logo .dot { color: var(--coral); margin: 0 4px; }
+  .nav-cta {
+    background: var(--coral); color: var(--on-coral);
+    border: none; border-radius: var(--r-md);
+    padding: 0 var(--sp-lg); height: 40px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--coral-dark); }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    position: relative; overflow: hidden;
+    padding-top: 64px;
+    background: var(--canvas);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.25) 100%);
+    pointer-events: none;
+  }
+  .hero-photos {
+    position: absolute; inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 3px;
+    opacity: 0.50;
+  }
+  .hero-photos .photo { overflow: hidden; }
+  .hero-photos .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-photos .photo:nth-child(1) { grid-column: 1; grid-row: 1/3; }
+  .hero-photos .photo:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .hero-photos .photo:nth-child(3) { grid-column: 3; grid-row: 1/3; }
+  .hero-photos .photo:nth-child(4) { grid-column: 2; grid-row: 2; }
+
+  .hero-content {
+    position: relative; z-index: 3;
+    padding: var(--sp-xxl) var(--sp-lg);
+    max-width: 1200px; margin: 0 auto; width: 100%;
+  }
+  .hero .eyebrow { margin-bottom: var(--sp-lg); }
+  .hero h1 { margin-bottom: var(--sp-lg); max-width: 820px; }
+  .hero h1 em { font-style: italic; color: var(--orange); }
+  .hero h1 em:last-of-type { color: var(--blue); }
+  .hero-sub {
+    font-size: 1.05rem; font-weight: 400; color: var(--body);
+    max-width: 560px; margin-bottom: var(--sp-xxl); line-height: 1.7;
+  }
+
+  /* Stats row */
+  .hero-stats {
+    display: flex; flex-wrap: wrap;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: var(--sp-xxl);
+  }
+  .stat {
+    padding: var(--sp-lg) var(--sp-xl);
+    border-right: 1px solid var(--hairline);
+    flex: 1; min-width: 120px;
+  }
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child  { border-right: none; }
+  .stat-num {
+    font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 400; color: var(--ink); line-height: 1; letter-spacing: -1px;
+  }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: var(--sp-sm); }
+  .btn-primary {
+    background: var(--coral); color: var(--on-coral); border: none;
+    border-radius: var(--r-md); padding: 0 var(--sp-xl); height: 44px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: var(--sp-sm);
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--coral-dark); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    border: 1px solid rgba(255,255,255,0.25); border-radius: var(--r-md);
+    padding: 0 var(--sp-xl); height: 44px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: var(--sp-sm);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.06); }
+
+  /* === SECTION HEADER === */
+  .section-header { margin-bottom: var(--sp-xxl); }
+  .section-header .eyebrow { margin-bottom: var(--sp-md); }
+  .section-title  { margin-bottom: var(--sp-md); }
+  .section-sub    { color: var(--body); font-size: 1rem; max-width: 560px; line-height: 1.75; }
+
+  /* === КТО СКАЗАЛ (QUOTES) — dark band === */
+  .quotes-block { background: var(--surface-dark); }
+  .quotes-block h2 { color: var(--on-dark); letter-spacing: -1px; }
+  .quotes-block .eyebrow { color: var(--on-dark-soft); }
+  .quotes-block .section-sub { color: var(--on-dark-soft); }
+  .quotes-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--sp-lg); margin-top: var(--sp-xxl);
+  }
+  .quote-card {
+    background: var(--surface-dark-e); border-radius: var(--r-lg);
+    padding: var(--sp-xl); border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.25s;
+  }
+  .quote-card:hover { border-color: rgba(255,255,255,0.14); }
+  .quote-mark {
+    font-family: var(--serif); font-size: 4rem; line-height: 1;
+    color: var(--orange); margin-bottom: var(--sp-md); display: block;
+    opacity: 0.8;
+  }
+  .quote-text {
+    font-size: 0.95rem; font-weight: 400; line-height: 1.75;
+    color: var(--on-dark-soft); margin-bottom: var(--sp-xl);
+  }
+  .quote-author { display: flex; align-items: center; gap: var(--sp-md); }
+  .quote-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--surface-dark-s);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 500; flex-shrink: 0; color: var(--on-dark);
+  }
+  .quote-name { font-size: 13px; font-weight: 500; color: var(--on-dark); }
+  .quote-role  { font-size: 12px; color: var(--on-dark-soft); margin-top: 2px; }
+
+  /* === МЫ ВЕРИМ (BELIEFS) — light === */
+  .beliefs { background: var(--surface-light); }
+  .beliefs h2, .beliefs h3 { color: var(--ink-dark); }
+  .beliefs .eyebrow { color: var(--muted-dark); }
+  .beliefs .section-sub { color: var(--body-dark); }
+  .beliefs-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--sp-xxl); align-items: start; margin-top: var(--sp-xxl);
+  }
+  @media(max-width: 900px) { .beliefs-layout { grid-template-columns: 1fr; } }
+
+  .belief-item {
+    display: flex; gap: var(--sp-lg);
+    padding: var(--sp-xl) 0;
+    border-bottom: 1px solid #D8D8D6;
+  }
+  .belief-item:first-of-type { padding-top: 0; }
+  .belief-num {
+    font-family: var(--serif); font-size: 2.4rem; font-weight: 400;
+    color: #C0BEBB; line-height: 1; flex-shrink: 0; min-width: 56px;
+  }
+  .belief-body h3 { margin-bottom: var(--sp-sm); }
+  .belief-body p  { color: var(--body-dark); font-size: 0.9rem; line-height: 1.75; }
+  .belief-proof {
+    background: #E8E8E6; border-radius: var(--r-md);
+    border-left: 3px solid var(--coral);
+    padding: var(--sp-md) var(--sp-lg);
+    margin-top: var(--sp-md);
+    font-size: 0.85rem; color: var(--body-dark); line-height: 1.65;
+  }
+  .belief-proof strong { color: var(--ink-dark); font-weight: 500; }
+
+  .beliefs-photo-col { position: sticky; top: 80px; }
+  .photo-stack { display: grid; grid-template-rows: 1fr 1fr; gap: 4px; height: 620px; }
+  .photo-item { overflow: hidden; border-radius: var(--r-lg); background: var(--surface-card); }
+  .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; color: var(--muted);
+  }
+
+  /* === КАК РАБОТАЕТ — light === */
+  .how { background: var(--surface-light); }
+  .how h2, .how .section-sub { color: var(--ink-dark); }
+  .how .eyebrow { color: var(--muted-dark); }
+  .how-steps {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: var(--sp-lg); margin-top: var(--sp-xxl);
+  }
+  @media(max-width: 900px)  { .how-steps { grid-template-columns: 1fr 1fr; } }
+  @media(max-width: 480px)  { .how-steps { grid-template-columns: 1fr; } }
+  .how-step {
+    background: #ffffff; border-radius: var(--r-lg);
+    padding: var(--sp-xl); border: 1px solid #E0E0DE;
+  }
+  .step-num {
+    font-size: 12px; font-weight: 500; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--coral); margin-bottom: var(--sp-xl);
+  }
+  .step-title { font-size: 1rem; font-weight: 500; margin-bottom: var(--sp-sm); color: var(--ink-dark); }
+  .step-desc  { font-size: 0.85rem; color: var(--body-dark); line-height: 1.65; }
+  .step-badge {
+    display: inline-block; margin-top: var(--sp-md);
+    background: var(--surface-light-card); border-radius: var(--r-pill);
+    padding: 4px 12px;
+    font-size: 12px; font-weight: 500; color: var(--ink-dark); letter-spacing: 0.3px;
+  }
+
+  /* === VIDEO — cream === */
+  .video-section { background: var(--canvas); }
+  .video-wrapper {
+    margin-top: var(--sp-xxl); border-radius: var(--r-xl); overflow: hidden;
+    aspect-ratio: 16/9; background: var(--surface-card);
+    border: 1px solid var(--hairline);
+  }
+  .video-placeholder {
+    width: 100%; height: 100%; cursor: pointer;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: var(--sp-lg);
+  }
+  .vp-play-btn {
+    width: 68px; height: 68px; border-radius: 50%;
+    background: var(--coral); color: var(--on-coral);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; padding-left: 4px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .video-placeholder:hover .vp-play-btn {
+    background: var(--coral-dark); transform: scale(1.06);
+  }
+  .vp-title { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .vp-sub   { font-size: 13px; color: var(--muted); }
+  .video-wrapper iframe, .video-wrapper video {
+    width: 100%; height: 100%; border: none; display: block; border-radius: var(--r-xl);
+  }
+
+  /* === ПРОДУКТ — light === */
+  .product { background: var(--surface-light); }
+  .product h2 { color: var(--ink-dark); }
+  .product .eyebrow { color: var(--muted-dark); }
+  .product .section-sub { color: var(--body-dark); }
+
+  /* Gallery */
+  .gallery-row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4px;
+    margin: var(--sp-xxl) 0; height: 460px; border-radius: var(--r-xl); overflow: hidden;
+  }
+  @media(max-width: 768px) {
+    .gallery-row { grid-template-columns: 1fr 1fr; height: auto; border-radius: var(--r-lg); }
+    .gallery-row > *:first-child { grid-column: 1/3; height: 220px; }
+    .gallery-row > *:not(:first-child) { height: 150px; }
+  }
+  .gallery-cell { overflow: hidden; background: #D8D8D6; }
+  .gallery-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Spec grid */
+  .spec-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-lg); margin-bottom: var(--sp-xxl);
+  }
+  @media(max-width: 900px) { .spec-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 480px) { .spec-grid { grid-template-columns: 1fr; } }
+  .spec-cell {
+    background: #ffffff; border-radius: var(--r-lg);
+    padding: var(--sp-xl); border: 1px solid #E0E0DE;
+  }
+  .spec-cell-label { font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted-dark); margin-bottom: var(--sp-sm); }
+  .spec-cell-value {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 400;
+    color: var(--ink-dark); line-height: 1.15; letter-spacing: -0.3px;
+  }
+  .spec-cell-note { font-size: 12px; color: var(--muted-dark); margin-top: 6px; }
+
+  /* Use cases */
+  .use-cases-label { font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted-dark); margin-bottom: var(--sp-lg); }
+  .use-cases-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--sp-sm);
+  }
+  .use-case-item {
+    background: #ffffff; border-radius: var(--r-md);
+    padding: var(--sp-md) var(--sp-lg);
+    font-size: 13px; font-weight: 500; color: var(--body-dark);
+    border: 1px solid #E0E0DE;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+  }
+  .use-case-item:hover { background: var(--surface-light-card); color: var(--ink-dark); border-color: var(--coral); }
+
+  /* === ХУК + CTA — coral callout + cream === */
+  .hook-callout {
+    background: var(--coral); border-radius: var(--r-lg);
+    padding: var(--sp-xxl); margin-bottom: var(--sp-xxl);
+  }
+  .hook-callout h2 { color: var(--on-coral); letter-spacing: -1px; margin-bottom: var(--sp-lg); }
+  .hook-callout p  { color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.8; max-width: 720px; }
+  .hook-callout strong { color: var(--on-coral); font-weight: 500; }
+  .btn-on-coral {
+    background: var(--on-coral); color: var(--coral);
+    border: none; border-radius: var(--r-md);
+    padding: 0 var(--sp-xl); height: 44px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: var(--sp-sm);
+    margin-top: var(--sp-xl); transition: opacity 0.2s;
+  }
+  .btn-on-coral:hover { opacity: 0.88; }
+
+  /* CTA form band */
+  .hook { background: var(--canvas); }
+  .cta-band {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-xxl);
+    align-items: start;
+  }
+  @media(max-width: 768px) { .cta-band { grid-template-columns: 1fr; } }
+
+  .cta-form-box {
+    background: var(--surface-card); border-radius: var(--r-xl);
+    padding: var(--sp-xxl); border: 1px solid var(--hairline);
+  }
+  .cta-form-box h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; letter-spacing: -0.3px; margin-bottom: var(--sp-sm); }
+  .cta-form-box > p { color: var(--body); font-size: 0.85rem; margin-bottom: var(--sp-xl); line-height: 1.65; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-sm); margin-bottom: var(--sp-sm); }
+  @media(max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+  .form-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--sp-sm); }
+  .form-field label { font-size: 12px; font-weight: 500; color: var(--muted); }
+  .form-field input, .form-field select, .form-field textarea {
+    background: var(--canvas); border: 1px solid var(--hairline);
+    border-radius: var(--r-md); padding: 10px 14px; color: var(--ink);
+    font-size: 0.9rem; font-family: var(--sans); outline: none;
+    transition: border-color 0.2s; height: 40px;
+  }
+  .form-field textarea { height: auto; min-height: 80px; resize: vertical; }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    border-color: var(--coral); box-shadow: 0 0 0 3px rgba(232,116,32,0.12);
+  }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: var(--muted-soft); }
+  .form-field select option { background: var(--canvas); }
+  .form-submit {
+    width: 100%; background: var(--coral); color: var(--on-coral);
+    border: none; border-radius: var(--r-md);
+    padding: 0 var(--sp-xl); height: 44px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    cursor: pointer; margin-top: var(--sp-sm); transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--coral-dark); }
+  .form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: var(--sp-sm); }
+
+  .cta-side { display: flex; flex-direction: column; gap: var(--sp-xxl); }
+  .cta-buttons { display: flex; flex-direction: column; gap: var(--sp-sm); }
+  .final-quote {
+    border-left: 3px solid var(--coral-muted);
+    padding: var(--sp-lg) var(--sp-xl);
+    background: var(--surface-soft); border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .final-quote-text { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--body-str); line-height: 1.75; letter-spacing: -0.3px; }
+  .final-quote-author { margin-top: var(--sp-md); font-size: 13px; font-weight: 500; color: var(--muted); }
+
+  /* === FOOTER — dark === */
+  footer {
+    background: var(--surface-dark);
+    padding: var(--sp-xxl) 0;
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: var(--sp-lg);
+    max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-lg);
+  }
+  .footer-logo { font-size: 14px; font-weight: 500; color: var(--on-dark); }
+  .footer-logo .dot { color: var(--coral); margin: 0 4px; }
+  .footer-info { font-size: 13px; color: var(--on-dark-soft); }
+  .footer-contact a { color: var(--coral); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .footer-contact a:hover { color: var(--on-dark); }
+
+  /* === SCROLL ANIMATION === */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+
+  /* === RESPONSIVE === */
+  @media(max-width: 768px) {
+    .hero-content { padding: var(--sp-xl) var(--sp-lg); }
+    .stat { padding: var(--sp-lg); min-width: 100px; }
+    .hook-callout { padding: var(--sp-xl); }
+  }
+
+  /* === LF MODAL === */
+  .lf-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(20,20,19,0.65); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: var(--sp-lg);
+  }
+  .lf-overlay.open { display: flex; }
+  .lf-box {
+    background: var(--canvas); border-radius: var(--r-xl);
+    padding: var(--sp-xxl); max-width: 480px; width: 100%;
+    border: 1px solid var(--hairline);
+    max-height: 90vh; overflow-y: auto;
+    position: relative;
+  }
+  .lf-head { margin-bottom: var(--sp-xl); }
+  .lf-close {
+    position: absolute; top: var(--sp-lg); right: var(--sp-lg);
+    background: var(--surface-card); border: none; border-radius: 50%;
+    width: 32px; height: 32px; font-size: 0.85rem; cursor: pointer;
+    color: var(--muted); display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .lf-close:hover { background: var(--surface-cream); }
+  .lf-head h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; letter-spacing: -0.3px; margin-bottom: var(--sp-xs); }
+  .lf-head p  { font-size: 0.875rem; color: var(--body); }
+  .lf-product {
+    display: inline-block; background: var(--surface-card); border-radius: var(--r-pill);
+    padding: 4px 12px; font-size: 12px; font-weight: 500; color: var(--coral);
+    margin-top: var(--sp-sm);
+  }
+  .lf-label { font-size: 12px; font-weight: 500; color: var(--muted); display: block; margin-bottom: 4px; }
+  .lf-input, .lf-textarea {
+    width: 100%; background: var(--canvas); border: 1px solid var(--hairline);
+    border-radius: var(--r-md); padding: 10px 14px; color: var(--ink);
+    font-size: 0.9rem; font-family: var(--sans); outline: none;
+    transition: border-color 0.2s; height: 40px;
+    margin-bottom: var(--sp-md);
+  }
+  .lf-textarea { height: 80px; resize: vertical; }
+  .lf-input:focus, .lf-textarea:focus {
+    border-color: var(--coral); box-shadow: 0 0 0 3px rgba(204,120,92,0.12);
+  }
+  .lf-input.error { border-color: #c64545; }
+  .lf-checkbox { display: flex; align-items: flex-start; gap: var(--sp-sm); cursor: pointer; margin-bottom: var(--sp-sm); }
+  .lf-checkbox input[type="checkbox"] { display: none; }
+  .lf-checkbox-box {
+    width: 18px; height: 18px; border: 1.5px solid var(--hairline); border-radius: 4px;
+    background: var(--canvas); flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .lf-checkbox input:checked + .lf-checkbox-box {
+    background: var(--coral); border-color: var(--coral);
+  }
+  .lf-checkbox input:checked + .lf-checkbox-box::after {
+    content: '✓'; font-size: 11px; color: white; font-weight: 700;
+  }
+  .lf-checkbox-text { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .lf-checkbox-text a { color: var(--coral); }
+  .lf-consent-error { font-size: 12px; color: #c64545; display: none; margin-bottom: var(--sp-sm); }
+  .lf-submit {
+    width: 100%; background: var(--coral); color: var(--on-coral);
+    border: none; border-radius: var(--r-md); height: 44px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: var(--sp-sm);
+  }
+  .lf-submit:hover { background: var(--coral-dark); }
+  .lf-submit:disabled { background: var(--coral-muted); cursor: not-allowed; }
+  .lf-spinner {
+    width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: white; border-radius: 50%;
+    animation: spin 0.7s linear infinite; display: none;
+  }
+  .lf-submit.loading .lf-spinner { display: block; }
+  .lf-submit.loading .lf-btn-text { opacity: 0.6; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .lf-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: var(--sp-sm); }
+  .lf-note a { color: var(--coral); }
+  .lf-result {
+    display: none; text-align: center; padding: var(--sp-xl) 0;
+  }
+  .lf-result h4 { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; margin: var(--sp-lg) 0 var(--sp-sm); }
+  .lf-result p  { font-size: 0.9rem; color: var(--body); margin-bottom: var(--sp-xl); }
+  .lf-result button {
+    background: var(--coral); color: var(--on-coral); border: none;
+    border-radius: var(--r-md); padding: 0 var(--sp-xl); height: 40px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500; cursor: pointer;
+  }
+
+  /* Consent checkbox in inline form */
+  .inline-checkbox { display: flex; align-items: flex-start; gap: var(--sp-sm); cursor: pointer; margin-bottom: var(--sp-sm); }
+  .inline-checkbox input[type="checkbox"] { display: none; }
+  .inline-checkbox-box {
+    width: 18px; height: 18px; border: 1.5px solid var(--hairline); border-radius: 4px;
+    background: var(--canvas); flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .inline-checkbox input:checked + .inline-checkbox-box {
+    background: var(--coral); border-color: var(--coral);
+  }
+  .inline-checkbox input:checked + .inline-checkbox-box::after {
+    content: '✓'; font-size: 11px; color: white; font-weight: 700;
+  }
+  .inline-checkbox-text { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .inline-checkbox-text a { color: var(--coral); }
+
+  /* Footer legal */
+  .footer-legal {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: var(--sp-xl); padding-top: var(--sp-lg);
+    display: flex; flex-wrap: wrap; gap: var(--sp-lg);
+    justify-content: space-between; align-items: center;
+  }
+  .footer-legal p { font-size: 11px; color: var(--on-dark-soft); opacity: 0.5; }
+  .footer-legal a { font-size: 12px; color: var(--on-dark-soft); text-decoration: none; }
+  .footer-legal a:hover { color: var(--on-dark); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">МСГ<span class="dot">·</span>Кисловодск 2.0</a>
+    <button onclick="LF.open()" class="nav-cta">Получить расчёт</button>
+  </div>
+</nav>
+
+<!-- HERO — cream canvas -->
+<section class="hero">
+  <div class="hero-photos">
+    <div class="photo"><img src="images/photo2.JPG" alt="" onerror="this.style.display='none'"></div>
+    <div class="photo"><img src="images/photo1.JPG" alt="" onerror="this.style.display='none'"></div>
+    <div class="photo"><img src="images/photo4.JPG" alt="" onerror="this.style.display='none'"></div>
+    <div class="photo"><img src="images/photo7.JPG" alt="" onerror="this.style.display='none'"></div>
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow">МСГ · Металл Сервис Групп · Иваново</div>
+    <h1>Здание 1 500 кв.м<br>за <em>7 дней</em><br>и <em>5 000 ₽/кв.м</em></h1>
+    <p class="hero-sub">Кисловодск 2.0 — быстровозводимый каркас на 6 колоннах. Советская инженерная точность, адаптированная под современный рынок. Склады, производства, торговые центры.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">колонн на 1 500 кв.м</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">человека в бригаде</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">×3</div>
+        <div class="stat-label">дешевле стандартных МК</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">фура — вся конструкция</div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">Получить расчёт →</a>
+      <a href="#object" class="btn-secondary">Смотреть объект</a>
+    </div>
+  </div>
+</section>
+
+<!-- КТО СКАЗАЛ — dark band -->
+<section class="quotes-block section" id="quotes">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow" style="color:var(--on-dark-soft)">Кто сказал</div>
+      <h2 class="section-title" style="color:var(--on-dark)">Строить — дорого,<br>долго и сложно?</h2>
+      <p class="section-sub" style="color:var(--on-dark-soft)">Именно так говорят все вокруг. Именно поэтому многие откладывают своё здание на годы.</p>
+    </div>
+    <div class="quotes-grid">
+      <div class="quote-card reveal reveal-d1">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">Нормальный склад на тысячу квадратов? Это минимум год стройки, куча согласований, бригада рабочих на весь срок и 30–50 миллионов из кармана. Раньше даже думать не начинай.</p>
+        <div class="quote-author">
+          <div class="quote-avatar">💬</div>
+          <div>
+            <div class="quote-name">Типичный разговор на рынке</div>
+            <div class="quote-role">То, что слышит каждый, кто хочет построить коммерческое здание</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote-card reveal reveal-d2">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">Стройка — это боль. Сварщики, краны на весь месяц, непредвиденные расходы, сроки съезжают. В лучшем случае построишь за полгода. В худшем — сколько угодно.</p>
+        <div class="quote-author">
+          <div class="quote-avatar">💬</div>
+          <div>
+            <div class="quote-name">Предприниматели, которые уже строили</div>
+            <div class="quote-role">Главная причина, по которой откладывают строительство</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote-card reveal reveal-d3">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">Производители металлоконструкций говорили одно: чем больше металла — тем больше заработок. Никому не было интересно делать дешевле. Я ходил с этой идеей 10 лет — никто не верил.</p>
+        <div class="quote-author">
+          <div class="quote-avatar">ПА</div>
+          <div>
+            <div class="quote-name">Павел, соавтор Кисловодска 2.0</div>
+            <div class="quote-role">20 лет в проектировании промышленных объектов</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МЫ ВЕРИМ — cream -->
+<section class="beliefs section" id="beliefs">
+  <div class="container">
+    <div class="beliefs-layout">
+      <div>
+        <div class="section-header reveal">
+          <div class="eyebrow">Мы верим что</div>
+          <h2 class="section-title">Строительство не должно бить по карману</h2>
+          <p class="section-sub">Если правильно выбрать геометрию и технологию — большое здание можно построить быстро, доступно и без армии рабочих. Это не мечта, это инженерия.</p>
+        </div>
+
+        <div class="belief-item reveal">
+          <div class="belief-num">01</div>
+          <div class="belief-body">
+            <h3>Строительство не должно бить по карману</h3>
+            <p>Стандартный каркас тратит 60–80 кг металла на кв.м — потому что так выгоднее производителю. Правильная геометрия требует в 3 раза меньше металла.</p>
+            <div class="belief-proof">
+              Наш каркас: <strong>21–25 кг/кв.м</strong>. Стандарт: 60–80 кг/кв.м.<br>
+              Цена с монтажом: <strong>от 5 000 ₽/кв.м</strong> — не 15 000–25 000.
+            </div>
+          </div>
+        </div>
+        <div class="belief-item reveal">
+          <div class="belief-num">02</div>
+          <div class="belief-body">
+            <h3>Стройка — не год и не армия рабочих</h3>
+            <p>Когда детали типовые, болты затягиваются вместо сварки, а крыша собирается на земле и поднимается за два часа — стройка перестаёт быть подвигом.</p>
+            <div class="belief-proof">
+              <strong>4 человека, 6–7 рабочих дней</strong> — каркас готов.<br>
+              Подъём крыши кранами: <strong>~2 часа</strong>.
+            </div>
+          </div>
+        </div>
+        <div class="belief-item reveal">
+          <div class="belief-num">03</div>
+          <div class="belief-body">
+            <h3>Надёжность — это расчёт, а не металл</h3>
+            <p>Советские инженеры с логарифмической линейкой посчитали эту конструкцию точнее многих современных проектов. Расхождение с нашими расчётными комплексами — 3%.</p>
+            <div class="belief-proof">
+              Зима 2025–2026. Снег не чистили специально.<br>
+              Прогиб в центре: <strong>35 мм — ровно по расчёту. Здание стоит.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="beliefs-photo-col reveal reveal-d1">
+        <div class="photo-stack">
+          <div class="photo-item">
+            <img src="images/photo4.JPG" alt="Внутри здания"
+              onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\'>Внутри здания</div>'">
+          </div>
+          <div class="photo-item">
+            <img src="images/photo3.JPG" alt="Ферма снизу"
+              onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\'>Узлы конструкции</div>'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАК ЭТО РАБОТАЕТ — surface-soft -->
+<section class="how section" id="how">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Процесс</div>
+      <h2 class="section-title">Как строится здание</h2>
+      <p class="section-sub">От заявки до готового каркаса — без лишних шагов.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Проектирование</div>
+        <p class="step-desc">Серийный расчёт под ваш снеговой район. Готовые чертежи для разрешения. Фундамент под вашу геологию.</p>
+        <span class="step-badge">1–3 дня</span>
+      </div>
+      <div class="how-step reveal reveal-d1">
+        <div class="step-num">02</div>
+        <div class="step-title">Изготовление</div>
+        <p class="step-desc">Типовые детали со склада. Роботизированный завод в Иваново. Аттестованная заводская сварка.</p>
+        <span class="step-badge">Со склада</span>
+      </div>
+      <div class="how-step reveal reveal-d2">
+        <div class="step-num">03</div>
+        <div class="step-title">Доставка</div>
+        <p class="step-desc">Вся конструкция — 1 фура. В любой регион России. Типовые детали не бьются и не теряются.</p>
+        <span class="step-badge">1 фура</span>
+      </div>
+      <div class="how-step reveal reveal-d3">
+        <div class="step-num">04</div>
+        <div class="step-title">Сборка на земле</div>
+        <p class="step-desc">4 человека собирают ферму на земле. Никаких сварщиков на высоте. Только болты и шеф-монтажник.</p>
+        <span class="step-badge">6–7 дней</span>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">05</div>
+        <div class="step-title">Подъём кранами</div>
+        <p class="step-desc">2–4 крана поднимают всю крышу за ~2 часа. Ставят на колонны. Готово. Ни одного сварщика наверху.</p>
+        <span class="step-badge">~2 часа</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ВИДЕО — cream -->
+<section class="video-section section" id="video">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">В действии</div>
+      <h2 class="section-title">Посмотрите, как быстро<br>это делается</h2>
+      <p class="section-sub">4 человека. 6 дней сборки на земле. Подъём всей крыши за 2 часа.</p>
+    </div>
+    <div class="video-wrapper reveal">
+      <!-- YouTube: <iframe src="https://www.youtube.com/embed/ВАШ_ID" allowfullscreen></iframe> -->
+      <!-- Локальный MP4: <video src="video/build.mp4" controls></video> -->
+      <div class="video-placeholder" id="videoPlaceholder"
+        onclick="this.style.display='none'; document.getElementById('videoEl').style.display='block'; document.getElementById('videoEl').play()">
+        <div class="vp-play-btn">▶</div>
+        <div class="vp-title">Видео монтажа Кисловодск 2.0</div>
+        <div class="vp-sub">Скоро здесь появится видео со стройки</div>
+      </div>
+      <video id="videoEl" src="" controls style="display:none;"></video>
+    </div>
+  </div>
+</section>
+
+<!-- ПРОДУКТ — dark -->
+<section class="product section" id="product">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Именно поэтому</div>
+      <h2 class="section-title">Мы создали Кисловодск 2.0</h2>
+      <p class="section-sub">Вдохновившись решениями советских инженеров и адаптировав их под современный рынок. 6 колонн, болтовые соединения, типовые детали со склада.</p>
+    </div>
+
+    <div class="gallery-row reveal" id="object">
+      <div class="gallery-cell">
+        <img src="images/photo7.JPG" alt="Каркас — общий вид"
+          onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\' style=\'color:var(--on-dark-soft)\'>Каркас</div>'">
+      </div>
+      <div class="gallery-cell">
+        <img src="images/photo5.JPG" alt="Фасад"
+          onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\' style=\'color:var(--on-dark-soft)\'>Фасад</div>'">
+      </div>
+      <div class="gallery-cell">
+        <img src="images/photo6.JPG" alt="Боковой фасад"
+          onerror="this.parentNode.innerHTML='<div class=\'photo-placeholder\' style=\'color:var(--on-dark-soft)\'>Боковой фасад</div>'">
+      </div>
+    </div>
+
+    <div class="spec-grid reveal">
+      <div class="spec-cell">
+        <div class="spec-cell-label">Цена каркаса с монтажом</div>
+        <div class="spec-cell-value">от 5 000 ₽/кв.м</div>
+        <div class="spec-cell-note">Включая профиль и боковые стойки</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Под ключ (стены + кровля + пол)</div>
+        <div class="spec-cell-value">от 20 000 ₽/кв.м</div>
+        <div class="spec-cell-note">Без инженерных сетей и благоустройства</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Металлоёмкость</div>
+        <div class="spec-cell-value">21–25 кг/кв.м</div>
+        <div class="spec-cell-note">Стандарт: 60–80 кг/кв.м</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Площадь модуля</div>
+        <div class="spec-cell-value">до 1 500 кв.м</div>
+        <div class="spec-cell-note">Модули объединяются без ограничений</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Сетка колонн</div>
+        <div class="spec-cell-value">18×18 — 36×24</div>
+        <div class="spec-cell-note">Свободная планировка</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Высота потолка</div>
+        <div class="spec-cell-value">до 20 м</div>
+        <div class="spec-cell-note">Регулируется длиной колонны</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Монтажная бригада</div>
+        <div class="spec-cell-value">4 человека</div>
+        <div class="spec-cell-note">Без сварщиков на объекте</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Срок сборки каркаса</div>
+        <div class="spec-cell-value">6–7 рабочих дней</div>
+        <div class="spec-cell-note">Подъём крыши — ~2 часа</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-cell-label">Колонны</div>
+        <div class="spec-cell-value">Ж/Б</div>
+        <div class="spec-cell-note">В 2–2.5× дешевле стальных, без огнезащиты</div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="use-cases-label">Подходит для</div>
+      <div class="use-cases-grid">
+        <div class="use-case-item">Склады и логистика</div>
+        <div class="use-case-item">Производственные цеха</div>
+        <div class="use-case-item">Торговые центры</div>
+        <div class="use-case-item">Рынки и ярмарки</div>
+        <div class="use-case-item">Аквапарки и бассейны</div>
+        <div class="use-case-item">Спортивные комплексы</div>
+        <div class="use-case-item">Автосервисы и паркинги</div>
+        <div class="use-case-item">Сельхозобъекты</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ХУК + CTA — coral callout + cream form -->
+<section class="hook section" id="cta">
+  <div class="container">
+    <!-- Coral callout -->
+    <div class="hook-callout reveal">
+      <div class="eyebrow" style="color:rgba(255,255,255,0.65); margin-bottom:16px;">Доказательство</div>
+      <h2>Снежная зима 2025–2026.<br>Чистить крышу мы запретили.</h2>
+      <p>
+        Пока другие здания складывались под снегом, мы намеренно не чистили нашу крышу — чтобы проверить себя.
+        Отслеживали прогиб в нескольких точках. Результат: <strong>35 мм в центре — ровно по расчёту</strong>, не больше.
+        Когда нагрузка ушла — конструкция распрямилась идеально.
+        <br><br>
+        Параллельно строители забивали сваи рядом с колоннами — здание стояло, пока пол прыгал два дня.
+        Мы подтвердили советских инженеров с логарифмической линейкой. Расхождение — <strong>3%</strong>.
+      </p>
+      <a href="#form" class="btn-on-coral">Получить расчёт →</a>
+    </div>
+
+    <!-- Form + quote -->
+    <div class="cta-band" id="form">
+      <div class="cta-form-box reveal">
+        <h3>Получить расчёт стоимости</h3>
+        <p>Заполните — перезвоним в течение рабочего дня и посчитаем под ваш объект.</p>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Ваше имя</label>
+              <input type="text" placeholder="Александр" required>
+            </div>
+            <div class="form-field">
+              <label>Телефон</label>
+              <input type="tel" placeholder="+7 (___) ___-__-__" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Площадь объекта</label>
+              <select>
+                <option value="">Выберите...</option>
+                <option>До 500 кв.м</option>
+                <option>500–1 000 кв.м</option>
+                <option>1 000–2 000 кв.м</option>
+                <option>2 000–5 000 кв.м</option>
+                <option>Более 5 000 кв.м</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Регион</label>
+              <input type="text" placeholder="Москва, Иваново...">
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Назначение здания (необязательно)</label>
+            <textarea placeholder="Склад, производство, торговый центр..."></textarea>
+          </div>
+          <label class="inline-checkbox">
+            <input type="checkbox" id="inlineConsent" required>
+            <span class="inline-checkbox-box"></span>
+            <span class="inline-checkbox-text">
+              Я даю согласие на обработку персональных данных в соответствии с
+              <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
+            </span>
+          </label>
+          <button type="submit" class="form-submit">Получить расчёт бесплатно</button>
+          <p class="form-note">Без спама. Только один звонок с конкретными цифрами.</p>
+        </form>
+      </div>
+
+      <div class="cta-side reveal reveal-d1">
+        <div class="cta-buttons">
+          <a href="#form" class="btn-primary">Получить расчёт под мой объект →</a>
+          <a href="https://мсг.рф" target="_blank" class="btn-secondary">мсг.рф ↗</a>
+        </div>
+        <div class="final-quote">
+          <p class="final-quote-text">Ребят, кому надо — обращайтесь. Я лично отвечаю головой. Мы не с бухты-барахты взялись: у нас огромный опыт у обоих. И мы даём действительно классный продукт. Безупречная репутация. Приезжайте на завод — всегда рады.</p>
+          <p class="final-quote-author">— Рамин, партнёр МСГ · мсг.рф</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER — dark -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">МСГ<span class="dot">·</span>Металл Сервис Групп</div>
+    <div class="footer-info">Иваново · Кисловодск 2.0 · Быстровозводимые здания</div>
+    <div class="footer-contact"><a href="https://мсг.рф">мсг.рф</a></div>
+  </div>
+  <div class="footer-inner footer-legal">
+    <p>© 2002 – 2026 MSG Metal Service Group. Все права защищены.</p>
+    <a href="privacy.html">Политика обработки персональных данных</a>
+    <p>ООО «МСГ» &nbsp;·&nbsp; ОГРН: 1173702013649 &nbsp;·&nbsp; ИНН: 3702180159 &nbsp;·&nbsp; КПП: 370201001</p>
+  </div>
+</footer>
+
+<!-- LF MODAL -->
+<div class="lf-overlay" id="lfOverlay">
+  <div class="lf-box">
+    <button class="lf-close" onclick="LF.close()">✕</button>
+    <div class="lf-head">
+      <h3>Получить расчёт за 2 часа</h3>
+      <p>Укажите контакты — перезвоним и пришлём расчёт бесплатно</p>
+      <span class="lf-product" id="lfProductLabel" style="display:none"></span>
+    </div>
+    <div id="lfFormWrap">
+      <div class="lf-body">
+        <label class="lf-label" for="lfName">Ваше имя</label>
+        <input class="lf-input" id="lfName" type="text" placeholder="Иван Петрович" autocomplete="name">
+        <label class="lf-label" for="lfPhone">Телефон <span style="color:#c64545">*</span></label>
+        <input class="lf-input" id="lfPhone" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+        <label class="lf-label" for="lfComment">Комментарий</label>
+        <textarea class="lf-textarea" id="lfComment" placeholder="Площадь, регион, назначение..."></textarea>
+        <label class="lf-checkbox">
+          <input type="checkbox" id="lfConsent">
+          <span class="lf-checkbox-box"></span>
+          <span class="lf-checkbox-text">
+            Я даю согласие на обработку персональных данных в соответствии с
+            <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
+          </span>
+        </label>
+        <p class="lf-consent-error" id="lfConsentError">Необходимо дать согласие на обработку данных</p>
+        <button class="lf-submit" id="lfSubmit" onclick="LF.send()">
+          <div class="lf-spinner"></div>
+          <span class="lf-btn-text">Отправить заявку</span>
+        </button>
+        <p class="lf-note">Или напишите нам: <a href="https://мсг.рф" target="_blank">мсг.рф</a></p>
+      </div>
+    </div>
+    <div class="lf-result" id="lfSuccess">
+      <div style="font-size:48px">✅</div>
+      <h4>Заявка принята!</h4>
+      <p>Перезвоним в течение 15 минут в рабочее время.</p>
+      <button onclick="LF.close()">Закрыть</button>
+    </div>
+    <div class="lf-result" id="lfError">
+      <div style="font-size:48px">⚠️</div>
+      <h4>Ошибка отправки</h4>
+      <p>Попробуйте ещё раз или напишите напрямую: <a href="https://мсг.рф">мсг.рф</a></p>
+      <button onclick="LF.resetForm()">Попробовать снова</button>
+    </div>
+  </div>
+</div>
+
+<!-- Roistat Counter Start -->
+<script>
+(function(w,d,s,h,id){
+  w.roistatProjectId=id; w.roistatHost=h;
+  w.roistatPage=d.location.href; w.roistatReferrer=d.referrer;
+  var p=d.location.protocol=="https:"?"https://":"http://";
+  var u=/^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie)
+    ?"/dist/module.js"
+    :"/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
+  var js=d.createElement(s); js.charset="UTF-8"; js.async=1; js.src=p+h+u;
+  var js2=d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js,js2);
+})(window,document,'script','cloud.roistat.com','a5ea80464aefe822fe3956b8a44c705b');
+</script>
+<!-- Roistat Counter End -->
+
+<script>
+  // ── НАСТРОЙКИ ─────────────────────────────────────────
+  const TG_TOKEN   = '8935030538:AAEgI7VsAB7SozU7h1NcSygazvexuPxUbBs';
+  const TG_CHAT_ID = '215323571';
+  const YM_ID      = 109779710;       // номер счётчика Метрики
+  // ──────────────────────────────────────────────────────
+
+  // Отправка в Telegram
+  async function sendToTelegram({ name, phone, comment, product }) {
+    const now = new Date().toLocaleString('ru-RU', {
+      timeZone: 'Europe/Moscow', day: '2-digit', month: 'long',
+      hour: '2-digit', minute: '2-digit'
+    });
+    const text = [
+      '🏗 <b>Новая заявка — Кисловодск 2.0</b>',
+      '',
+      product ? `📦 <b>Объект:</b> ${product}` : null,
+      `👤 <b>Имя:</b> ${name || 'не указано'}`,
+      `📞 <b>Телефон:</b> ${phone}`,
+      comment ? `💬 <b>Комментарий:</b> ${comment}` : null,
+      '',
+      `🕐 ${now} (МСК)`,
+      `🌐 ${location.href}`,
+    ].filter(l => l !== null).join('\n');
+
+    const resp = await fetch(
+      `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: 'HTML' })
+      }
+    );
+    const data = await resp.json();
+    if (!data.ok) throw new Error(data.description);
+  }
+
+  // Резервное сохранение в localStorage
+  function saveLeadLocally({ name, phone, comment, product }) {
+    const now = new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
+    const leads = JSON.parse(localStorage.getItem('site_leads') || '[]');
+    leads.push({ name, phone, comment, product, time: now });
+    localStorage.setItem('site_leads', JSON.stringify(leads));
+  }
+
+  // Маска телефона
+  function applyPhoneMask(el) {
+    el.addEventListener('input', function(e) {
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.startsWith('8')) v = '7' + v.slice(1);
+      if (v.startsWith('7')) {
+        v = '+7 (' + v.slice(1,4) + ') ' + v.slice(4,7) + '-' + v.slice(7,9) + '-' + v.slice(9,11);
+        e.target.value = v.replace(/[\s\-\(\)]+$/, '');
+      }
+    });
+  }
+
+  // ── LF MODAL ──────────────────────────────────────────
+  const LF = {
+    open(product) {
+      document.getElementById('lfOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (product) {
+        const lbl = document.getElementById('lfProductLabel');
+        lbl.textContent = product; lbl.style.display = 'inline-block';
+      }
+      document.getElementById('lfPhone').focus();
+    },
+    close() {
+      document.getElementById('lfOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    },
+    resetForm() {
+      document.getElementById('lfSuccess').style.display = 'none';
+      document.getElementById('lfError').style.display = 'none';
+      document.getElementById('lfFormWrap').style.display = 'block';
+      const btn = document.getElementById('lfSubmit');
+      btn.classList.remove('loading'); btn.disabled = false;
+    },
+    async send() {
+      const phone   = document.getElementById('lfPhone').value.trim();
+      const consent = document.getElementById('lfConsent').checked;
+      const phoneEl = document.getElementById('lfPhone');
+      const errEl   = document.getElementById('lfConsentError');
+
+      // Валидация телефона
+      if (phone.replace(/\D/g,'').length < 10) {
+        phoneEl.classList.add('error'); phoneEl.focus(); return;
+      }
+      phoneEl.classList.remove('error');
+
+      // Валидация согласия
+      if (!consent) {
+        errEl.style.display = 'block'; return;
+      }
+      errEl.style.display = 'none';
+
+      const data = {
+        name:    document.getElementById('lfName').value.trim(),
+        phone,
+        comment: document.getElementById('lfComment').value.trim(),
+        product: document.getElementById('lfProductLabel').textContent || ''
+      };
+
+      const btn = document.getElementById('lfSubmit');
+      btn.classList.add('loading'); btn.disabled = true;
+
+      saveLeadLocally(data);
+
+      try {
+        await sendToTelegram(data);
+        if (typeof ym === 'function') ym(YM_ID, 'reachGoal', 'form_submit');
+        if (window.roistat && typeof roistat.goal === 'function') roistat.goal('form_submit');
+        document.getElementById('lfFormWrap').style.display = 'none';
+        document.getElementById('lfSuccess').style.display = 'block';
+      } catch(err) {
+        console.warn('TG error:', err);
+        document.getElementById('lfFormWrap').style.display = 'none';
+        document.getElementById('lfError').style.display = 'block';
+      }
+    }
+  };
+
+  // Закрыть модал по клику на оверлей
+  document.getElementById('lfOverlay').addEventListener('click', function(e) {
+    if (e.target === this) LF.close();
+  });
+  // Закрыть по Escape
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') LF.close(); });
+
+  // ── INLINE FORM ───────────────────────────────────────
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const consent = document.getElementById('inlineConsent').checked;
+    if (!consent) { alert('Необходимо дать согласие на обработку данных'); return; }
+
+    const data = {
+      name:    form.querySelector('input[type="text"]').value.trim(),
+      phone:   form.querySelector('input[type="tel"]').value.trim(),
+      comment: form.querySelector('textarea').value.trim(),
+      product: 'Кисловодск 2.0 — ' + (form.querySelector('select').value || 'площадь не выбрана')
+    };
+
+    saveLeadLocally(data);
+    sendToTelegram(data).catch(console.warn);
+    if (typeof ym === 'function') ym(YM_ID, 'reachGoal', 'form_submit');
+    if (window.roistat && typeof roistat.goal === 'function') roistat.goal('form_submit');
+
+    const btn = form.querySelector('.form-submit');
+    btn.textContent = '✓ Заявка принята. Перезвоним в течение дня.';
+    btn.style.background = '#5db872';
+    btn.disabled = true;
+    form.querySelectorAll('input, select, textarea').forEach(f => f.disabled = true);
+  }
+
+  // Маски телефона
+  document.querySelectorAll('input[type="tel"]').forEach(applyPhoneMask);
+
+  // Клики по телефону/WA для Метрики
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a || typeof ym !== 'function') return;
+    if (a.href?.startsWith('tel:')) ym(YM_ID, 'reachGoal', 'phone_click');
+    if (a.href?.includes('wa.me')) ym(YM_ID, 'reachGoal', 'whatsapp_click');
+  });
+
+  // ── SCROLL REVEAL ─────────────────────────────────────
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav subtle scroll effect
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 60 ? '0 1px 12px rgba(20,20,19,0.08)' : 'none';
+  }, { passive: true });
+</script>
+</body>
+</html>
