@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 <title>Кисловодск 2.0 — Быстровозводимые здания МСГ</title>
 <meta name="description" content="Каркасные здания большого пролёта от 5 000 руб/кв.м. 6 колонн, 4 рабочих, 7 дней. Советская инженерная школа + современные технологии. МСГ, Иваново.">
 <!-- Yandex.Metrika counter -->
@@ -90,6 +91,34 @@
     --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
+  /* === LIGHT THEME OVERRIDE === */
+  html[data-theme="light"] {
+    --canvas:        #ffffff;
+    --surface-soft:  #f7f7f5;
+    --surface-card:  #f0f0ee;
+    --surface-cream: #f7f7f5;
+    --surface-gray:  #f2f2f0;
+    --surface-gray-mid: #e8e8e6;
+
+    --hairline:      #e2e2de;
+    --hairline-soft: #ececea;
+
+    --ink:           #111111;
+    --body-str:      #2a2a28;
+    --body:          #45453f;
+    --muted:         #6c6a64;
+    --muted-soft:    #8a8884;
+  }
+  html[data-theme="light"] nav { background: rgba(255,255,255,0.93); }
+  /* Hero is always a dark photo overlay — keep its text light in both themes */
+  html[data-theme="light"] .hero {
+    --ink:      #ffffff;
+    --body-str: #e6e6e6;
+    --body:     #bbbbbb;
+    --muted:    #7e7e7e;
+    --hairline: #2a2a2a;
+  }
+
   html { scroll-behavior: smooth; }
   body {
     font-family: var(--sans);
@@ -97,7 +126,20 @@
     color: var(--ink);
     line-height: 1.55;
     overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
   }
+
+  /* === THEME TOGGLE === */
+  .nav-actions { display: flex; align-items: center; gap: var(--sp-sm); }
+  .theme-toggle {
+    background: transparent; border: 1px solid var(--hairline);
+    color: var(--ink); border-radius: var(--r-md);
+    width: 40px; height: 40px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 16px; line-height: 1;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .theme-toggle:hover { border-color: var(--muted); }
 
   /* === TYPOGRAPHY === */
   h1 {
@@ -679,7 +721,10 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">МСГ<span class="dot">·</span>Кисловодск 2.0</a>
-    <button onclick="LF.open()" class="nav-cta">Получить расчёт</button>
+    <div class="nav-actions">
+      <button onclick="toggleTheme()" class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Светлая / тёмная тема">🌙</button>
+      <button onclick="LF.open()" class="nav-cta">Получить расчёт</button>
+    </div>
   </div>
 </nav>
 
@@ -1333,6 +1378,24 @@
     }, 500);
   }
   if (hookEl) { showNextHookPhrase(); setInterval(showNextHookPhrase, 4000); }
+
+  // ── THEME TOGGLE ──────────────────────────────────────
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = t === 'light' ? '☀️' : '🌙';
+  }
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const next = cur === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  }
+  (function () {
+    let saved = 'dark';
+    try { saved = localStorage.getItem('theme') || 'dark'; } catch (e) {}
+    applyTheme(saved);
+  })();
 
   // Nav subtle scroll effect
   window.addEventListener('scroll', () => {
