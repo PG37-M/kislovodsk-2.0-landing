@@ -440,7 +440,8 @@
   }
 
   /* === PHOTO SHOWCASE — adapts to current theme === */
-  .showcase { background: var(--canvas); }
+  /* Lighter than the canvas so it separates the hero from the quote band in dark theme */
+  .showcase { background: var(--surface-cream); }
   .showcase-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -740,6 +741,8 @@
   .footer-legal a:hover { color: var(--on-dark); }
 
   /* === LIGHT THEME — section overrides (placed last to win the cascade) === */
+  /* Photo showcase — keep it white in light theme */
+  html[data-theme="light"] .showcase { background: var(--canvas); }
   /* Quote band — light variant */
   html[data-theme="light"] .quotes-block { background: var(--surface-light); }
   html[data-theme="light"] .quotes-block h2 { color: var(--ink-dark) !important; }
