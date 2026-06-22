@@ -439,6 +439,31 @@
     font-size: 14px; font-weight: 500; color: var(--muted);
   }
 
+  /* === PHOTO SHOWCASE — adapts to current theme === */
+  .showcase { background: var(--canvas); }
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 8px;
+    margin-top: var(--sp-xxl);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+  }
+  .showcase-cell { overflow: hidden; background: var(--surface-card); }
+  .showcase-cell img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+  }
+  .showcase-cell:hover img { transform: scale(1.04); }
+  .showcase-cell.big  { grid-column: span 2; grid-row: span 2; }
+  .showcase-cell.wide { grid-column: span 2; }
+  @media(max-width: 768px) {
+    .showcase-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 6px; }
+    .showcase-cell.big  { grid-column: span 2; grid-row: span 2; }
+    .showcase-cell.wide { grid-column: span 2; }
+  }
+
   /* === ПРОДУКТ — light === */
   .product { background: var(--surface-light); }
   .product h2 { color: var(--ink-dark); }
@@ -788,6 +813,26 @@
   </div>
 </section>
 
+<!-- ГАЛЕРЕЯ ОБЪЕКТА — сразу после hero, адаптируется к теме -->
+<section class="showcase section" id="photos">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Объект в деталях</div>
+      <h2 class="section-title">Это уже построено</h2>
+      <p class="section-sub">Реальные фото каркаса Кисловодск 2.0 — узлы ферм, колонны, готовый фасад.</p>
+    </div>
+    <div class="showcase-grid reveal">
+      <div class="showcase-cell big"><img src="images/photo1.JPG" alt="Узлы фермы, вид снизу" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
+      <div class="showcase-cell"><img src="images/photo2.JPG" alt="Конструкция снаружи" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
+      <div class="showcase-cell"><img src="images/photo3.JPG" alt="Ферма в небе" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
+      <div class="showcase-cell"><img src="images/photo4.JPG" alt="Внутри здания: колонна и высокие окна" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
+      <div class="showcase-cell"><img src="images/photo5.JPG" alt="Фасад готового здания" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
+      <div class="showcase-cell wide"><img src="images/photo6.JPG" alt="Боковой фасад" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
+      <div class="showcase-cell wide"><img src="images/photo7.JPG" alt="Каркас без стен, вид сбоку" loading="lazy" onerror="this.parentNode.style.display='none'"></div>
+    </div>
+  </div>
+</section>
+
 <!-- КТО СКАЗАЛ — dark band -->
 <section class="quotes-block section" id="quotes">
   <div class="container">
@@ -1121,7 +1166,7 @@
           <a href="https://мсг.рф" target="_blank" class="btn-secondary">мсг.рф ↗</a>
         </div>
         <div class="final-quote">
-          <p class="final-quote-text">Ребят, кому надо — обращайтесь. Я лично отвечаю головой. Мы не с бухты-барахты взялись: у нас огромный опыт у обоих. И мы даём действительно классный продукт. Безупречная репутация. Приезжайте на завод — всегда рады.</p>
+          <p class="final-quote-text">Ребят, кому надо — обращайтесь. Мы не с бухты-барахты взялись: у нас огромный опыт у обоих. И мы даём действительно классный продукт. Безупречная репутация. Приезжайте на завод — всегда рады.</p>
           <p class="final-quote-author">— Рамин, партнёр МСГ · мсг.рф</p>
         </div>
       </div>
