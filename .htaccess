@@ -1,0 +1,10 @@
+# Закрываем доступ из браузера к настройкам с секретами и журналу заявок
+<FilesMatch "^(crm-config\.php|crm-config\.sample\.php|crm-leads\.log)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

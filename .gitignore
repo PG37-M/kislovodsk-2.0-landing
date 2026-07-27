@@ -1,0 +1,11 @@
+# Секреты: заполняется на хостинге, в репозиторий не попадает
+crm-config.php
+
+# Журнал заявок
+crm-leads.log
+
+# Локальные настройки Claude Code
+.claude/settings.local.json
+
+# Мусор ОС
+.DS_Store

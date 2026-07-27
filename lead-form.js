@@ -1,9 +1,11 @@
 /* ═══════════════════════════════════════════════════
-   ЗМК Кисловодск 2.0 — форма заявки + Telegram
+   ЗМК Кисловодск 2.0 — форма заявки → Битрикс24
    ═══════════════════════════════════════════════════ */
 
-const TG_TOKEN   = '8935030538:AAEgI7VsAB7SozU7h1NcSygazvexuPxUbBs';
-const TG_CHAT_ID = '215323571';
+/* Заявки уходят на серверный обработчик: он создаёт лид в Битрикс24
+   и дублирует сообщение в Telegram. Ключи лежат в crm-config.php
+   на хостинге и в браузер не попадают. */
+const LEAD_ENDPOINT = '/crm.php';
 
 /* ── CSS ─────────────────────────────────────────── */
 const FORM_CSS = `
@@ -104,6 +106,9 @@ const FORM_CSS = `
 }
 .lf-consent-error.show{display:block}
 
+/* honeypot: невидимое поле, которое заполняют только боты */
+.lf-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+
 /* spinner */
 .lf-spinner{
   width:18px;height:18px;border:2.5px solid rgba(255,255,255,.4);
@@ -138,6 +143,7 @@ const FORM_HTML = `
           <label class="lf-label" for="lfComment">Комментарий (необязательно)</label>
           <textarea class="lf-textarea" id="lfComment" placeholder="Площадь, сроки, особые требования..."></textarea>
         </div>
+        <input class="lf-hp" id="lfCompany" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label class="lf-checkbox" id="lfConsentWrap">
           <input type="checkbox" id="lfConsent">
           <span class="lf-checkbox-box"></span>
@@ -270,7 +276,7 @@ const LF = {
     document.getElementById('lfError').classList.remove('show');
     document.getElementById('lfSubmit').classList.remove('loading');
     document.getElementById('lfSubmit').disabled = false;
-    ['lfName','lfPhone','lfComment'].forEach(id => {
+    ['lfName','lfPhone','lfComment','lfCompany'].forEach(id => {
       const el = document.getElementById(id);
       el.value = '';
       el.classList.remove('error');
@@ -291,6 +297,33 @@ const LF = {
       v = '+7 (' + v.slice(1,4) + ') ' + v.slice(4,7) + '-' + v.slice(7,9) + '-' + v.slice(9,11);
       e.target.value = v.replace(/[\s\-\(\)]+$/, '');
     }
+  },
+
+  /* UTM-метки: запоминаем при первом заходе, чтобы не потерять
+     при переходе между страницами сайта */
+  getUtm() {
+    const KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+    let saved = {};
+    try {
+      saved = JSON.parse(sessionStorage.getItem('zmk_utm') || '{}');
+    } catch(e) { saved = {}; }
+
+    const params = new URLSearchParams(window.location.search);
+    const fresh = {};
+    KEYS.forEach(k => { if (params.get(k)) fresh[k] = params.get(k); });
+
+    if (Object.keys(fresh).length) {
+      saved = fresh;
+      try { sessionStorage.setItem('zmk_utm', JSON.stringify(saved)); } catch(e) {}
+    }
+    return saved;
+  },
+
+  /* Номер визита Roistat — из счётчика или из куки */
+  getRoistatVisit() {
+    if (window.roistat && roistat.visit) return String(roistat.visit);
+    const m = document.cookie.match(/(^|;\s*)roistat_visit=([^;]+)/);
+    return m ? m[2] : '';
   },
 
   validate() {
@@ -327,39 +360,28 @@ const LF = {
     btn.classList.add('loading');
     btn.disabled = true;
 
-    const name    = document.getElementById('lfName').value.trim() || 'не указано';
+    const name    = document.getElementById('lfName').value.trim();
     const phone   = document.getElementById('lfPhone').value.trim();
     const comment = document.getElementById('lfComment').value.trim();
+    const company = document.getElementById('lfCompany').value.trim(); // honeypot
     const product = LF.currentProduct;
     const page    = window.location.pathname.split('/').pop() || 'сайт';
     const now     = new Date().toLocaleString('ru-RU', {timeZone:'Europe/Moscow',day:'2-digit',month:'long',hour:'2-digit',minute:'2-digit'});
 
-    const text = [
-      '🏗 <b>Новая заявка с сайта ЗМК</b>',
-      '',
-      product ? `📦 <b>Товар:</b> ${product}` : null,
-      `👤 <b>Имя:</b> ${name}`,
-      `📞 <b>Телефон:</b> ${phone}`,
-      comment ? `💬 <b>Комментарий:</b> ${comment}` : null,
-      '',
-      `🕐 ${now} (МСК)`,
-      `🌐 Страница: ${page}`,
-    ].filter(l => l !== null).join('\n');
+    const payload = Object.assign({
+      name, phone, comment, company, product, page,
+      consent: true,
+      referrer: document.referrer || '',
+      roistat: LF.getRoistatVisit()
+    }, LF.getUtm());
 
     try {
-      const resp = await fetch(
-        `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,
-        {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({
-            chat_id: TG_CHAT_ID,
-            text,
-            parse_mode: 'HTML'
-          })
-        }
-      );
-      const data = await resp.json();
+      const resp = await fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      const data = await resp.json().catch(() => ({ok:false}));
       if (data.ok) {
         document.getElementById('lfFormWrap').style.display = 'none';
         document.getElementById('lfSuccess').classList.add('show');
@@ -372,10 +394,10 @@ const LF = {
         leads.push({name, phone, comment, product, time: now});
         localStorage.setItem('zmk_leads', JSON.stringify(leads));
       } else {
-        throw new Error(data.description || 'Telegram API error');
+        throw new Error(data.error || 'CRM error');
       }
     } catch(err) {
-      console.error('Telegram send error:', err);
+      console.error('Lead send error:', err);
       // save anyway
       const leads = JSON.parse(localStorage.getItem('zmk_leads') || '[]');
       leads.push({name, phone, comment, product, time: now, error: err.message});
