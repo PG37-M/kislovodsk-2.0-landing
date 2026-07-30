@@ -457,6 +457,27 @@
     font-size: 14px; font-weight: 500; color: var(--muted);
   }
 
+  /* === ЭКСПЕРТНЫЙ РАЗБОР — видео с блогером === */
+  .expert-section { background: var(--surface-cream); }
+  .expert-single {
+    margin: var(--sp-xxl) auto 0; max-width: 860px;
+  }
+  .expert-frame {
+    border-radius: var(--r-xl); overflow: hidden;
+    aspect-ratio: 16/9; background: var(--surface-card);
+    border: 1px solid var(--hairline);
+  }
+  .expert-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+  .expert-cap {
+    margin-top: var(--sp-md); text-align: center;
+    font-size: 14px; font-weight: 500;
+    color: var(--ink); line-height: 1.45;
+  }
+  .expert-cap span {
+    display: block; margin-top: 4px;
+    font-size: 13px; font-weight: 400; color: var(--muted);
+  }
+
   /* === PHOTO SHOWCASE — adapts to current theme === */
   /* Lighter than the canvas so it separates the hero from the quote band in dark theme */
   .showcase { background: var(--surface-cream); }
@@ -1124,6 +1145,23 @@
         <div class="use-case-item">Малоэтажные дома</div>
         <div class="use-case-item">Сельхозобъекты</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЭКСПЕРТНЫЙ РАЗБОР — видео с Константином PRO -->
+<section class="expert-section section" id="expert">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Экспертный разбор</div>
+      <h2 class="section-title">Разбор от Константина PRO</h2>
+      <p class="section-sub">Независимый обзор технологии Кисловодск 2.0 — прямо на производстве в Иваново, без прикрас.</p>
+    </div>
+    <div class="expert-single reveal">
+      <div class="expert-frame">
+        <iframe src="https://rutube.ru/play/embed/dfbe8c3eac53bfb5f1fda7aaf053181e/" loading="lazy" allow="clipboard-write; autoplay" allowFullScreen></iframe>
+      </div>
+      <p class="expert-cap">Капитальное здание по цене ангара? Обзор технологии Кисловодск 2.0<span>Как строить в 2,5 раза дешевле на монтаже и экономить до 30% металла</span></p>
     </div>
   </div>
 </section>
