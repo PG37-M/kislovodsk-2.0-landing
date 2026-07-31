@@ -113,19 +113,9 @@ $title = 'Заявка с сайта' . ($product !== '' ? ': ' . $product : '')
 
 $siteLabel = lf_clean($config['site_label'] ?? '', 100);
 
-// «Дополнительно об источнике» — только домен сайта, без служебного текста.
-// Страница/переход/Roistat уходят в комментарий, чтобы данные не потерялись.
-$metaParts = array_filter([
-    $page !== ''    ? 'Страница: ' . $page : '',
-    $referer !== '' ? 'Переход с: ' . $referer : '',
-    $roistat !== '' ? 'Roistat: ' . $roistat : '',
-]);
-
-$comments = implode("\n\n", array_filter([
-    $product !== '' ? 'Интересует: ' . $product : '',
-    $comment,
-    $metaParts ? implode("\n", $metaParts) : '',
-]));
+// В комментарий пишем только то, что реально ввёл клиент.
+// Источник → SOURCE_DESCRIPTION, UTM → UTM-поля, Roistat → своё поле.
+$comments = $comment;
 
 $fields = [
     'TITLE'              => $title,
