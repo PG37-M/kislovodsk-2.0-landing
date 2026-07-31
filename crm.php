@@ -113,26 +113,29 @@ $title = 'Заявка с сайта' . ($product !== '' ? ': ' . $product : '')
 
 $siteLabel = lf_clean($config['site_label'] ?? '', 100);
 
-$sourceParts = array_filter([
-    $siteLabel !== '' ? 'Сайт: ' . $siteLabel : '',
-    $page !== ''      ? 'Страница: ' . $page : '',
-    $referer !== ''   ? 'Переход с: ' . $referer : '',
-    $roistat !== ''   ? 'Roistat: ' . $roistat : '',
+// «Дополнительно об источнике» — только домен сайта, без служебного текста.
+// Страница/переход/Roistat уходят в комментарий, чтобы данные не потерялись.
+$metaParts = array_filter([
+    $page !== ''    ? 'Страница: ' . $page : '',
+    $referer !== '' ? 'Переход с: ' . $referer : '',
+    $roistat !== '' ? 'Roistat: ' . $roistat : '',
 ]);
+
+$comments = implode("\n\n", array_filter([
+    $product !== '' ? 'Интересует: ' . $product : '',
+    $comment,
+    $metaParts ? implode("\n", $metaParts) : '',
+]));
 
 $fields = [
     'TITLE'              => $title,
     'NAME'               => $name !== '' ? $name : 'Не указано',
-    'COMMENTS'           => $comment,
+    'COMMENTS'           => $comments,
     'SOURCE_ID'          => $config['b24_source_id'] ?? 'WEB',
-    'SOURCE_DESCRIPTION' => implode("\n", $sourceParts),
+    'SOURCE_DESCRIPTION' => $siteLabel,
     'OPENED'             => 'Y',
     'PHONE'              => [['VALUE' => $phone, 'VALUE_TYPE' => 'WORK']],
 ] + $utm;
-
-if ($product !== '') {
-    $fields['COMMENTS'] = trim("Интересует: {$product}\n" . $comment);
-}
 if (!empty($config['b24_assigned_by'])) {
     $fields['ASSIGNED_BY_ID'] = (int)$config['b24_assigned_by'];
 }
