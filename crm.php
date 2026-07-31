@@ -111,10 +111,13 @@ foreach (['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
 
 $title = 'Заявка с сайта' . ($product !== '' ? ': ' . $product : '');
 
+$siteLabel = lf_clean($config['site_label'] ?? '', 100);
+
 $sourceParts = array_filter([
-    $page !== ''    ? 'Страница: ' . $page : '',
-    $referer !== '' ? 'Переход с: ' . $referer : '',
-    $roistat !== '' ? 'Roistat: ' . $roistat : '',
+    $siteLabel !== '' ? 'Сайт: ' . $siteLabel : '',
+    $page !== ''      ? 'Страница: ' . $page : '',
+    $referer !== ''   ? 'Переход с: ' . $referer : '',
+    $roistat !== ''   ? 'Roistat: ' . $roistat : '',
 ]);
 
 $fields = [
