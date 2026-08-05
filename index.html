@@ -1232,7 +1232,7 @@
             </div>
             <div class="form-field">
               <label>Регион</label>
-              <input type="text" placeholder="Москва, Иваново...">
+              <input type="text" id="inlineRegion" placeholder="Москва, Иваново...">
             </div>
           </div>
           <div class="form-field">
@@ -1506,10 +1506,12 @@
     if (!consent) { consentErr.style.display = 'block'; return; }
     consentErr.style.display = 'none';
 
+    const region  = document.getElementById('inlineRegion').value.trim();
+    const purpose = form.querySelector('textarea').value.trim();
     const data = {
       name:    form.querySelector('input[type="text"]').value.trim(),
       phone:   form.querySelector('input[type="tel"]').value.trim(),
-      comment: form.querySelector('textarea').value.trim(),
+      comment: [region ? 'Регион: ' + region : '', purpose].filter(Boolean).join('\n'),
       product: 'Кисловодск 2.0 — ' + (form.querySelector('select').value || 'площадь не выбрана'),
       company: document.getElementById('inlineCompany').value.trim()   // honeypot
     };
