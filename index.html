@@ -617,8 +617,16 @@
     padding: 0 var(--sp-xl); height: 44px;
     font-family: var(--sans); font-size: 14px; font-weight: 500;
     cursor: pointer; margin-top: var(--sp-sm); transition: background 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .form-submit:hover { background: var(--coral-dark); }
+  .form-submit:hover:not(:disabled) { background: var(--coral-dark); }
+  .form-submit:disabled { cursor: default; }
+  .form-submit .fs-spinner {
+    width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff; border-radius: 50%;
+    animation: spin 0.7s linear infinite; display: none; flex-shrink: 0;
+  }
+  .form-submit.loading .fs-spinner { display: inline-block; }
   .form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: var(--sp-sm); }
   .inline-consent-error { font-size: 12px; color: #c64545; display: none; margin: 4px 0 var(--sp-sm); }
 
@@ -1241,7 +1249,7 @@
             </span>
           </label>
           <p class="inline-consent-error" id="inlineConsentError">Необходимо дать согласие на обработку данных</p>
-          <button type="submit" class="form-submit">Получить расчёт бесплатно</button>
+          <button type="submit" class="form-submit"><span class="fs-spinner"></span><span class="fs-text">Получить расчёт бесплатно</span></button>
           <p class="form-note">Без спама. Только один звонок с конкретными цифрами.</p>
         </form>
       </div>
@@ -1506,17 +1514,23 @@
       company: document.getElementById('inlineCompany').value.trim()   // honeypot
     };
 
-    const btn = form.querySelector('.form-submit');
+    const btn  = form.querySelector('.form-submit');
+    const txt  = btn.querySelector('.fs-text');
     btn.disabled = true;
+    btn.classList.add('loading');
+    txt.textContent = 'Отправляем…';
     saveLeadLocally(data);
 
     submitLead(data).then(() => {
-      btn.textContent = '✓ Заявка принята. Перезвоним в течение дня.';
+      btn.classList.remove('loading');
+      txt.textContent = '✓ Заявка принята. Перезвоним в течение дня.';
       btn.style.background = '#5db872';
       form.querySelectorAll('input, select, textarea').forEach(f => f.disabled = true);
     }).catch(err => {
       console.warn('Lead error:', err);
+      btn.classList.remove('loading');
       btn.disabled = false;
+      txt.textContent = 'Получить расчёт бесплатно';
       alert('Не удалось отправить заявку. Позвоните нам или напишите на мсг.рф');
     });
   }
