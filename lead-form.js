@@ -385,8 +385,8 @@ const LF = {
       if (data.ok) {
         document.getElementById('lfFormWrap').style.display = 'none';
         document.getElementById('lfSuccess').classList.add('show');
-        // ── Яндекс Метрика: цель «Заявка отправлена»
-        if (typeof ym === 'function') ym(109779710, 'reachGoal', 'form_submit');
+        // ── Яндекс Метрика: цель «Заявка отправлена» (первичное обращение)
+        if (typeof ym === 'function') ym(109779710, 'reachGoal', 'lead-form');
         // ── Roistat: событие конверсии
         if (window.roistat && typeof roistat.goal === 'function') roistat.goal('form_submit');
         // save to localStorage as backup
