@@ -6,14 +6,39 @@
  * который не попадает в браузер и не хранится в git.
  */
 
+// Ошибки PHP не должны попадать в тело ответа (иначе ломается JSON) — только в лог.
+@ini_set('display_errors', '0');
+ob_start();
+
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 
-/** Ответ клиенту и выход. Наружу уходит только код ошибки, без подробностей. */
+/** Ответ клиенту и выход. Гарантированно чистый JSON — любой случайный вывод отбрасывается. */
 function lf_reply(bool $ok, string $error = '', int $status = 200): void {
+    while (ob_get_level() > 0) { ob_end_clean(); }
     http_response_code($status);
     echo json_encode($ok ? ['ok' => true] : ['ok' => false, 'error' => $error], JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+/**
+ * Отправляет ответ браузеру и закрывает соединение, НЕ дожидаясь фоновых шагов
+ * (дубль в Telegram). Браузер получает результат сразу после создания лида,
+ * а скрипт продолжает работать в фоне.
+ */
+function lf_finish_response(bool $ok, string $error = ''): void {
+    while (ob_get_level() > 0) { ob_end_clean(); }
+    $body = json_encode($ok ? ['ok' => true] : ['ok' => false, 'error' => $error], JSON_UNESCAPED_UNICODE);
+    ignore_user_abort(true);
+    http_response_code(200);
+    header('Content-Type: application/json; charset=utf-8');
+    header('Content-Length: ' . strlen($body));
+    echo $body;
+    if (function_exists('fastcgi_finish_request')) {
+        fastcgi_finish_request();
+    } else {
+        flush();
+    }
 }
 
 $config = @include __DIR__ . '/crm-config.php';
@@ -185,7 +210,11 @@ if ($leadId <= 0) {
     lf_log($config, "LEAD #{$leadId} phone={$phone} name={$name} product={$product}");
 }
 
-// Дубль в Telegram — не влияет на ответ клиенту.
+// Ответ браузеру сразу после создания лида. Telegram досылаем в фоне —
+// его скорость/сбой больше не задерживают форму и не ломают ответ.
+lf_finish_response($leadId > 0, $leadId > 0 ? '' : 'crm');
+
+// ── Дальше выполняется уже после закрытия соединения с браузером ──
 if (!empty($config['tg_token']) && !empty($config['tg_chat_id'])) {
     $esc = fn($s) => htmlspecialchars($s, ENT_NOQUOTES, 'UTF-8');
     $lines = array_filter([
@@ -209,8 +238,4 @@ if (!empty($config['tg_token']) && !empty($config['tg_chat_id'])) {
         lf_log($config, "TG ERROR http={$tgCode} resp=" . mb_substr($tgResponse, 0, 300));
     }
 }
-
-if ($leadId <= 0) {
-    lf_reply(false, 'crm', 502);
-}
-lf_reply(true);
+exit;
