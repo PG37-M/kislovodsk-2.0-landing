@@ -620,6 +620,7 @@
   }
   .form-submit:hover { background: var(--coral-dark); }
   .form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: var(--sp-sm); }
+  .inline-consent-error { font-size: 12px; color: #c64545; display: none; margin: 4px 0 var(--sp-sm); }
 
   .cta-side { display: flex; flex-direction: column; gap: var(--sp-xxl); }
   .cta-buttons { display: flex; flex-direction: column; gap: var(--sp-sm); }
@@ -1239,6 +1240,7 @@
               <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
             </span>
           </label>
+          <p class="inline-consent-error" id="inlineConsentError">Необходимо дать согласие на обработку данных</p>
           <button type="submit" class="form-submit">Получить расчёт бесплатно</button>
           <p class="form-note">Без спама. Только один звонок с конкретными цифрами.</p>
         </form>
@@ -1492,7 +1494,9 @@
     e.preventDefault();
     const form = e.target;
     const consent = document.getElementById('inlineConsent').checked;
-    if (!consent) { alert('Необходимо дать согласие на обработку данных'); return; }
+    const consentErr = document.getElementById('inlineConsentError');
+    if (!consent) { consentErr.style.display = 'block'; return; }
+    consentErr.style.display = 'none';
 
     const data = {
       name:    form.querySelector('input[type="text"]').value.trim(),
