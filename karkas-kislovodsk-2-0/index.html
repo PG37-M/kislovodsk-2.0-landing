@@ -219,11 +219,17 @@
   .form input:focus,.form select:focus{border-color:var(--orange);}
   .form input::placeholder{color:#7C8AA0;}
   .form .full{grid-column:1 / -1;}
-  .btn{display:inline-block;background:var(--orange);color:var(--ink);border:0;border-radius:4px;padding:14px 28px;
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--orange);color:var(--ink);border:0;border-radius:4px;padding:14px 28px;
        font-family:var(--disp);font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;cursor:pointer;width:100%;}
-  .btn:hover{background:#E07B00;}
+  .btn:hover:not(:disabled){background:#E07B00;}
+  .btn:disabled{cursor:default;opacity:.85;}
+  .btn .btn-spinner{width:16px;height:16px;border:2px solid rgba(21,23,30,.35);border-top-color:var(--ink);
+      border-radius:50%;animation:btnspin .7s linear infinite;display:none;flex-shrink:0;}
+  .btn.loading .btn-spinner{display:inline-block;}
+  @keyframes btnspin{to{transform:rotate(360deg);}}
   .small{font-size:12.5px;color:#7C8AA0;margin-top:12px;line-height:1.5;font-weight:300;}
   .ok{display:none;background:rgba(255,140,0,.12);border:1px solid var(--orange);border-radius:4px;padding:14px 18px;color:var(--orange);font-size:15px;margin-top:14px;}
+  .hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none;}
 
   .faq-q{font-weight:500;margin-top:20px;margin-bottom:4px;font-size:17px;}
   .faq-a{font-weight:300;color:var(--tx-soft);margin-bottom:0;}
@@ -787,7 +793,7 @@
     <p>Если у вас есть предложение другой компании, пришлите его: покажем, из чего складывается разница по полной смете объекта, а не по цене тонны металла.</p>
 
     <div class="form">
-      <form onsubmit="event.preventDefault();document.getElementById('ok').style.display='block';this.reset();">
+      <form id="raschetForm" onsubmit="handleArticleSubmit(event)">
         <div class="fields">
           <input class="full" type="text" name="name" placeholder="Имя" required>
           <input class="full" type="tel" name="phone" placeholder="Телефон" required>
@@ -802,7 +808,8 @@
             <option>Сельхозобъект</option>
             <option>Другое</option>
           </select>
-          <div class="full"><button class="btn" type="submit">Получить расчёт</button></div>
+          <input class="hp-field" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="full"><button class="btn" type="submit"><span class="btn-spinner"></span><span class="btn-text">Получить расчёт</span></button></div>
         </div>
         <p class="small">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Контакты не передаются третьим лицам.</p>
         <p class="small">Или свяжитесь напрямую: <a href="tel:+79203404615" style="color:var(--orange);">+7 (920) 340-46-15</a> · <a href="mailto:sk.msg37@gmail.com" style="color:var(--orange);">sk.msg37@gmail.com</a></p>
@@ -821,6 +828,67 @@
 </footer>
 
 <script>
+  /* Заявка со страницы статьи → тот же серверный обработчик /crm.php, что и на главной:
+     лид в Битрикс24 + дубль в Telegram. Источник страницы — karkas-kislovodsk-2-0. */
+  function collectUtm(){
+    const KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+    let saved = {};
+    try { saved = JSON.parse(sessionStorage.getItem('zmk_utm') || '{}'); } catch(e){ saved = {}; }
+    const params = new URLSearchParams(location.search);
+    const fresh = {};
+    KEYS.forEach(k => { if (params.get(k)) fresh[k] = params.get(k); });
+    if (Object.keys(fresh).length) {
+      saved = fresh;
+      try { sessionStorage.setItem('zmk_utm', JSON.stringify(saved)); } catch(e){}
+    }
+    return saved;
+  }
+  function roistatVisit(){
+    if (window.roistat && roistat.visit) return String(roistat.visit);
+    const m = document.cookie.match(/(^|;\s*)roistat_visit=([^;]+)/);
+    return m ? m[2] : '';
+  }
+  async function submitLead(data){
+    const payload = Object.assign({
+      name: data.name || '', phone: data.phone, comment: data.comment || '',
+      product: data.product || '', company: data.company || '',
+      consent: true, page: 'karkas-kislovodsk-2-0',
+      referrer: document.referrer || '', roistat: roistatVisit()
+    }, collectUtm());
+
+    const resp = await fetch('/crm.php', {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload)
+    });
+    const res = await resp.json().catch(() => ({ok:false}));
+    if (!res.ok) throw new Error(res.error || 'CRM error');
+    if (typeof ym === 'function') ym(109779710, 'reachGoal', 'lead-form');
+    if (window.roistat && typeof roistat.goal === 'function') roistat.goal('form_submit');
+  }
+  function handleArticleSubmit(e){
+    e.preventDefault();
+    const form = e.target;
+    const fd = new FormData(form);
+    const data = {
+      name: (fd.get('name') || '').trim(),
+      phone: (fd.get('phone') || '').trim(),
+      comment: ['Площадь: ' + (fd.get('area') || ''), 'Регион: ' + (fd.get('region') || '')].join('\n'),
+      product: 'Кисловодск 2.0 — ' + (fd.get('purpose') || 'назначение не указано'),
+      company: (fd.get('company') || '').trim()
+    };
+    const btn = form.querySelector('.btn');
+    const txt = btn.querySelector('.btn-text');
+    btn.disabled = true; btn.classList.add('loading'); txt.textContent = 'Отправляем…';
+
+    submitLead(data).then(() => {
+      form.style.display = 'none';
+      document.getElementById('ok').style.display = 'block';
+    }).catch(err => {
+      console.warn('Lead error:', err);
+      btn.disabled = false; btn.classList.remove('loading'); txt.textContent = 'Получить расчёт';
+      alert('Не удалось отправить заявку. Позвоните нам или напишите на sk.msg37@gmail.com');
+    });
+  }
+
   /* Переключатель темы шапки — тот же ключ localStorage('theme'), что и на главном лендинге,
      но затрагивает только внешний вид nav.site-nav, не переоформляет остальную статью. */
   function applyNavTheme(t){
