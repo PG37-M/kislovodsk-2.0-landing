@@ -231,6 +231,19 @@
   .ok{display:none;background:rgba(255,140,0,.12);border:1px solid var(--orange);border-radius:4px;padding:14px 18px;color:var(--orange);font-size:15px;margin-top:14px;}
   .hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none;}
 
+  /* Согласие на обработку персональных данных — обязательный чекбокс */
+  .consent-check{display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-top:14px;}
+  .consent-check input[type="checkbox"]{display:none;}
+  .consent-box{width:18px;height:18px;border:1.5px solid var(--line-d);border-radius:4px;background:rgba(0,0,0,.3);
+      flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;
+      transition:background .15s,border-color .15s;}
+  .consent-check input:checked + .consent-box{background:var(--orange);border-color:var(--orange);}
+  .consent-check input:checked + .consent-box::after{content:'✓';font-size:11px;color:var(--ink);font-weight:700;}
+  .consent-box.error{border-color:#E15252;}
+  .consent-text{font-size:12.5px;color:#7C8AA0;line-height:1.5;font-weight:300;}
+  .consent-text a{color:var(--orange);}
+  .consent-error{display:none;font-size:12.5px;color:#FF8A8A;margin:6px 0 0 28px;}
+
   .faq-q{font-weight:500;margin-top:20px;margin-bottom:4px;font-size:17px;}
   .faq-a{font-weight:300;color:var(--tx-soft);margin-bottom:0;}
 
@@ -824,9 +837,15 @@
             <option>Другое</option>
           </select>
           <input class="hp-field" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <div class="full"><button class="btn" type="submit"><span class="btn-spinner"></span><span class="btn-text">Получить расчёт</span></button></div>
         </div>
-        <p class="small">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Контакты не передаются третьим лицам.</p>
+        <label class="consent-check">
+          <input type="checkbox" id="raschetConsent">
+          <span class="consent-box"></span>
+          <span class="consent-text">Я даю согласие на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank">политикой конфиденциальности</a></span>
+        </label>
+        <p class="consent-error" id="raschetConsentError">Необходимо дать согласие на обработку данных</p>
+        <div style="margin-top:14px;"><button class="btn" type="submit"><span class="btn-spinner"></span><span class="btn-text">Получить расчёт</span></button></div>
+        <p class="small">Контакты не передаются третьим лицам.</p>
         <p class="small">Или свяжитесь напрямую: <a href="tel:+79203404615" style="color:var(--orange);">+7 (920) 340-46-15</a> · <a href="mailto:sk.msg37@gmail.com" style="color:var(--orange);">sk.msg37@gmail.com</a></p>
       </form>
       <div class="ok" id="ok">Заявка принята. Менеджер свяжется в течение двух часов в рабочее время: будни с 8:00 до 17:00.</div>
@@ -867,7 +886,7 @@
     const payload = Object.assign({
       name: data.name || '', phone: data.phone, comment: data.comment || '',
       product: data.product || '', company: data.company || '',
-      consent: true, page: 'karkas-kislovodsk-2-0',
+      consent: !!data.consent, page: 'karkas-kislovodsk-2-0',
       referrer: document.referrer || '', roistat: roistatVisit()
     }, collectUtm());
 
@@ -882,13 +901,26 @@
   function handleArticleSubmit(e){
     e.preventDefault();
     const form = e.target;
+
+    const consentBox = document.getElementById('raschetConsent');
+    const consentErr = document.getElementById('raschetConsentError');
+    const consentSquare = consentBox.nextElementSibling;
+    if (!consentBox.checked) {
+      consentErr.style.display = 'block';
+      consentSquare.classList.add('error');
+      return;
+    }
+    consentErr.style.display = 'none';
+    consentSquare.classList.remove('error');
+
     const fd = new FormData(form);
     const data = {
       name: (fd.get('name') || '').trim(),
       phone: (fd.get('phone') || '').trim(),
       comment: ['Площадь: ' + (fd.get('area') || ''), 'Регион: ' + (fd.get('region') || '')].join('\n'),
       product: 'Кисловодск 2.0 — ' + (fd.get('purpose') || 'назначение не указано'),
-      company: (fd.get('company') || '').trim()
+      company: (fd.get('company') || '').trim(),
+      consent: consentBox.checked
     };
     const btn = form.querySelector('.btn');
     const txt = btn.querySelector('.btn-text');
@@ -903,6 +935,20 @@
       alert('Не удалось отправить заявку. Позвоните нам или напишите на sk.msg37@gmail.com');
     });
   }
+
+  /* Маска телефона в форме заявки: набирает +7 (___) ___-__-__ по мере ввода цифр */
+  (function(){
+    const phoneInput = document.querySelector('#raschetForm input[name="phone"]');
+    if (!phoneInput) return;
+    phoneInput.addEventListener('input', function(e){
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.startsWith('8')) v = '7' + v.slice(1);
+      if (v.startsWith('7')) {
+        v = '+7 (' + v.slice(1,4) + ') ' + v.slice(4,7) + '-' + v.slice(7,9) + '-' + v.slice(9,11);
+        e.target.value = v.replace(/[\s\-\(\)]+$/, '');
+      }
+    });
+  })();
 
   /* Переключатель темы шапки — тот же ключ localStorage('theme'), что и на главном лендинге,
      но затрагивает только внешний вид nav.site-nav, не переоформляет остальную статью. */
