@@ -482,6 +482,15 @@
     font-size: 13px; font-weight: 400; color: var(--muted);
   }
 
+  /* === БАННЕР ВЫСТАВКИ — под hero === */
+  .expo-banner { padding: var(--sp-lg) 0; background: var(--canvas); }
+  .expo-banner-link {
+    display: block; border-radius: var(--r-xl); overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .expo-banner-link:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.18); }
+  .expo-banner-link img { width: 100%; height: auto; display: block; }
+
   /* === PHOTO SHOWCASE — adapts to current theme === */
   /* Lighter than the canvas so it separates the hero from the quote band in dark theme */
   .showcase { background: var(--surface-cream); }
@@ -886,6 +895,17 @@
       <a href="#cta" class="btn-primary">Получить расчёт →</a>
       <a href="#object" class="btn-secondary">Смотреть объект</a>
     </div>
+  </div>
+</section>
+
+<!-- БАННЕР ВЫСТАВКИ — приглашение на стенд, сразу под hero -->
+<section class="expo-banner">
+  <div class="container">
+    <a href="#cta" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке Металлэкспо, 10–13 ноября 2026, павильон G — получить расчёт">
+      <img src="images/banner-metallexpo-2026.jpg"
+           alt="Приглашаем на стенд MSG Кисловодск 2.0 на международной промышленной выставке Металлэкспо, 10–13 ноября 2026, павильон G"
+           loading="lazy" width="1280" height="386">
+    </a>
   </div>
 </section>
 
