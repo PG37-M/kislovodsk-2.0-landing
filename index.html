@@ -813,6 +813,8 @@
   .footer-legal a:hover { color: var(--on-dark); }
 
   /* === LIGHT THEME — section overrides (placed last to win the cascade) === */
+  /* Expo banner — darker than the white showcase right below it, so they don't blend */
+  html[data-theme="light"] .expo-banner { background: var(--surface-card); }
   /* Photo showcase — keep it white in light theme */
   html[data-theme="light"] .showcase { background: var(--canvas); }
   /* Quote band — light variant */
