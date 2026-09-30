@@ -305,7 +305,15 @@ const LF = {
     const KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
     let saved = {};
     try {
-      saved = JSON.parse(sessionStorage.getItem('zmk_utm') || '{}');
+      const stored = localStorage.getItem('zmk_utm');
+      if (stored) {
+        const data = JSON.parse(stored);
+        if (data.exp && new Date(data.exp) > new Date()) {
+          saved = data.utm || {};
+        } else {
+          localStorage.removeItem('zmk_utm');
+        }
+      }
     } catch(e) { saved = {}; }
 
     const params = new URLSearchParams(window.location.search);
@@ -314,7 +322,10 @@ const LF = {
 
     if (Object.keys(fresh).length) {
       saved = fresh;
-      try { sessionStorage.setItem('zmk_utm', JSON.stringify(saved)); } catch(e) {}
+      try {
+        const expiry = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+        localStorage.setItem('zmk_utm', JSON.stringify({utm: saved, exp: expiry}));
+      } catch(e) {}
     }
     return saved;
   },

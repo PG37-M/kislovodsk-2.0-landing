@@ -508,13 +508,27 @@
   function collectUtm() {
     var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
     var saved = {};
-    try { saved = JSON.parse(sessionStorage.getItem('zmk_utm') || '{}'); } catch (e) { saved = {}; }
+    try {
+      var stored = localStorage.getItem('zmk_utm');
+      if (stored) {
+        var data = JSON.parse(stored);
+        if (data.exp && new Date(data.exp) > new Date()) {
+          saved = data.utm || {};
+        } else {
+          localStorage.removeItem('zmk_utm');
+        }
+      }
+    } catch (e) { saved = {}; }
+
     var params = new URLSearchParams(location.search);
     var fresh = {};
     KEYS.forEach(function (k) { if (params.get(k)) fresh[k] = params.get(k); });
     if (Object.keys(fresh).length) {
       saved = fresh;
-      try { sessionStorage.setItem('zmk_utm', JSON.stringify(saved)); } catch (e) {}
+      try {
+        var expiry = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+        localStorage.setItem('zmk_utm', JSON.stringify({utm: saved, exp: expiry}));
+      } catch (e) {}
     }
     return saved;
   }
