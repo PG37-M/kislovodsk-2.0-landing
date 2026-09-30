@@ -197,15 +197,33 @@
     transition: background 0.3s;
   }
   .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center;
     max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-lg);
-    width: 100%;
+    width: 100%; gap: 24px;
   }
   .nav-logo {
     font-family: var(--sans); font-size: 14px; font-weight: 500;
     color: var(--ink); text-decoration: none;
   }
   .nav-logo .dot { color: var(--coral); margin: 0 4px; }
+  .nav-menu {
+    display: flex; gap: 24px; flex: 1;
+  }
+  .nav-menu a {
+    font-family: var(--sans); font-size: 13px; font-weight: 500;
+    color: var(--body-str); text-decoration: none;
+    padding-bottom: 2px; border-bottom: 1px solid rgba(230,230,230,0.3);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-menu a:hover {
+    color: var(--coral); border-bottom-color: var(--coral);
+  }
+  html[data-theme="light"] .nav-menu a {
+    color: var(--ink-dark); border-bottom-color: rgba(0,0,0,0.15);
+  }
+  html[data-theme="light"] .nav-menu a:hover {
+    color: var(--coral); border-bottom-color: var(--coral);
+  }
   .nav-cta {
     background: var(--coral); color: var(--on-coral);
     border: none; border-radius: var(--r-md);
@@ -848,7 +866,11 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">МСГ<span class="dot">·</span>Кисловодск 2.0</a>
+    <a href="/" class="nav-logo">МСГ<span class="dot">·</span>Кисловодск 2.0</a>
+    <div class="nav-menu">
+      <a href="/karkas-kislovodsk-2-0/">О технологии</a>
+      <a href="/presentation-kislovodsk2/">Презентация</a>
+    </div>
     <div class="nav-actions">
       <div class="nav-contacts">
         <div class="nav-phones">
