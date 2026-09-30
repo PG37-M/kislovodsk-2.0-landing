@@ -216,6 +216,8 @@
   .submit:hover { filter: brightness(1.08); }
   .panel-form .or { text-align: center; font-size: 12px; color: #a9bcdd; margin: 12px 0 0; }
   .panel-form .err { border-color: #ff6b6b !important; }
+  .panel-form .check.err { color: #ff6b6b; margin-bottom: 8px; }
+  .panel-form .check.err input { border: 1px solid #ff6b6b; }
   .thanks { text-align: center; padding: 28px 10px; }
   .thanks h2 { margin: 0 0 8px; }
   .thanks p { color: #c3d2ee; font-size: 13.5px; line-height: 1.5; margin: 0; }
@@ -533,7 +535,17 @@
     var ok = phoneDigits() === 11;
     phone.classList.toggle('err', !ok);
     if (!ok) { phone.focus(); return; }
-    if (!agree.checked) { agree.focus(); return; }
+
+    var agreeParent = agree.parentElement;
+    if (!agree.checked) {
+      agreeParent.classList.add('err');
+      agree.focus();
+      agree.addEventListener('change', function () {
+        agreeParent.classList.remove('err');
+      }, {once: true});
+      return;
+    }
+    agreeParent.classList.remove('err');
     var lines = [];
     ['f-purpose', 'f-area', 'f-note'].forEach(function (id) {
       var el = document.getElementById(id);
