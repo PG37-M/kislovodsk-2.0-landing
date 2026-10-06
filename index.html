@@ -545,13 +545,11 @@
   .banners-arrow:hover {
     background: #fff; transform: translateY(-50%) scale(1.1);
   }
-  @media (prefers-color-scheme: dark) {
-    .banners-arrow {
-      background: rgba(59, 130, 246, 0.9); color: #fff;
-    }
-    .banners-arrow:hover {
-      background: rgb(59, 130, 246); transform: translateY(-50%) scale(1.1);
-    }
+  html:not([data-theme="light"]) .banners-arrow {
+    background: rgba(59, 130, 246, 0.9); color: #fff;
+  }
+  html:not([data-theme="light"]) .banners-arrow:hover {
+    background: rgb(59, 130, 246); transform: translateY(-50%) scale(1.1);
   }
   .banners-arrow-prev { left: 16px; }
   .banners-arrow-next { right: 16px; }
