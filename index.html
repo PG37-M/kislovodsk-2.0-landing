@@ -534,9 +534,25 @@
   .banners-dot.active {
     background: #fff;
   }
+  .banners-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255,255,255,0.9); border: none;
+    font-size: 28px; color: var(--ink); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5; transition: background 0.3s, transform 0.2s;
+  }
+  .banners-arrow:hover {
+    background: #fff; transform: translateY(-50%) scale(1.1);
+  }
+  .banners-arrow-prev { left: 16px; }
+  .banners-arrow-next { right: 16px; }
   @media (max-width: 768px) {
     .banners-nav { bottom: 12px; }
     .banners-dot { width: 8px; height: 8px; }
+    .banners-arrow { width: 40px; height: 40px; font-size: 24px; }
+    .banners-arrow-prev { left: 8px; }
+    .banners-arrow-next { right: 8px; }
   }
 
   /* === PHOTO SHOWCASE — adapts to current theme === */
@@ -973,6 +989,7 @@
 <section class="expo-banner">
   <div class="container">
     <div class="banners-slider">
+      <button class="banners-arrow banners-arrow-prev" id="bannersPrev" aria-label="Предыдущий баннер">‹</button>
       <div class="banners-track" id="bannersTrack">
         <div class="banners-slide">
           <a href="#cta" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке Металлэкспо, 10–13 ноября 2026, павильон G — получить расчёт">
@@ -989,6 +1006,7 @@
           </a>
         </div>
       </div>
+      <button class="banners-arrow banners-arrow-next" id="bannersNext" aria-label="Следующий баннер">›</button>
       <div class="banners-nav" id="bannersDots"></div>
     </div>
   </div>
@@ -1024,13 +1042,23 @@
       goTo(current + 1);
     }
 
+    function prev() {
+      goTo(current - 1);
+    }
+
     createDots();
-    setInterval(next, 5000); // Автопролистывание каждые 5 секунд
+    const autoPlayInterval = setInterval(next, 5000);
+
+    // Стрелки навигации
+    const prevBtn = document.getElementById('bannersPrev');
+    const nextBtn = document.getElementById('bannersNext');
+    if (prevBtn) prevBtn.addEventListener('click', prev);
+    if (nextBtn) nextBtn.addEventListener('click', next);
 
     // Клавиши стрелок
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') goTo(current - 1);
-      else if (e.key === 'ArrowRight') goTo(current + 1);
+      if (e.key === 'ArrowLeft') prev();
+      else if (e.key === 'ArrowRight') next();
     });
   })();
 </script>
