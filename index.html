@@ -882,6 +882,26 @@
   .footer-legal a { font-size: 12px; color: var(--on-dark-soft); text-decoration: none; }
   .footer-legal a:hover { color: var(--on-dark); }
 
+  /* === SCROLL TO TOP BUTTON === */
+  .scroll-to-top {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--ink); color: var(--on-dark); border: none;
+    font-size: 24px; cursor: pointer;
+    display: none; align-items: center; justify-content: center;
+    z-index: 100; transition: background 0.3s, transform 0.2s, opacity 0.3s;
+    opacity: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .scroll-to-top.visible {
+    display: flex; opacity: 1;
+  }
+  .scroll-to-top:hover {
+    background: var(--body-dark); transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+  @media (max-width: 768px) {
+    .scroll-to-top { width: 40px; height: 40px; bottom: 16px; right: 16px; font-size: 20px; }
+  }
+
   /* === LIGHT THEME — section overrides (placed last to win the cascade) === */
   /* Expo banner — darker than the white showcase right below it, so they don't blend */
   html[data-theme="light"] .expo-banner { background: var(--surface-card); }
@@ -998,14 +1018,14 @@
       <button class="banners-arrow banners-arrow-prev" id="bannersPrev" aria-label="Предыдущий баннер">‹</button>
       <div class="banners-track" id="bannersTrack">
         <div class="banners-slide">
-          <a href="#cta" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке Металлэкспо, 10–13 ноября 2026, павильон G — получить расчёт">
+          <a href="#form-title" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке Металлэкспо, 10–13 ноября 2026, павильон G — получить расчёт">
             <img src="images/banner-metallexpo-2026.jpg"
                  alt="Приглашаем на стенд MSG Кисловодск 2.0 на международной промышленной выставке Металлэкспо, 10–13 ноября 2026, павильон G"
                  loading="lazy" width="1280" height="386">
           </a>
         </div>
         <div class="banners-slide">
-          <a href="#cta" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке ЮГАГРО, 17–20 ноября 2026, Краснодар — получить расчёт">
+          <a href="#form-title" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке ЮГАГРО, 17–20 ноября 2026, Краснодар — получить расчёт">
             <img src="images/banner-yugagro-2026.jpg"
                  alt="Приглашаем на стенд MSG Кисловодск 2.0 на международной сельскохозяйственной выставке ЮГАГРО 2026, 17–20 ноября 2026, Краснодар"
                  loading="lazy" width="1280" height="386">
@@ -1467,6 +1487,7 @@
     <a href="privacy.html">Политика обработки персональных данных</a>
     <p>ООО «МСГ» &nbsp;·&nbsp; ОГРН: 1173702013649 &nbsp;·&nbsp; ИНН: 3702180159 &nbsp;·&nbsp; КПП: 370201001</p>
   </div>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Вернуться в начало">↑</button>
 </footer>
 
 <!-- LF MODAL -->
@@ -1797,6 +1818,17 @@
     document.querySelector('nav').style.boxShadow =
       window.scrollY > 60 ? '0 1px 12px rgba(20,20,19,0.08)' : 'none';
   }, { passive: true });
+
+  // Scroll to top button
+  const scrollToTopBtn = document.getElementById('scrollToTop');
+  if (scrollToTopBtn) {
+    window.addEventListener('scroll', () => {
+      scrollToTopBtn.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 </script>
 </body>
 </html>
