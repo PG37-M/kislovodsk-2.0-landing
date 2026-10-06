@@ -509,6 +509,36 @@
   .expo-banner-link:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.18); }
   .expo-banner-link img { width: 100%; height: auto; display: block; }
 
+  /* === БАННЕР СЛАЙДЕР — карусель выставок === */
+  .banners-slider {
+    position: relative; overflow: hidden;
+  }
+  .banners-track {
+    display: flex; transition: transform 0.5s ease;
+  }
+  .banners-track.carousel {
+    gap: var(--sp-lg);
+  }
+  .banners-slide {
+    flex: 0 0 100%; min-width: 0;
+  }
+  .banners-nav {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 10;
+  }
+  .banners-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(255,255,255,0.5); border: none;
+    cursor: pointer; transition: background 0.3s;
+  }
+  .banners-dot.active {
+    background: #fff;
+  }
+  @media (max-width: 768px) {
+    .banners-nav { bottom: 12px; }
+    .banners-dot { width: 8px; height: 8px; }
+  }
+
   /* === PHOTO SHOWCASE — adapts to current theme === */
   /* Lighter than the canvas so it separates the hero from the quote band in dark theme */
   .showcase { background: var(--surface-cream); }
@@ -923,15 +953,87 @@
 </section>
 
 <!-- БАННЕР ВЫСТАВКИ — приглашение на стенд, сразу под hero -->
-<section class="expo-banner">
+<!-- ВАРИАНТ 1: Баннеры в столбик -->
+<section class="expo-banner" style="display:none">
   <div class="container">
     <a href="#cta" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке Металлэкспо, 10–13 ноября 2026, павильон G — получить расчёт">
       <img src="images/banner-metallexpo-2026.jpg"
            alt="Приглашаем на стенд MSG Кисловодск 2.0 на международной промышленной выставке Металлэкспо, 10–13 ноября 2026, павильон G"
            loading="lazy" width="1280" height="386">
     </a>
+    <a href="#cta" class="expo-banner-link" style="margin-top:16px;" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке ЮГАГРО, 17–20 ноября 2026, Краснодар — получить расчёт">
+      <img src="images/banner-yugagro-2026.jpg"
+           alt="Приглашаем на стенд MSG Кисловодск 2.0 на международной сельскохозяйственной выставке ЮГАГРО 2026, 17–20 ноября 2026, Краснодар"
+           loading="lazy" width="1280" height="386">
+    </a>
   </div>
 </section>
+
+<!-- ВАРИАНТ 2: Баннеры-слайдер (карусель) -->
+<section class="expo-banner">
+  <div class="container">
+    <div class="banners-slider">
+      <div class="banners-track" id="bannersTrack">
+        <div class="banners-slide">
+          <a href="#cta" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке Металлэкспо, 10–13 ноября 2026, павильон G — получить расчёт">
+            <img src="images/banner-metallexpo-2026.jpg"
+                 alt="Приглашаем на стенд MSG Кисловодск 2.0 на международной промышленной выставке Металлэкспо, 10–13 ноября 2026, павильон G"
+                 loading="lazy" width="1280" height="386">
+          </a>
+        </div>
+        <div class="banners-slide">
+          <a href="#cta" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке ЮГАГРО, 17–20 ноября 2026, Краснодар — получить расчёт">
+            <img src="images/banner-yugagro-2026.jpg"
+                 alt="Приглашаем на стенд MSG Кисловодск 2.0 на международной сельскохозяйственной выставке ЮГАГРО 2026, 17–20 ноября 2026, Краснодар"
+                 loading="lazy" width="1280" height="386">
+          </a>
+        </div>
+      </div>
+      <div class="banners-nav" id="bannersDots"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Баннер-слайдер
+  (function() {
+    const track = document.getElementById('bannersTrack');
+    const dotsContainer = document.getElementById('bannersDots');
+    const slides = track.children;
+    let current = 0;
+
+    function createDots() {
+      for (let i = 0; i < slides.length; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'banners-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Баннер ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function goTo(n) {
+      current = (n + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      document.querySelectorAll('.banners-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === current);
+      });
+    }
+
+    function next() {
+      goTo(current + 1);
+    }
+
+    createDots();
+    setInterval(next, 5000); // Автопролистывание каждые 5 секунд
+
+    // Клавиши стрелок
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+      else if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+  })();
+</script>
 
 <!-- ГАЛЕРЕЯ ОБЪЕКТА — сразу после hero, адаптируется к теме -->
 <section class="showcase section" id="photos">
