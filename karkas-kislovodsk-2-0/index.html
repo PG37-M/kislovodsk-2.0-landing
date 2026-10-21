@@ -181,6 +181,14 @@
   .video-frame{position:relative;padding-bottom:56.25%;height:0;border-radius:8px;overflow:hidden;background:var(--ink);}
   .video-frame iframe,.video-frame video{position:absolute;inset:0;width:100%;height:100%;border:0;}
   .video-frame video{object-fit:contain;background:#000;}
+  /* кнопка «играть» по центру видео — скрывается, пока ролик идёт */
+  .vplay{position:absolute;top:50%;left:50%;width:76px;height:76px;margin:-38px 0 0 -38px;padding:0;border:0;border-radius:50%;
+    cursor:pointer;background:var(--orange);color:var(--ink);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .2s,opacity .2s;}
+  .vplay svg{width:34px;height:34px;fill:currentColor;margin-left:4px;}
+  .vplay:hover{transform:scale(1.07);}
+  .vplay.hide{opacity:0;pointer-events:none;}
+  @media (max-width:600px){.vplay{width:60px;height:60px;margin:-30px 0 0 -30px;}.vplay svg{width:28px;height:28px;}}
   .video-cap{font-size:13.5px;color:var(--tx-dim);margin-top:9px;font-weight:300;}
 
   /* карточки объектов */
@@ -1325,6 +1333,21 @@ ActiveScore.init(metricsFn);
     {"@type":"Question","name":"В каких регионах работаете?","acceptedAnswer":{"@type":"Answer","text":"Основная зона — Центральная Россия. Собственный автопарк из 15 машин, комплект каркаса на 900 м² уходит одной фурой. Для удалённых регионов доставка считается индивидуально."}}
   ]
 }
+</script>
+
+<script>
+// Кнопка «играть» по центру видео
+document.querySelectorAll('video[controls]').forEach(function (v) {
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'vplay';
+  b.setAttribute('aria-label', 'Смотреть видео');
+  b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  v.parentNode.appendChild(b);
+  var sync = function () { b.classList.toggle('hide', !v.paused && !v.ended); };
+  b.addEventListener('click', function () { v.play(); });
+  ['play', 'pause', 'ended'].forEach(function (e) { v.addEventListener(e, sync); });
+});
 </script>
 
 </body>

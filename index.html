@@ -491,6 +491,24 @@
   }
   .expert-frame iframe, .expert-frame video { width: 100%; height: 100%; border: none; display: block; }
   .expert-frame video { object-fit: contain; background: #000; }
+  /* кнопка «играть» по центру видео — скрывается, пока ролик идёт */
+  .video-wrapper, .expert-frame { position: relative; }
+  .vplay {
+    position: absolute; top: 50%; left: 50%;
+    width: 76px; height: 76px; margin: -38px 0 0 -38px; padding: 0;
+    border: 0; border-radius: 50%; cursor: pointer;
+    background: var(--coral); color: var(--on-coral);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    transition: background 0.2s, transform 0.2s, opacity 0.2s;
+  }
+  .vplay svg { width: 34px; height: 34px; fill: currentColor; margin-left: 4px; }
+  .vplay:hover { background: var(--coral-dark); transform: scale(1.07); }
+  .vplay.hide { opacity: 0; pointer-events: none; }
+  @media (max-width: 600px) {
+    .vplay { width: 60px; height: 60px; margin: -30px 0 0 -30px; }
+    .vplay svg { width: 28px; height: 28px; }
+  }
   .expert-cap {
     margin-top: var(--sp-md); text-align: center;
     font-size: 14px; font-weight: 500;
@@ -1834,6 +1852,19 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // Кнопка «играть» по центру видео
+  document.querySelectorAll('video[controls]').forEach(v => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'vplay';
+    b.setAttribute('aria-label', 'Смотреть видео');
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+    v.parentNode.appendChild(b);
+    const sync = () => b.classList.toggle('hide', !v.paused && !v.ended);
+    b.addEventListener('click', () => v.play());
+    ['play', 'pause', 'ended'].forEach(e => v.addEventListener(e, sync));
+  });
 </script>
 </body>
 </html>
