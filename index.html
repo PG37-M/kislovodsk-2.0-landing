@@ -489,7 +489,8 @@
     aspect-ratio: 16/9; background: var(--surface-card);
     border: 1px solid var(--hairline);
   }
-  .expert-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+  .expert-frame iframe, .expert-frame video { width: 100%; height: 100%; border: none; display: block; }
+  .expert-frame video { object-fit: contain; background: #000; }
   .expert-cap {
     margin-top: var(--sp-md); text-align: center;
     font-size: 14px; font-weight: 500;
@@ -1275,7 +1276,7 @@
       <p class="section-sub">4 человека. 6 дней сборки на земле. Подъём всей крыши за 2 часа.</p>
     </div>
     <div class="video-wrapper reveal">
-      <video id="videoEl" src="/video/video_karkas_web.mp4" controls playsinline preload="metadata" title="Видео монтажа Кисловодск 2.0" style="background:#000;object-fit:contain"></video>
+      <video id="videoEl" src="/video/video_karkas_web.mp4" poster="/images/video-poster-karkas.jpg" controls playsinline preload="none" title="Видео монтажа Кисловодск 2.0" style="background:#000;object-fit:contain"></video>
     </div>
     <p class="video-caption reveal">Видео монтажа Кисловодск 2.0</p>
   </div>
@@ -1385,7 +1386,7 @@
     </div>
     <div class="expert-single reveal">
       <div class="expert-frame">
-        <iframe src="https://rutube.ru/play/embed/dfbe8c3eac53bfb5f1fda7aaf053181e/" loading="lazy" allow="clipboard-write; autoplay" allowFullScreen></iframe>
+        <video src="/video/video_k_pro_web.mp4" poster="/images/video-poster-kpro.jpg" controls playsinline preload="none" title="Разбор технологии Кисловодск 2.0 от Константина PRO"></video>
       </div>
       <p class="expert-cap">Капитальное здание по цене ангара? Обзор технологии Кисловодск 2.0<span>Как строить в 2,5 раза дешевле на монтаже и экономить до 30% металла</span></p>
     </div>
