@@ -505,6 +505,7 @@
   .vplay svg { width: 34px; height: 34px; fill: currentColor; margin-left: 4px; }
   .vplay:hover { background: var(--coral-dark); transform: scale(1.07); }
   .vplay.hide { opacity: 0; pointer-events: none; }
+  .vtap { position: absolute; top: 0; left: 0; right: 0; bottom: 56px; cursor: pointer; }
   /* скрываем встроенную кнопку play мобильных браузеров — у нас своя */
   video::-webkit-media-controls-overlay-play-button,
   video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
@@ -1863,6 +1864,12 @@
     b.className = 'vplay';
     b.setAttribute('aria-label', 'Смотреть видео');
     b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+    // прозрачный слой: тап по картинке видео = пауза/плей (нижняя полоса с таймлайном остаётся нативной)
+    const tap = document.createElement('div');
+    tap.className = 'vtap';
+    tap.setAttribute('aria-hidden', 'true');
+    tap.addEventListener('click', () => (v.paused ? v.play() : v.pause()));
+    v.parentNode.appendChild(tap);
     v.parentNode.appendChild(b);
     const sync = () => b.classList.toggle('hide', !v.paused && !v.ended);
     b.addEventListener('click', () => v.play());
