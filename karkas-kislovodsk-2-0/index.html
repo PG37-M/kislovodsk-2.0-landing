@@ -188,6 +188,9 @@
   .vplay svg{width:34px;height:34px;fill:currentColor;margin-left:4px;}
   .vplay:hover{transform:scale(1.07);}
   .vplay.hide{opacity:0;pointer-events:none;}
+  /* скрываем встроенную кнопку play мобильных браузеров — у нас своя */
+  video::-webkit-media-controls-overlay-play-button,
+  video::-webkit-media-controls-start-playback-button{display:none !important;-webkit-appearance:none;}
   @media (max-width:600px){.vplay{width:60px;height:60px;margin:-30px 0 0 -30px;}.vplay svg{width:28px;height:28px;}}
   .video-cap{font-size:13.5px;color:var(--tx-dim);margin-top:9px;font-weight:300;}
 
