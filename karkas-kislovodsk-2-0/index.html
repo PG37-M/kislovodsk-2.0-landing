@@ -179,7 +179,8 @@
   /* видео */
   .video{margin:26px 0;}
   .video-frame{position:relative;padding-bottom:56.25%;height:0;border-radius:8px;overflow:hidden;background:var(--ink);}
-  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-frame iframe,.video-frame video{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-frame video{object-fit:contain;background:#000;}
   .video-cap{font-size:13.5px;color:var(--tx-dim);margin-top:9px;font-weight:300;}
 
   /* карточки объектов */
@@ -799,9 +800,8 @@ ActiveScore.init(metricsFn);
 
     <div class="video">
       <div class="video-frame">
-        <iframe src="https://rutube.ru/play/embed/1a852e35145542f4fdc2d5011290f522/"
-                title="Сборка пространственного модуля Кисловодск 2.0 и подъём покрытия на колонны"
-                allow="clipboard-write; autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <video src="/video/video_karkas_web.mp4" controls playsinline preload="metadata"
+               title="Сборка пространственного модуля Кисловодск 2.0 и подъём покрытия на колонны"></video>
       </div>
       <p class="video-cap">Сборка модуля на земле и подъём готового блока покрытия на колонны — весь процесс за несколько минут</p>
     </div>
