@@ -580,7 +580,14 @@
   }
   .news-link:hover { background: var(--coral-dark); }
   .news-src { margin: var(--sp-md) 0 0; font-size: 12px; color: var(--muted-dark); }
-  @media (max-width: 600px) { .news-card { padding: var(--sp-lg); } }
+  .news-card { display: grid; grid-template-columns: 240px 1fr; gap: var(--sp-xl); align-items: start; }
+  .news-photo { margin: 0; }
+  .news-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 20%; border-radius: var(--r-lg); }
+  .news-photo figcaption { margin-top: 8px; font-size: 12px; line-height: 1.4; color: var(--muted-dark); }
+  @media (max-width: 760px) {
+    .news-card { grid-template-columns: 1fr; gap: var(--sp-lg); padding: var(--sp-lg); }
+    .news-photo img { aspect-ratio: 4 / 3; object-position: 50% 25%; }
+  }
 
   /* === БАННЕР ВЫСТАВКИ — под hero === */
   .expo-banner { padding: var(--sp-lg) 0; background: var(--canvas); }
@@ -1570,6 +1577,11 @@
       <p class="section-sub">Делимся опытом автоматизации производства металлоконструкций.</p>
     </div>
     <article class="news-card reveal">
+      <figure class="news-photo">
+        <img src="images/news-metallexpo-2026.jpg" alt="Рамин Ибрагимов, генеральный директор группы компаний MSG, выступает на конференции на выставке «Металл-Экспо»" width="720" height="1278" loading="lazy">
+        <figcaption>Рамин Ибрагимов выступает на «Металл-Экспо»</figcaption>
+      </figure>
+      <div class="news-body">
       <div class="news-meta">16 ноября 2026 · «Металл-Экспо», Санкт-Петербург</div>
       <h3>Гендиректор MSG рассказал о роботизированной сварке на практике</h3>
       <p>На конференции EVRAZ STEEL BUILDING «Возможности применения высоких технологий на ЗМК в ПГС» генеральный директор группы компаний MSG Рамин Ибрагимов представил кейс внедрения роботизированного сварочного поста FANUC ARC Mate 100iD.</p>
@@ -1580,6 +1592,7 @@
       </ul>
       <a class="news-link" href="https://companies.rbc.ru/news/j7qWOMNlG6/esb-obsudil-na-metall-ekspo-put-k-umnomu-zavodu/" target="_blank" rel="noopener noreferrer">Читать на РБК Компании <span aria-hidden="true">→</span></a>
       <p class="news-src">Источник: РБК Компании</p>
+      </div>
     </article>
   </div>
 </section>
