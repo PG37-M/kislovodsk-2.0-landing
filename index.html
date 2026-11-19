@@ -743,6 +743,15 @@
   }
   .btn-on-coral:hover { opacity: 0.88; }
 
+  /* Тёмная тема: плашка «Доказательство» светлая (в светлой теме остаётся синей) */
+  html:not([data-theme="light"]) .hook-callout { background: var(--surface-light); border: 1px solid rgba(0,0,0,0.08); }
+  html:not([data-theme="light"]) .hook-callout h2,
+  html:not([data-theme="light"]) .hook-callout strong { color: var(--ink-dark); }
+  html:not([data-theme="light"]) .hook-callout p { color: var(--body-dark); }
+  html:not([data-theme="light"]) .hook-callout .eyebrow { color: var(--muted-dark) !important; }
+  html:not([data-theme="light"]) .hook-callout div[style*="border-top"] { border-top-color: rgba(0,0,0,0.12) !important; }
+  html:not([data-theme="light"]) #hookRotatingText { color: var(--body-dark) !important; }
+
   /* CTA form band */
   .hook { background: var(--canvas); }
   .cta-band {
