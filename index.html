@@ -554,6 +554,34 @@
     font-size: 13px; font-weight: 400; color: var(--muted);
   }
 
+  /* === НОВОСТИ (упоминание в СМИ) === */
+  .news-section { background: var(--surface-light); }
+  .news-section h2, .news-section h3 { color: var(--ink-dark); }
+  .news-section .eyebrow { color: var(--muted-dark); }
+  .news-section .section-sub { color: var(--body-dark); }
+  .news-card {
+    max-width: 860px; margin: var(--sp-xxl) auto 0;
+    background: var(--surface-light-card); border: 1px solid rgba(0,0,0,0.08);
+    border-left: 4px solid var(--coral); border-radius: var(--r-xl);
+    padding: var(--sp-xl);
+  }
+  .news-meta { font-size: 12px; font-weight: 500; letter-spacing: 0.4px; color: var(--muted-dark); margin-bottom: var(--sp-sm); }
+  .news-card h3 { font-size: clamp(1.15rem, 2.4vw, 1.5rem); line-height: 1.3; margin-bottom: var(--sp-md); }
+  .news-card p { color: var(--body-dark); font-size: 1rem; line-height: 1.7; margin-bottom: var(--sp-md); }
+  .news-facts { list-style: none; padding: 0; margin: 0 0 var(--sp-lg); display: grid; gap: 8px; }
+  .news-facts li { position: relative; padding-left: 20px; color: var(--ink-dark); font-size: 0.95rem; line-height: 1.55; }
+  .news-facts li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+  .news-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--coral); color: var(--on-coral); text-decoration: none;
+    border-radius: var(--r-md); padding: 0 var(--sp-lg); height: 44px;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .news-link:hover { background: var(--coral-dark); }
+  .news-src { margin: var(--sp-md) 0 0; font-size: 12px; color: var(--muted-dark); }
+  @media (max-width: 600px) { .news-card { padding: var(--sp-lg); } }
+
   /* === БАННЕР ВЫСТАВКИ — под hero === */
   .expo-banner { padding: var(--sp-lg) 0; background: var(--canvas); }
   .expo-banner-link {
@@ -1530,6 +1558,29 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- НОВОСТИ — упоминание в СМИ -->
+<section class="news-section section" id="news">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Новости</div>
+      <h2 class="section-title">MSG на «Металл-Экспо»</h2>
+      <p class="section-sub">Делимся опытом автоматизации производства металлоконструкций.</p>
+    </div>
+    <article class="news-card reveal">
+      <div class="news-meta">16 ноября 2026 · «Металл-Экспо», Санкт-Петербург</div>
+      <h3>Гендиректор MSG рассказал о роботизированной сварке на практике</h3>
+      <p>На конференции EVRAZ STEEL BUILDING «Возможности применения высоких технологий на ЗМК в ПГС» генеральный директор группы компаний MSG Рамин Ибрагимов представил кейс внедрения роботизированного сварочного поста FANUC ARC Mate 100iD.</p>
+      <ul class="news-facts">
+        <li>Комплекс работает серийно с мая 2025 года: пока робот варит, оператор готовит следующую конструкцию.</li>
+        <li>Задание формируется на основе IFC-модели, а перед сваркой система сканирует изделие и уточняет его положение.</li>
+        <li>Роботу передают изделия с большим объёмом повторяющейся сварки, короткие и труднодоступные швы выполняют сварщики.</li>
+      </ul>
+      <a class="news-link" href="https://companies.rbc.ru/news/j7qWOMNlG6/esb-obsudil-na-metall-ekspo-put-k-umnomu-zavodu/" target="_blank" rel="noopener noreferrer">Читать на РБК Компании <span aria-hidden="true">→</span></a>
+      <p class="news-src">Источник: РБК Компании</p>
+    </article>
   </div>
 </section>
 
