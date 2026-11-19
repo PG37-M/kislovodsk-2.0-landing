@@ -1117,13 +1117,6 @@
       <button class="banners-arrow banners-arrow-prev" id="bannersPrev" aria-label="Предыдущий баннер">‹</button>
       <div class="banners-track" id="bannersTrack">
         <div class="banners-slide">
-          <a href="#form-title" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке Металлэкспо, 10–13 ноября 2026, павильон G — получить расчёт">
-            <img src="images/banner-metallexpo-2026.jpg"
-                 alt="Приглашаем на стенд MSG Кисловодск 2.0 на международной промышленной выставке Металлэкспо, 10–13 ноября 2026, павильон G"
-                 loading="lazy" width="1280" height="386">
-          </a>
-        </div>
-        <div class="banners-slide">
           <a href="#form-title" class="expo-banner-link" aria-label="Приглашаем на стенд МСГ Кисловодск 2.0 на выставке ЮГАГРО, 17–20 ноября 2026, Краснодар — получить расчёт">
             <img src="images/banner-yugagro-2026.jpg"
                  alt="Приглашаем на стенд MSG Кисловодск 2.0 на международной сельскохозяйственной выставке ЮГАГРО 2026, 17–20 ноября 2026, Краснодар"
@@ -1171,12 +1164,21 @@
       goTo(current - 1);
     }
 
+    const prevBtn = document.getElementById('bannersPrev');
+    const nextBtn = document.getElementById('bannersNext');
+
+    // Один баннер — слайдер не нужен: прячем стрелки и точки, без автопрокрутки
+    if (slides.length < 2) {
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
+      dotsContainer.style.display = 'none';
+      return;
+    }
+
     createDots();
     const autoPlayInterval = setInterval(next, 5000);
 
     // Стрелки навигации
-    const prevBtn = document.getElementById('bannersPrev');
-    const nextBtn = document.getElementById('bannersNext');
     if (prevBtn) prevBtn.addEventListener('click', prev);
     if (nextBtn) nextBtn.addEventListener('click', next);
 
