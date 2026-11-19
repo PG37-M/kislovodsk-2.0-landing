@@ -743,14 +743,23 @@
   }
   .btn-on-coral:hover { opacity: 0.88; }
 
-  /* Тёмная тема: плашка «Доказательство» светлая (в светлой теме остаётся синей) */
-  html:not([data-theme="light"]) .hook-callout { background: var(--surface-light); border: 1px solid rgba(0,0,0,0.08); }
-  html:not([data-theme="light"]) .hook-callout h2,
-  html:not([data-theme="light"]) .hook-callout strong { color: var(--ink-dark); }
-  html:not([data-theme="light"]) .hook-callout p { color: var(--body-dark); }
-  html:not([data-theme="light"]) .hook-callout .eyebrow { color: var(--muted-dark) !important; }
-  html:not([data-theme="light"]) .hook-callout div[style*="border-top"] { border-top-color: rgba(0,0,0,0.12) !important; }
-  html:not([data-theme="light"]) #hookRotatingText { color: var(--body-dark) !important; }
+  /* Тёмная тема: фон секции с плашкой «Доказательство» и формой светлый (цвета светлой темы);
+     сама синяя плашка остаётся как есть */
+  html:not([data-theme="light"]) .hook {
+    --canvas:        #ffffff;
+    --surface-soft:  #f7f7f5;
+    --surface-card:  #f0f0ee;
+    --surface-cream: #f7f7f5;
+    --surface-gray:  #f2f2f0;
+    --surface-gray-mid: #e8e8e6;
+    --hairline:      #e2e2de;
+    --hairline-soft: #ececea;
+    --ink:           #111111;
+    --body-str:      #2a2a28;
+    --body:          #45453f;
+    --muted:         #6c6a64;
+    --muted-soft:    #8a8884;
+  }
 
   /* CTA form band */
   .hook { background: var(--canvas); }
